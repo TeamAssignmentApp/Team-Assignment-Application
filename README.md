@@ -15,35 +15,35 @@ Type in "git checkout -b [branch name]". This will create a new branch based on 
 
 COMMITING CHANGES YOUVE MADE
 =================
-If you want to commit all of the changes you have made, type in "git add -A". This will add all changes to be ready to commit. 
-If you want to add specific files in your changes, type in "git add [path to file]"
+1. If you want to commit all of the changes you have made, type in "git add -A". This will add all changes to be ready to commit. 
+2. If you want to add specific files in your changes, type in "git add [path to file]"
 
-You can use "git status" to see which files have been changed and what changes are ready in your commit.
+3. You can use "git status" to see which files have been changed and what changes are ready in your commit.
 
-To commit type in "git commit". This will open up an editor, I believe the default is VIM, but you can change it to nano if you would like.
-Enter in a commit message on the first line and then save exit the editor.
-The changes you have committed are now saved.
+4. To commit type in "git commit". This will open up an editor, I believe the default is VIM, but you can change it to nano if you would like.
+5. Enter in a commit message on the first line and then save exit the editor.
+6. The changes you have committed are now saved.
 
 MERGING CHANGES FROM YOUR BRANCH INTO YOUR MASTER BRANCH
 =================
-After making all changes on the branch you were working on, go back to the master branch.
-To do so, type "git checkout master".
-Next, you will type "git merge [name of branch you were working on]". 
-This will pull all of the changes from your feature branch into your master branch.
+1. After making all changes on the branch you were working on, go back to the master branch.
+2. To do so, type "git checkout master".
+3. Next, you will type "git merge [name of branch you were working on]". 
+4. This will pull all of the changes from your feature branch into your master branch.
 
 PUSHING YOUR LOCAL CHANGES BACK TO YOUR GITHUB COPY OF THE REPO
 =================
-If you type "git remote", you should see a list of your remotes, likely there is only origin.
-This is the link to your github copy of the repo. 
+1. If you type "git remote", you should see a list of your remotes, likely there is only origin.
+2. This is the link to your github copy of the repo. 
 
-To push a single branch up to github, type in "git push origin [branch name]". This will put your branch up onto your github repo.
+3. To push a single branch up to github, type in "git push origin [branch name]". This will put your branch up onto your github repo.
 
 MAKING A PULL REQUEST
 =================
-Once you have made changes you want to go live on our AWS Instance you will make a pull request.
-Go to github and then navigate to your copy of the code.
-Go to your master branch and find the pull request button. 
-Select your master branch and our MASTER master branch as the two branches to be merged.
-Enter in a message for the pull request and click okay.
+1. Once you have made changes you want to go live on our AWS Instance you will make a pull request.
+2. Go to github and then navigate to your copy of the code.
+3. Go to your master branch and find the pull request button. 
+4. Select your master branch and our MASTER master branch as the two branches to be merged.
+5. Enter in a message for the pull request and click okay.
 
-Someone will go in and accept the pull request into our MASTER master branch.
+6. Someone will go in and accept the pull request into our MASTER master branch.

@@ -10,9 +10,11 @@ Team-Assignment-Application
 8. type in "git branch". You should see that you are on the master branch. Always keep this as a clean copy of the code.
 
 CREATING A BRANCH
+=================
 Type in "git checkout -b [branch name]". This will create a new branch based on the branch you are currently on.
 
 COMMITING CHANGES YOUVE MADE
+=================
 If you want to commit all of the changes you have made, type in "git add -A". This will add all changes to be ready to commit. 
 If you want to add specific files in your changes, type in "git add [path to file]"
 
@@ -23,18 +25,21 @@ Enter in a commit message on the first line and then save exit the editor.
 The changes you have committed are now saved.
 
 MERGING CHANGES FROM YOUR BRANCH INTO YOUR MASTER BRANCH
+=================
 After making all changes on the branch you were working on, go back to the master branch.
 To do so, type "git checkout master".
 Next, you will type "git merge [name of branch you were working on]". 
 This will pull all of the changes from your feature branch into your master branch.
 
 PUSHING YOUR LOCAL CHANGES BACK TO YOUR GITHUB COPY OF THE REPO
+=================
 If you type "git remote", you should see a list of your remotes, likely there is only origin.
 This is the link to your github copy of the repo. 
 
 To push a single branch up to github, type in "git push origin [branch name]". This will put your branch up onto your github repo.
 
 MAKING A PULL REQUEST
+=================
 Once you have made changes you want to go live on our AWS Instance you will make a pull request.
 Go to github and then navigate to your copy of the code.
 Go to your master branch and find the pull request button. 

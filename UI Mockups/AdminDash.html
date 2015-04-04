@@ -9,7 +9,11 @@
 	<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 	<script>
 		$(document).ready(function(){
+			//$("#displayClasses").dataTable();
+			//$("#displayTeams").dataTable();
+			$("#displayUsers").dataTable();
 			$("#displayProjects").dataTable();
+			$("#displayAdmins").dataTable();
 			$('#adminTabs a').click(function (e) {
 				e.preventDefault()
 				$(this).tab('show')
@@ -37,68 +41,143 @@
 						<a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">Projects</a>
 					</li>
 					<li role="presentation">
-						<a href="#administrators" caria-controls="administrators" role="tab" data-toggle="tab">Administrators</a>
+						<a href="#administrators" aria-controls="administrators" role="tab" data-toggle="tab">Administrators</a>
 					</li>
 					<li role="presentation">
 						<a href="#requestpage" aria-controls="requestpage" role="tab" data-toggle="tab">Request Page</a>
 					</li>
 				</ul>
 				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="classes">...</div>
-    				<div role="tabpanel" class="tab-pane" id="teams">...</div>
-    				<div role="tabpanel" class="tab-pane" id="users">...</div>
+					<div role="tabpanel" class="tab-pane active" id="classes">
+						<table id="displayClasses" class="display">
+							<thead>
+
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+    				<div role="tabpanel" class="tab-pane" id="teams">
+						<table id="displayTeams" class="display">
+							<thead>
+
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+    				</div>
+    				<div role="tabpanel" class="tab-pane" id="users">
+    					<table id="displayUsers" class="display">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Major</th>
+									<th>Email</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Alex Russell</td>
+									<td>Computer Engineering</td>
+									<td>amrussell@smu.edu</td>
+								</tr>
+								<tr>
+									<td>Nick Morris</td>
+									<td>Computer Science</td>
+									<td>nmorris@smu.edu</td>
+								</tr>
+								<tr>
+									<td>Ian Cowley</td>
+									<td>Computer Science</td>
+									<td>icowley@smu.edu</td>
+								</tr>
+								<tr>
+									<td>Jeffrey Artigues</td>
+									<td>Computer Science</td>
+									<td>jartigues@smu.edu</td>
+								</tr>
+							</tbody>
+						</table>
+    				</div>
     				<div role="tabpanel" class="tab-pane" id="projects">
     					<h3 style="margin-top:0">Managing Projects</h3>
-				<table id="displayProjects" class="display">
-				<thead>
-					<tr>
-						<th>
-							Name
-						</th>
-						<th>
-							Description
-						</th>
-						<th>
-							# Students
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Project 1</td>
-						<td>Description</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>Project 2</td>
-						<td>Description</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>Project 3</td>
-						<td>Description</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>Project 4</td>
-						<td>Description</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>Project 5</td>
-						<td>Description</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>Project 6</td>
-						<td>Description</td>
-						<td>5</td>
-					</tr>
-				</tbody>
-			</table>
+						<table id="displayProjects" class="display">
+							<thead>
+								<tr>
+									<th>
+										Name
+									</th>
+									<th>
+										Description
+									</th>
+									<th>
+										# Students
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Project 1</td>
+									<td>Description</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>Project 2</td>
+									<td>Description</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>Project 3</td>
+									<td>Description</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>Project 4</td>
+									<td>Description</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>Project 5</td>
+									<td>Description</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>Project 6</td>
+									<td>Description</td>
+									<td>5</td>
+								</tr>
+							</tbody>
+						</table>
     				</div>
-    				<div role="tabpanel" class="tab-pane" id="administrators">...</div>
-    				<div role="tabpanel" class="tab-pane" id="requestpage">...</div>
+    				<div role="tabpanel" class="tab-pane" id="administrators">
+    					<table id="displayAdmins" class="display">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Classes</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Don Evans</td>
+									<td>Senior Design</td>
+								</tr>
+								<tr>
+									<td>Dona Mularkey</td>
+									<td>Senior Design</td>
+								</tr>
+								<tr>
+									<td>Carlos Davila</td>
+									<td>Senior Design</td>
+								</tr>
+							</tbody>
+						</table>
+    				</div>
+    				<div role="tabpanel" class="tab-pane" id="requestpage">
+    					Control the request page from here
+    				</div>
 
 				</div>
 			</div>

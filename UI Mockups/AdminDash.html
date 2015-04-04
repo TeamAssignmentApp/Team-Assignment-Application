@@ -10,26 +10,45 @@
 	<script>
 		$(document).ready(function(){
 			$("#displayProjects").dataTable();
+			$('#adminTabs a').click(function (e) {
+				e.preventDefault()
+				$(this).tab('show')
+			})
 		});
 	</script>
 	</head>
 	<body>
-		<div class="container" style="width:100%">
-			<div class="col-md-12" id="header" style="text-align:center">
-                                <h3>SMU Lyle Multidisciplinary Senior Design</h3>
-                        </div>
-			<div class="col-md-2" style="height:500px">
-				<h4 id="sidebarLabel">Manage</h4>
-				<a class="btn btn-primary btn-block">Classes</a>
-				<a class="btn btn-primary btn-block">Teams</a>
-				<a class="btn btn-primary btn-block">Users</a>
-				<a class="btn btn-primary btn-block">Projects</a>
-				<a class="btn btn-primary btn-block">Users</a>
-				<a class="btn btn-primary btn-block">Administrators</a>
-				<a class="btn btn-primary btn-block">Request Page</a>
-			</div>
-			<div class="col-md-10 well" style="height:500px" id="manageWindow">
-				<h3 style="margin-top:0">Managing Projects</h3>
+		<h3 style="text-align:center; color:white">SMU Lyle Multidisciplinary Senior Design</h3>
+		<div class="container well" style="width:90%; height:650px">
+			<h3 style="text-align:center">Senior Design Administrator Dashboard</h3>
+			<div class="col-md-12" role="tabpanel">
+				<ul class="nav nav-tabs" role="tablist" id="adminTabs">
+					<li role="presentation" >
+					<li role="presentation" class="active">
+						<a href="#classes" aria-controls="classes" role="tab" data-toggle="tab">Classes</a>
+					</li>
+					<li role="presentation">
+						<a href="#teams" aria-controls="teams" role="tab" data-toggle="tab">Teams</a>
+					</li>
+					<li role="presentation">
+						<a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a>
+					</li>
+					<li role="presentation">
+						<a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">Projects</a>
+					</li>
+					<li role="presentation">
+						<a href="#administrators" caria-controls="administrators" role="tab" data-toggle="tab">Administrators</a>
+					</li>
+					<li role="presentation">
+						<a href="#requestpage" aria-controls="requestpage" role="tab" data-toggle="tab">Request Page</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="classes">...</div>
+    				<div role="tabpanel" class="tab-pane" id="teams">...</div>
+    				<div role="tabpanel" class="tab-pane" id="users">...</div>
+    				<div role="tabpanel" class="tab-pane" id="projects">
+    					<h3 style="margin-top:0">Managing Projects</h3>
 				<table id="displayProjects" class="display">
 				<thead>
 					<tr>
@@ -77,6 +96,11 @@
 					</tr>
 				</tbody>
 			</table>
+    				</div>
+    				<div role="tabpanel" class="tab-pane" id="administrators">...</div>
+    				<div role="tabpanel" class="tab-pane" id="requestpage">...</div>
+
+				</div>
 			</div>
 		</div>
 	</body>

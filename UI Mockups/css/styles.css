@@ -2,6 +2,6 @@ body {
 	background-image: url("background.jpg")
 }
 
-#header, #sidebarLabel {
+#header, #sidebarLabel, #resultsExplanation {
 	color: white;
 }

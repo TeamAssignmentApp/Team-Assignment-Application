@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+        <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#displayProjects").dataTable();
+			$('#adminTabs a').click(function (e) {
+				e.preventDefault()
+				$(this).tab('show')
+			})
+		});
+	</script>
+	</head>
+	<body>
+		<h3 style="text-align:center; color:white">SMU Lyle Multidisciplinary Senior Design</h3>
+		<div class="container well" style="width:90%; height:650px">
+			<h3 style="text-align:center">Senior Design Administrator Dashboard</h3>
+			<div class="col-md-12" role="tabpanel">
+				<ul class="nav nav-tabs" role="tablist" id="adminTabs">
+					<li role="presentation" >
+					<li role="presentation" class="active">
+						<a href="#classes" aria-controls="classes" role="tab" data-toggle="tab">Classes</a>
+					</li>
+					<li role="presentation">
+						<a href="#teams" aria-controls="teams" role="tab" data-toggle="tab">Teams</a>
+					</li>
+					<li role="presentation">
+						<a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a>
+					</li>
+					<li role="presentation">
+						<a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">Projects</a>
+					</li>
+					<li role="presentation">
+						<a href="#administrators" caria-controls="administrators" role="tab" data-toggle="tab">Administrators</a>
+					</li>
+					<li role="presentation">
+						<a href="#requestpage" aria-controls="requestpage" role="tab" data-toggle="tab">Request Page</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="classes">...</div>
+    				<div role="tabpanel" class="tab-pane" id="teams">...</div>
+    				<div role="tabpanel" class="tab-pane" id="users">...</div>
+    				<div role="tabpanel" class="tab-pane" id="projects">
+    					<h3 style="margin-top:0">Managing Projects</h3>
+				<table id="displayProjects" class="display">
+				<thead>
+					<tr>
+						<th>
+							Name
+						</th>
+						<th>
+							Description
+						</th>
+						<th>
+							# Students
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Project 1</td>
+						<td>Description</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>Project 2</td>
+						<td>Description</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>Project 3</td>
+						<td>Description</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>Project 4</td>
+						<td>Description</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>Project 5</td>
+						<td>Description</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>Project 6</td>
+						<td>Description</td>
+						<td>5</td>
+					</tr>
+				</tbody>
+			</table>
+    				</div>
+    				<div role="tabpanel" class="tab-pane" id="administrators">...</div>
+    				<div role="tabpanel" class="tab-pane" id="requestpage">...</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

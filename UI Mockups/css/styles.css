@@ -3,7 +3,7 @@ body {
 	font-family: "Georgia", serif;
 }
 
-#header, #sidebarLabel, #resultsExplanation {
+#header, #sidebarLabel, #resultsExplanation, #projectView, #labels {
 	color: white;
 }
 

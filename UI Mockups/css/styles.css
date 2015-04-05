@@ -3,6 +3,10 @@ body {
 	font-family: "Georgia", serif;
 }
 
+h1 {
+	font-size: 40px;
+}
+
 #header, #sidebarLabel, #resultsExplanation, #projectView, #labels {
 	color: white;
 }

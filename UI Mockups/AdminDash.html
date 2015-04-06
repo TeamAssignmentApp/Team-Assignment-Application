@@ -1,12 +1,13 @@
 <!doctype html>
 <html>
-        <head>
+    <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
         <link rel="stylesheet" href="css/styles.css" />
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+		<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
 	<script>
 		$(document).ready(function(){
 			//$("#displayClasses").dataTable();
@@ -17,7 +18,27 @@
 			$('#adminTabs a').click(function (e) {
 				e.preventDefault()
 				$(this).tab('show')
-			})
+			});
+
+			$("#crudModal").on("hidden.bs.modal", function() {
+				$("#crudBody").empty();
+			});
+
+			$('#crudModal').on('show.bs.modal', function () {
+			       $(this).find('.modal-body').css({
+			              width:'auto', //probably not needed
+			              height:'auto', //probably not needed 
+			              'max-height':'100%'
+			       });
+			});
+
+			//bind click events to add buttons
+			$("#addUserBtn").click(function() {
+				$("#crudBody").html($("#loadingDisplay").html());
+				$("#crudBody").load("createUser.html", function() {
+					$("#crudTitle").html("Adding User");
+				});
+			});
 		});
 	</script>
 	</head>
@@ -71,7 +92,8 @@
 						</table>
     				</div>
     				<div role="tabpanel" class="tab-pane" id="users">
-    					<h3 style="margin-top:0">Managing Users</h3>
+    					<h3 style="margin-top:0; display:inline-block">Managing Users</h3>
+    					<button class="btn btn-success btn-sm" id="addUserBtn" style="inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add User</button>
     					<table id="displayUsers" class="display">
 							<thead>
 								<tr>
@@ -105,7 +127,8 @@
 						</table>
     				</div>
     				<div role="tabpanel" class="tab-pane" id="projects">
-    					<h3 style="margin-top:0">Managing Projects</h3>
+    					<h3 style="margin-top:0; display:inline-block">Managing Projects</h3>
+    					<button class="btn btn-success" id="addProjectBtn" stye="display:inline-block"><span class="glyphicon glyphicon-plus"></span>Add Project</button>
 						<table id="displayProjects" class="display">
 							<thead>
 								<tr>
@@ -188,5 +211,26 @@
 				</div>
 			</div>
 		</div>
+
+		<!--hidden div holding loading display when div is loading info-->
+		<div id="loadingDisplay" style="display:none">
+			<div style="text-align:center">
+				<h3>Loading Form...</h3>
+				<img src="images/ajax-loader.gif">
+			</div>
+		</div>
+
+		<!--modal display for CRUD-->
+		<div class="modal fade" id="crudModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="crudTitle"></h4>
+					</div>
+					<div class="modal-body" id="crudBody"></div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 	</body>
 </html>

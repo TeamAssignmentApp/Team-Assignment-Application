@@ -10,14 +10,9 @@
 
 	<script>
 		$(document).ready(function(){
-			$("#displayClasses").dataTable();
-			console.log("loaded classes");
-			$("#displayTeams").dataTable();			
-			console.log("loaded teams");
+			$("#displayClasses").dataTable();			
 			$("#displayUsers").dataTable();
-			console.log("loaded users");
 			$("#displayProjects").dataTable();
-			console.log("loaded projects");
 			$("#displayAdmins").dataTable();
 			$('#adminTabs a').click(function (e) {
 				e.preventDefault()
@@ -40,13 +35,6 @@
 				$("#crudBody").html($("#loadingDisplay").html());
 				$("#crudBody").load("createUser.html", function() {
 					$("#crudTitle").html("Adding Class");
-				});
-			});
-
-			$("#addTeamBtn").click(function() {
-				$("#crudBody").html($("#loadingDisplay").html());
-				$("#crudBody").load("createUser.html", function() {
-					$("#crudTitle").html("Adding User");
 				});
 			});
 
@@ -76,9 +64,6 @@
 					<li role="presentation" >
 					<li role="presentation" class="active">
 						<a href="#classes" aria-controls="classes" role="tab" data-toggle="tab">Classes</a>
-					</li>
-					<li role="presentation">
-						<a href="#teams" aria-controls="teams" role="tab" data-toggle="tab">Teams</a>
 					</li>
 					<li role="presentation">
 						<a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a>
@@ -130,42 +115,6 @@
 							</tbody>
 						</table>
 					</div>
-    				<div role="tabpanel" class="tab-pane" id="teams">
-    					<h3 style="margin-top:0">Managing Teams</h3>
-    					<button class="btn btn-success btn-sm" id="addTeamBtn" style="inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add Team</button>
-						<table id="displayTeams" class="display">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Major</th>
-									<th>Email</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Alex Russell</td>
-									<td>Computer Engineering</td>
-									<td>amrussell@smu.edu</td>
-								</tr>
-								<tr>
-									<td>Nick Morris</td>
-									<td>Computer Science</td>
-									<td>nmorris@smu.edu</td>
-								</tr>
-								<tr>
-									<td>Ian Cowley</td>
-									<td>Computer Science</td>
-									<td>icowley@smu.edu</td>
-								</tr>
-								<tr>
-									<td>Jeffrey Artigues</td>
-									<td>Computer Science</td>
-									<td>jartigues@smu.edu</td>
-								</tr>
-
-							</tbody>
-						</table>
-    				</div>
     				<div role="tabpanel" class="tab-pane" id="users">
     					<h3 style="margin-top:0; display:inline-block">Managing Users</h3>
     					<button class="btn btn-success btn-sm" id="addUserBtn" style="inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add User</button>

@@ -39,6 +39,13 @@
 					$("#crudTitle").html("Adding User");
 				});
 			});
+
+			$("#addProjectBtn").click(function() {
+				$("#crudBody").html($("#loadingDisplay").html());
+				$("#crudBody").load("CreateProject.html", function() {
+					$("#crudTitle").html("Adding Project");
+				});
+			});
 		});
 	</script>
 	</head>
@@ -128,7 +135,7 @@
     				</div>
     				<div role="tabpanel" class="tab-pane" id="projects">
     					<h3 style="margin-top:0; display:inline-block">Managing Projects</h3>
-    					<button class="btn btn-success" id="addProjectBtn" stye="display:inline-block"><span class="glyphicon glyphicon-plus"></span>Add Project</button>
+    					<button class="btn btn-success btn-sm" id="addProjectBtn" style="display:inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add Project</button>
 						<table id="displayProjects" class="display">
 							<thead>
 								<tr>

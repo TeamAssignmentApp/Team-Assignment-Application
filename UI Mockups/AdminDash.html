@@ -33,8 +33,8 @@
 
 			$("#addClassBtn").click(function() {
 				$("#crudBody").html($("#loadingDisplay").html());
-				$("#crudBody").load("createUser.html", function() {
-					$("#crudTitle").html("Adding Class");
+				$("#crudBody").load("createClass.html", function() {
+					$("#crudTitle").html("Adding Class...");
 				});
 			});
 
@@ -42,14 +42,14 @@
 			$("#addUserBtn").click(function() {
 				$("#crudBody").html($("#loadingDisplay").html());
 				$("#crudBody").load("createUser.html", function() {
-					$("#crudTitle").html("Adding User");
+					$("#crudTitle").html("Adding User...");
 				});
 			});
 
 			$("#addProjectBtn").click(function() {
 				$("#crudBody").html($("#loadingDisplay").html());
 				$("#crudBody").load("CreateProject.html", function() {
-					$("#crudTitle").html("Adding Project");
+					$("#crudTitle").html("Adding Project...");
 				});
 			});
 		});

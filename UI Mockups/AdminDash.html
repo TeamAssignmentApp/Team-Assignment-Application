@@ -10,10 +10,14 @@
 
 	<script>
 		$(document).ready(function(){
-			//$("#displayClasses").dataTable();
-			//$("#displayTeams").dataTable();
+			$("#displayClasses").dataTable();
+			console.log("loaded classes");
+			$("#displayTeams").dataTable();			
+			console.log("loaded teams");
 			$("#displayUsers").dataTable();
+			console.log("loaded users");
 			$("#displayProjects").dataTable();
+			console.log("loaded projects");
 			$("#displayAdmins").dataTable();
 			$('#adminTabs a').click(function (e) {
 				e.preventDefault()
@@ -30,6 +34,20 @@
 			              height:'auto', //probably not needed 
 			              'max-height':'100%'
 			       });
+			});
+
+			$("#addClassBtn").click(function() {
+				$("#crudBody").html($("#loadingDisplay").html());
+				$("#crudBody").load("createUser.html", function() {
+					$("#crudTitle").html("Adding Class");
+				});
+			});
+
+			$("#addTeamBtn").click(function() {
+				$("#crudBody").html($("#loadingDisplay").html());
+				$("#crudBody").load("createUser.html", function() {
+					$("#crudTitle").html("Adding User");
+				});
 			});
 
 			//bind click events to add buttons
@@ -78,7 +96,7 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="classes">
 						<h3 style="margin-top:0">Managing Classes</h3>
-						<button class="btn btn-success btn-sm" id="addUserBtn" style="inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add Class</button>
+						<button class="btn btn-success btn-sm" id="addClassBtn" style="inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add Class</button>
 						<table id="displayClasses" class="display">
 							<thead>
 								<tr>
@@ -114,13 +132,13 @@
 					</div>
     				<div role="tabpanel" class="tab-pane" id="teams">
     					<h3 style="margin-top:0">Managing Teams</h3>
-    					<button class="btn btn-success btn-sm" id="addUserBtn" style="inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add Team</button>
+    					<button class="btn btn-success btn-sm" id="addTeamBtn" style="inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add Team</button>
 						<table id="displayTeams" class="display">
 							<thead>
 								<tr>
 									<th>Name</th>
-									<!--<th>Major</th>
-									<th>Email</th>-->
+									<th>Major</th>
+									<th>Email</th>
 								</tr>
 							</thead>
 							<tbody>

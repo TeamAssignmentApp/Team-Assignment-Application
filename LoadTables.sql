@@ -6,13 +6,10 @@ DROP TABLE IF EXISTS Skill;
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS HasSkill;
 DROP TABLE IF EXISTS Project;
-DROP TABLE IF EXISTS Discipline;
 DROP TABLE IF EXISTS Class;
 DROP TABLE IF EXISTS Major;
 DROP TABLE IF EXISTS AdminOf;
-DROP TABLE IF EXISTS InDiscipline;
 DROP TABLE IF EXISTS IsMajor;
-DROP TABLE IF EXISTS InClass;
 DROP TABLE IF EXISTS ProjectRequiresSkill;
 DROP TABLE IF EXISTS ClassHasSkill;
 DROP TABLE IF EXISTS HasProject;
@@ -26,7 +23,7 @@ CREATE TABLE User(
   email varchar(30),
   fname varchar(30),
   lname varchar(30),
-  password varchar(255),
+  password varchar(40),
   isMaster tinyint(1)
 );
 CREATE TABLE Class(
@@ -36,10 +33,6 @@ CREATE TABLE Class(
   teammatePreferences int,
   startTime DATETIME,
   endTime DATETIME
-);
-CREATE TABLE Discipline(
-  disciplineID int not null primary key auto_increment,
-  disciplineName varchar(40)
 );
 CREATE TABLE Project(
   projectID int not null primary key auto_increment,
@@ -61,20 +54,6 @@ CREATE TABLE AdminOf(
     PRIMARY KEY (classID, userID), 
     FOREIGN KEY (classID) REFERENCES Class(classID),
     FOREIGN KEY (userID) REFERENCES User(userID) 
-);
-CREATE TABLE InClass(
-    disciplineID int,
-    classID int,
-    PRIMARY KEY (classID, disciplineID), 
-    FOREIGN KEY (classID) REFERENCES Class(classID),
-    FOREIGN KEY (disciplineID) REFERENCES Discipline(disciplineID) 
-);
-CREATE TABLE InDiscipline(
-  disciplineID int,
-  userID int,
-  foreign key(disciplineID) references Discipline(disciplineID),
-  foreign key(userID) references User(userID),
-  primary key(disciplineID, userID)
 );
 CREATE TABLE IsMajor(
   majorID int,
@@ -105,11 +84,11 @@ CREATE TABLE ClassHasSkill(
   primary key(skillID, classID)
 );
 CREATE TABLE HasProject(
-  disciplineID int,
+  classID int,
   projectID int,
-  foreign key(disciplineID) references Discipline(disciplineID),
+  foreign key(classID) references Class(classID),
   foreign key(projectID) references Project(projectID),
-  primary key(disciplineID, projectID)
+  primary key(classID, projectID)
 );
 CREATE TABLE InProject(
   userID int,

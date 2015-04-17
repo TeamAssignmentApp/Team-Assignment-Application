@@ -52,6 +52,16 @@
 					$("#crudTitle").html("Adding Project...");
 				});
 			});
+
+			$("#reqPageSelect").change(function() {
+				console.log('hi');
+				if($(this).val() == "")
+					$(".requestPageInput").attr("disabled","disabled");
+				else {
+					$(".requestPageInput").removeAttr("disabled");
+				}
+
+			})
 		});
 	</script>
 	</head>
@@ -230,21 +240,30 @@
     					<div class="container">
     						<div class="col-md-12">
     							<div class="input-group" style="width:400px">
+    								<label for="reqPageToChange">Please Choose a Class to Edit Its Page</label>
+    								<select class="form-control" id="reqPageSelect">
+    									<option value="" selected>--Please Select--</option>
+    									<option value="1">Class 1</option>
+    									<option value="2">Class 2</option>
+    								</select>
+    							</div>
+    							<hr />
+    							<div class="input-group" style="width:400px">
     								<label for="numTeammateReqs">Number of Teammate Requests Allowed</label>
-    								<input class="form-control" type="number" min="2" max="8" value="2" id="numTeammateReqs"/>
+    								<input class="form-control requestPageInput" disabled type="number" min="2" max="8" value="2" id="numTeammateReqs"/>
     							</div>
     							<br/>
     							<div class="input-group" style="width:400px">
     								<label for="numSkills">Number of Skills Allowed</label>
-    								<input class="form-control" type="number" min="1" max="9" value="1" id="numSkills"/>
+    								<input class="form-control requestPageInput" disabled type="number" min="1" max="9" value="1" id="numSkills"/>
     							</div>
     							<br/>
     							<div class="input-group" style="width:400px">
     								<label for="numProjects">Number of Project Requests Allowed</label>
-    								<input class="form-control" type="number" min="2" max="9" value="2" id="numProjects"/>
+    								<input class="form-control requestPageInput" disabled type="number" min="2" max="9" value="2" id="numProjects"/>
     							</div>
     							<br/>
-    							<a class="btn btn-success" id="saveProjReqPageChanges">Save Changes</a>
+    							<button class="btn btn-success requestPageInput" disabled id="saveProjReqPageChanges">Save Changes</button>
     						</div>
     					</div>
 				

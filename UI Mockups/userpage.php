@@ -43,7 +43,8 @@
 				var newTeamPref = "<div class='input-group'>" +
 									"<span class='input-group-addon'>Team Member Request " + (i+1) + "</span>" +
 									"<input type='text' placeholder='Start typing name...'' class='form-control' />" +
-									"</div>";
+									"</div>" +
+									"<br/";
 				$("#teamReqs").append(newTeamPref);
 			}
 
@@ -76,22 +77,6 @@
 			<div class="col-md-6">
 				<div class="well" style="padding-top:0px" id="teamReqs">
 					<h4>Prioritize your group member requests.</h4>
-				<!--<div class="input-group">
-					<span class="input-group-addon">Team Member Request 1</span>
-					<input type="text" placeholder="Start typing name..." class="form-control" />
-				</div>
-				<br/>
-				<div class="input-group">
-					<span class="input-group-addon">Team Member Request 2</span>
-					<input type="text" placeholder="Start typing name..." class="form-control" />
-				</div>
-				<br/>
-				<div class="input-group">
-					<span class="input-group-addon">Team Member Request 3</span>
-					<input type="text" placeholder="Start typing name..." class="form-control" />
-				</div>-->
-
-					
 				</div>
 			</div>
 			<a class="btn btn-primary" id="projectButton">List of Projects</a>

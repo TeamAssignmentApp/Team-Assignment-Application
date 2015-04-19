@@ -28,7 +28,7 @@
 			var numTeamPrefs = parsed["numTeamPrefs"];
 
 
-			$(numProjPrefs).each(function(index, value)) {
+			$(numProjPrefs).each(function(index, value) {
 				var newProjPref = "<div class='input-group'>" +
 									"<span class='input-group-addon'>Project" + (index + 1) + "</span>" +
 									"<select class='form-control projectSelect'>" +
@@ -37,7 +37,7 @@
 								"</div>" +
 								"<br/>";
 				$("#projReqs").append(newProjPref);
-			}
+			});
 
 
 
@@ -65,8 +65,8 @@
 			<div class="col-md-12" id="header" style="text-align:center">
 				<h1>SMU Lyle Multidisciplinary Senior Design</h1>
 			</div>
-			<div class="col-md-6" id="projReqs">
-				<div class="well" style="padding-top:0px;">
+			<div class="col-md-6">
+				<div class="well" style="padding-top:0px;" id="projReqs">
 					<h4>Prioritize your project requests.</h4>
 				<!--<div class="input-group">
 					<span class="input-group-addon">Project Pick 1</span>

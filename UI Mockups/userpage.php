@@ -24,6 +24,22 @@
 			var parsed = JSON.parse(data);
 			var projects = parsed["projects"];
 			var skills = parsed["skills"];
+			var numProjPrefs = parsed["numProjPrefs"];
+			var numTeamPrefs = parsed["numTeamPrefs"];
+
+
+			$(numProjPrefs).each(function(index, value)) {
+				var newProjPref = "<div class='input-group'>" +
+									"<span class='input-group-addon'>Project" + (index + 1) + "</span>" +
+									"<select class='form-control projectSelect'>" +
+										"<option value=''>--Please Select--</option>" +
+									"</select>" +
+								"</div>" +
+								"<br/>";
+				$("#projReqs").append(newProjPref);
+			}
+
+
 
 			$(projects).each(function(index,value) {
 				var newProjStr = "<option value='" + value["id"] + "'>" + value["name"] + "</option>";
@@ -49,10 +65,10 @@
 			<div class="col-md-12" id="header" style="text-align:center">
 				<h1>SMU Lyle Multidisciplinary Senior Design</h1>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6" id="projReqs">
 				<div class="well" style="padding-top:0px;">
 					<h4>Prioritize your project requests.</h4>
-				<div class="input-group">
+				<!--<div class="input-group">
 					<span class="input-group-addon">Project Pick 1</span>
 					<select class="form-control projectSelect">
 						<option value="">--Please Select--</option>
@@ -86,10 +102,10 @@
 					<select class="form-control projectSelect">
 						<option value="">--Please Select--</option>
 					</select>
-				</div>
+				</div>-->
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6" id="teamReqs">
 				<div class="well" style="padding-top:0px">
 					<h4>Prioritize your group member requests.</h4>
 				<div class="input-group">
@@ -111,7 +127,7 @@
 				</div>
 			</div>
 			<a class="btn btn-primary" id="projectButton">List of Projects</a>
-			<div class="col-md-12">
+			<div class="col-md-12" id="skillSet">
 				<div class="well" style="padding-top:0px">
 					<h4>What skills do you have?</h4>
 				<div class="input-group">

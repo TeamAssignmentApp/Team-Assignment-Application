@@ -8,6 +8,8 @@
 	}
 ?>
 
+
+
 <!doctype html>
 <html>
 	<head>
@@ -15,6 +17,32 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/styles.css" />
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<script>
+	$(document).ready(function() {
+		$.get("api/class.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+			var parsed = JSON.parse(data);
+			var projects = parsed["projects"];
+			var skills = parsed["skills"];
+
+			$(projects).each(function(index,value) {
+				var newProjStr = "<option value='" + value["id"] + "'>" + value["name"] + "</option>";
+				$(".projectSelect").append(newProjStr);
+			});
+
+			$(skills).each(function(index, value) {
+				var newSkillStr = "<option value='" + value["id"] + "'>" + value["name"] + "</option>";
+				$("skillSelect").append(newSkillStr);
+			});
+		});
+	});
+
+
+
+	</script>
+
+
+
 	</head>
 	<body>
 		<div class="container">
@@ -88,25 +116,22 @@
 					<h4>What skills do you have?</h4>
 				<div class="input-group">
 					<span class="input-group-addon">Skill</span>
-					<select class="form-control">
-						<option>Skill 1</option>
-						<option>Skill 2</option>
+					<select class="form-control skillSelect">
+						<option value="">--Please Select--</option>
 					</select>
 				</div>
 				<br/>
 				<div class="input-group">
 					<span class="input-group-addon">Skill</span>
-					<select class="form-control">
-						<option>Skill 1</option>
-						<option>Skill 2</option>
+					<select class="form-control skillSelect">
+						<option value="">--Please Select--</option>
 					</select>
 				</div>
 				<br/>
 				<div class="input-group">
 					<span class="input-group-addon">Skill</span>
-					<select class="form-control">
-						<option>Skill 1</option>
-						<option>Skill 2</option>
+					<select class="form-control skillSelect">
+						<option value="">--Please Select--</option>
 					</select>
 				</div>
 				</div>

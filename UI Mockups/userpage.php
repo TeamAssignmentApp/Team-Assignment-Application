@@ -30,7 +30,7 @@
 
 			for(var i = 0; i < numProjPrefs; i++) {
 				var newProjPref = "<div class='input-group'>" +
-									"<span class='input-group-addon'>Project" + (index + 1) + "</span>" +
+									"<span class='input-group-addon'>Project" + (i+1) + "</span>" +
 									"<select class='form-control projectSelect'>" +
 										"<option value=''>--Please Select--</option>" +
 									"</select>" +

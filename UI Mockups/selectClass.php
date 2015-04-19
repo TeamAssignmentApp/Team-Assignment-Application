@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 	if(!isset($_SESSION['login_user'])){
 		header("location: login.php");
@@ -5,6 +6,8 @@
 ?>
 
 
+=======
+>>>>>>> Converted html pages to php pages
 <!doctype html>
 <html>
 	<head>
@@ -26,6 +29,7 @@
 				<div class="input-group">
 					<span class="input-group-addon">Class</span>
 					<select class="form-control">
+<<<<<<< HEAD
 						<?php
 							$userId = $_SESSION['login_user'];
 							$connection = mysql_connect("localhost", "root", "321Testing");
@@ -42,6 +46,8 @@
 
 
 						?>
+=======
+>>>>>>> Converted html pages to php pages
 						<option>Class 1</option>
 						<option>Class 2</option>
 						<option>Class 3</option>

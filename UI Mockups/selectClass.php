@@ -28,20 +28,18 @@
 					<span class="input-group-addon">Class</span>
 					<select class="form-control">
 						<?php
+						    
 							$userId = $_SESSION['login_user'];
 							$connection = mysql_connect("localhost", "root", "321Testing");
 							$db = mysql_select_db("TeamAssignmentApp", $connection);
-							$query = mysql_query("select Class.className AS className from InClass JOIN Class ON InClass.classId = Class.classId WHERE userId='$userId'", $connection);
+							$query = mysql_query("select Class.className, Class.classId AS className from InClass JOIN Class ON InClass.classId = Class.classId WHERE userId='$userId'", $connection);
 							$rows = mysql_num_rows($query);
 							if ($rows >= 1) {
 								while ($result = mysql_fetch_array($query)){ ?>
-									<option><?php echo $result['className'];?></option>
+									<option name = <?php echo $result['classId'];?>><?php echo $result['className'];?></option>
 								<?php
-
 								}
 							}
-
-
 						?>
 					</select>
 				</div>

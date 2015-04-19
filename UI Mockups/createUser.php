@@ -1,11 +1,25 @@
-
+<?php
+	session_start();
+	if(!isset($_SESSION['login_user'])){
+		header("location: login.php");
+	}
+	else if ($_SESSION['isAdmin']==0){
+		header("selectClass.php");
+	}
+?>
 		<div class="input-group" style="margin-bottom:10px">
 			<span class="input-group-addon">Class</span>
 			<select class="form-control studentMajorSelection">
-				<option>Class 1</option>
-				<option>Class 2</option>
-				<option>Class 3</option>
-				<option>Class 4</option>
+				<?php
+					$query = mysql_query("select className from Class", $connection);
+					$rows = mysql_num_rows($query);
+					if ($rows >= 1) {
+						while ($result = mysql_fetch_array($query)){ ?>
+							<option><?php echo $result['className'];?></option>
+						<?php
+						}
+					}
+				?>
 			</select>
 		</div>
 		<div class="input-group" style="margin-bottom:10px">

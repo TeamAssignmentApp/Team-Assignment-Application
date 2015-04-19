@@ -160,16 +160,10 @@
 		$sql = substr($sql, 0, -1);
 		$sql .= " where projectID = ?";
 		$paramStr .= "i";
-		
+		$args[] = $projectId;
 		
 		if($stmt = $conn->prepare($sql)) {
-			if(sizeOf($args) == 1) {
-				$stmt->bind_param($paramStr, $args[0], $projectId);
-			} else if (sizeOf($args) == 2) {
-				$stmt->bind_param($paramStr, $args[0], $args[1], $projectId);		
-			} else if (sizeOf($args) == 3) {
-				$stmt->bind_param($paramStr, $args[0], $args[1], $args[2], $projectId);
-			}
+			$stmt->bind_param($paramStr, ...$args);
 			$stmt->execute();
 			while($stmt->fetch());
 		}		

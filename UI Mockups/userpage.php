@@ -30,7 +30,7 @@
 
 			for(var i = 0; i < numProjPrefs; i++) {
 				var newProjPref = "<div class='input-group'>" +
-									"<span class='input-group-addon'>Project" + (i+1) + "</span>" +
+									"<span class='input-group-addon'>Project " + (i+1) + "</span>" +
 									"<select class='form-control projectSelect'>" +
 										"<option value=''>--Please Select--</option>" +
 									"</select>" +
@@ -39,7 +39,13 @@
 				$("#projReqs").append(newProjPref);
 			}
 
-
+			for(var i = 0; i < numTeamPrefs; i++) {
+				var newTeamPref = "<div class='input-group'>" +
+									"<span class='input-group-addon'>Team Member Request " + (i+1) + "</span>" +
+									"<input type='text' placeholder='Start typing name...'' class='form-control' />" +
+									"</div>";
+				$("#teamReqs").append(newTeamPref);
+			}
 
 			$(projects).each(function(index,value) {
 				var newProjStr = "<option value='" + value["id"] + "'>" + value["name"] + "</option>";
@@ -52,9 +58,6 @@
 			});
 		});
 	});
-
-
-
 	</script>
 
 
@@ -68,47 +71,12 @@
 			<div class="col-md-6">
 				<div class="well" style="padding-top:0px;" id="projReqs">
 					<h4>Prioritize your project requests.</h4>
-				<!--<div class="input-group">
-					<span class="input-group-addon">Project Pick 1</span>
-					<select class="form-control projectSelect">
-						<option value="">--Please Select--</option>
-					</select>
-				</div>
-				<br/>
-				<div class="input-group">
-					<span class="input-group-addon">Project Pick 2</span>
-					<select class="form-control projectSelect">
-						<option value="">--Please Select--</option>
-					</select>
-				</div>
-				<br/>
-
-				<div class="input-group">
-					<span class="input-group-addon">Project Pick 3</span>
-					<select class="form-control projectSelect">
-						<option value="">--Please Select--</option>
-					</select>
-				</div>
-				<br/>
-				<div class="input-group">
-					<span class="input-group-addon">Project Pick 4</span>
-					<select class="form-control projectSelect">
-						<option value="">--Please Select--</option>
-					</select>
-				</div>
-				<br/>
-				<div class="input-group">
-					<span class="input-group-addon">Project Pick 5</span>
-					<select class="form-control projectSelect">
-						<option value="">--Please Select--</option>
-					</select>
-				</div>-->
 				</div>
 			</div>
-			<div class="col-md-6" id="teamReqs">
-				<div class="well" style="padding-top:0px">
+			<div class="col-md-6">
+				<div class="well" style="padding-top:0px" id="teamReqs">
 					<h4>Prioritize your group member requests.</h4>
-				<div class="input-group">
+				<!--<div class="input-group">
 					<span class="input-group-addon">Team Member Request 1</span>
 					<input type="text" placeholder="Start typing name..." class="form-control" />
 				</div>
@@ -121,7 +89,7 @@
 				<div class="input-group">
 					<span class="input-group-addon">Team Member Request 3</span>
 					<input type="text" placeholder="Start typing name..." class="form-control" />
-				</div>
+				</div>-->
 
 					
 				</div>

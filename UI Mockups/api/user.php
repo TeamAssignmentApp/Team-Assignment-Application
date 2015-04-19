@@ -80,7 +80,7 @@
 			$user['skills'] = $skillArr;
 		}
 		
-		echo "<pre>" . json_encode($user, JSON_PRETTY_PRINT) . "</pre>";
+		echo json_encode($user, JSON_PRETTY_PRINT);
 	}
 	
 	function handlePost($post) {	

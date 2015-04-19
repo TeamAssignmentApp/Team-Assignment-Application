@@ -32,7 +32,7 @@
 
 			$(skills).each(function(index, value) {
 				var newSkillStr = "<option value='" + value["id"] + "'>" + value["name"] + "</option>";
-				$("skillSelect").append(newSkillStr);
+				$(".skillSelect").append(newSkillStr);
 			});
 		});
 	});

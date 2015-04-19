@@ -69,9 +69,34 @@
 			throwError(401, "API Token is not valid.");
 			return;
 		}
+		
 		$projectName = $post["name"];
 		$projectDescrip = $post["descrip"];
 		$fileLink = $post["file"];
+		$classId = $post["classId"];
+		
+		$isError = false;
+		$message = "";
+		if($projectName == null) {
+			$isError = true;
+			$message .= "name field was missing \n";
+		}
+		if($projectDescrip == null) {
+			$isError = true;
+			$message .= "descrip field was missing \n";
+		}
+		if($fileLink == null) {
+			$isError = true;
+			$message .= "file field was missing \n";
+		}
+		if($classId == null) {
+			$isError = true;
+			$message .= "classId field was missing \n";
+		}
+		if($isError) {
+			throwError(500, $message);
+			return;
+		}
 		
 		$sql = 'INSERT into Project VALUES (0, ?, ?, ?)';
 				
@@ -79,6 +104,20 @@
 			$stmt->bind_param("sss", $projectName, $projectDescrip, $fileLink);
 			$stmt->execute();
 			$stmt->fetch();
+		}
+		
+		$sql = 'SELECT LAST_INSERT_ID()';
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
+		$stmt->bind_result($projectId);
+		while($stmt->fetch());
+		
+		
+		$sql = 'INSERT into HasProject VALUES (?,?)';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("ii", $classId,$projectId);
+			$stmt->execute();
+			while($stmt->fetch());
 		}		
 	}
 	

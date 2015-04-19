@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['login_user'])){
+		header("location: login.php");
+	}
+	else if (!isset($_SESSION['isMaster'])){
+		header("selectClass.php");
+	}
+?>
+
 <!doctype html>
 <html>
     <head>

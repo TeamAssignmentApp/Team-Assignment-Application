@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['login_user'])){
+		header("location: login.php");
+	}
+	else if ($_SESSION['isAdmin']==0){
+		header("selectClass.php");
+	}
+?>
+
 <!doctype html>
 <html>
 	<head>

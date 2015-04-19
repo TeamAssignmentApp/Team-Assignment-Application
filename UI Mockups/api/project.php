@@ -122,7 +122,57 @@
 	}
 	
 	function handlePut($put) {
+		global $conn, $API_TOKEN;
+		$token = '' . $put["token"];
+		if ($token != $API_TOKEN) {
+			throwError(401, "API Token is not valid.");
+			return;
+		}
 		
+		$projectId = $put["id"];
+		if($projectId == null) {
+			throwError(500, "id field was missing");
+		}
+		
+		$projectName = $put["name"];
+		$projectDescrip = $put["descrip"];
+		$fileLink = $put["file"];
+		
+		$sql = "UPDATE Project SET ";
+		$paramStr = "";
+		$args = array();
+		if($projectName != null) {
+			$sql .= "projectName=?,";
+			$args[] = $projectName;
+			$paramStr .= "s";
+		}
+		if($projectDescrip != null) {
+			$sql .= "projectDesc=?,";
+			$args[] = $projectDescrip;
+			$paramStr .= "s";			
+		}
+		if($fileLink != null) {
+			$sql .= "fileLink=?,";
+			$args[] = $fileLink;
+			$paramStr .= "s";
+		}
+		
+		$sql = substr($sql, 0, -1);
+		$sql .= " where projectID = ?";
+		$paramStr .= "i";
+		
+		
+		if($stmt = $conn->prepare($sql)) {
+			if(sizeOf($args) == 1) {
+				$stmt->bind_param($paramStr, $args[0], $projectId);
+			} else if (sizeOf($args) == 2) {
+				$stmt->bind_param($paramStr, $args[0], $args[1], $projectId);		
+			} else if (sizeOf($args) == 3) {
+				$stmt->bind_param($paramStr, $args[0], $args[1], $args[2], $projectId);
+			}
+			$stmt->execute();
+			while($stmt->fetch());
+		}		
 	}
 	
 	function handleDelete($delete) {

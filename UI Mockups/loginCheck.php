@@ -20,7 +20,7 @@
 
 			$db = mysql_select_db("TeamAssignmentApp", $connection);
 
-			$query = mysql_query("select userId from User where password='$password' AND email='$email'", $connection);
+			$query = mysql_query("select userId, isMaster from User where password='$password' AND email='$email'", $connection);
 			$rows = mysql_num_rows($query);
 			if ($rows == 1) {
 				$result = mysql_fetch_row($query);
@@ -30,8 +30,11 @@
 				$query2 = mysql_query("select * from AdminOf where userId = '$result[0]'", $connection);
 				$rows2 = mysql_num_rows($query2);
 				$isAdmin = 0;
-				if ($rows2 >=1){
+				if ($rows2 >=1 || $result[1]==1){
 					$isAdmin = 1;
+				}
+				if ($result[1]==1){
+					$_SESSION['isMaster']=1;
 				}
 				$_SESSION['isAdmin']=$isAdmin;
 				header("location: selectClass.php"); // Redirecting To Other Page

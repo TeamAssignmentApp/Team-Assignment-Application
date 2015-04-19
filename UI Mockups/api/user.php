@@ -130,8 +130,22 @@
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ssss", $email, $fname, $lname, $hashedPass);
 			$stmt->execute();
-			$stmt->fetch();
-		}		
+			while($stmt->fetch());
+		}
+		
+		$sql = 'SELECT LAST_INSERT_ID()';
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
+		$stmt->bind_result($userId);
+		while($stmt->fetch());
+		
+		
+		$sql = 'INSERT into InClass VALUES (?,?)';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("ii", $userId,$classId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}	
 	}
 	
 	function handlePut($put) {

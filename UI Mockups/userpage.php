@@ -37,7 +37,7 @@
 								"</div>" +
 								"<br/>";
 				$("#projReqs").append(newProjPref);
-			});
+			}
 
 
 

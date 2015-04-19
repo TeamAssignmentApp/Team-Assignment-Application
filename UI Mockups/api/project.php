@@ -138,8 +138,9 @@
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
-			// TODO: Add error for if the user did not exist.
-			$stmt->fetch();
+			if($stmt->affected_rows == 0) {
+				throwError(500, "Project could not be deleted");
+			}
 		}
 	}
 	

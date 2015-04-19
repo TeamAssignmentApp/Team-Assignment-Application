@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['login_user'])){
+		header("location: login.php");
+	}
+	else if ($_SESSION['isAdmin']==0){
+		header("selectClass.php");
+	}
+?>
+
 <div class="input-group" style="margin-bottom:10px">
 			<span class="input-group-addon">Class Name</span>
 			<input class="form-control" type="text" />

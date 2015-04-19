@@ -1,4 +1,12 @@
-
+<?php
+	session_start();
+	if(!isset($_SESSION['login_user'])){
+		header("location: login.php");
+	}
+	else if ($_SESSION['isAdmin']==0){
+		header("selectClass.php");
+	}
+?>
 <script>
 $(document).ready(function(){
 	$("#numStudents").change(function(){

@@ -28,7 +28,7 @@
 			var numTeamPrefs = parsed["numTeamPrefs"];
 
 
-			$(numProjPrefs).each(function(index, value) {
+			for(var i = 0; i < numProjPrefs; i++) {
 				var newProjPref = "<div class='input-group'>" +
 									"<span class='input-group-addon'>Project" + (index + 1) + "</span>" +
 									"<select class='form-control projectSelect'>" +

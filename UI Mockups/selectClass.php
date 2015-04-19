@@ -9,6 +9,7 @@
 <!doctype html>
 <html>
 	<head>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/styles.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -28,15 +29,17 @@
 					<span class="input-group-addon">Class</span>
 					<select class="form-control">
 						<?php
-						    
 							$userId = $_SESSION['login_user'];
-							$connection = mysql_connect("localhost", "root", "321Testing");
-							$db = mysql_select_db("TeamAssignmentApp", $connection);
-							$query = mysql_query("select Class.className, Class.classId AS className from InClass JOIN Class ON InClass.classId = Class.classId WHERE userId='$userId'", $connection);
-							$rows = mysql_num_rows($query);
-							if ($rows >= 1) {
-								while ($result = mysql_fetch_array($query)){ ?>
-									<option name = <?php echo $result['classId'];?>><?php echo $result['className'];?></option>
+						    $url="http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/api/user.php?token=9164fe76dd046345905767c3bc2ef54&id=" + $userId;
+						    $json = file_get_contents($url);
+    						$data = json_decode($json, TRUE);
+    						foreach($data['classIds'] as $item) {
+    							$url2="http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/api/class.php?token=9164fe76dd046345905767c3bc2ef54&id=" + $item;
+						    	$json2 = file_get_contents($url2);
+    							$data2 = json_decode($json2, TRUE);
+    							$className = $data2['name'];
+    							?>
+									<option value = <?php echo $item;?>><?php echo $className;?></option>
 								<?php
 								}
 							}

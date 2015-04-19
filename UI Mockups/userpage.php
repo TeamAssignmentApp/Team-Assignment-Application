@@ -44,7 +44,7 @@
 									"<span class='input-group-addon'>Team Member Request " + (i+1) + "</span>" +
 									"<input type='text' placeholder='Start typing name...'' class='form-control' />" +
 									"</div>" +
-									"<br/";
+									"<br/>";
 				$("#teamReqs").append(newTeamPref);
 			}
 

@@ -79,7 +79,7 @@
 			<a class="btn btn-primary" id="projectButton">List of Projects</a>
 			<div class="col-md-12">
 				<div class="well" style="padding-top:0px">
-					<h4>What skillsets do you have?</h4>
+					<h4>What skills do you have?</h4>
 				<div class="input-group">
 					<span class="input-group-addon">Skill</span>
 					<select class="form-control">

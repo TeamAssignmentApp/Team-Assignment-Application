@@ -39,7 +39,7 @@
     							$data2 = json_decode($json2, TRUE);
     							$className = $data2['name'];
     							?>
-									<option value = <?php echo $item;?>><?php echo $className;?></option>
+									<option value = "<?php echo $item;?>"><?php echo $className;?></option>
 								<?php
 								}
 							}

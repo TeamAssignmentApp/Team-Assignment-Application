@@ -26,7 +26,7 @@
 					<h4>Prioritize your project requests.</h4>
 				<div class="input-group">
 					<span class="input-group-addon">Project Pick 1</span>
-					<select class="form-control">
+					<select class="form-control projectSelect">
 						<option>Project 1</option>
 						<option>Project 2</option>
 					</select>
@@ -34,7 +34,7 @@
 				<br/>
 				<div class="input-group">
 					<span class="input-group-addon">Project Pick 2</span>
-					<select class="form-control">
+					<select class="form-control projectSelect">
 						<option>Project 1</option>
 						<option>Project 2</option>
 					</select>
@@ -43,7 +43,7 @@
 
 				<div class="input-group">
 					<span class="input-group-addon">Project Pick 3</span>
-					<select class="form-control">
+					<select class="form-control projectSelect">
 						<option>Project 1</option>
 						<option>Project 2</option>
 					</select>
@@ -51,7 +51,7 @@
 				<br/>
 				<div class="input-group">
 					<span class="input-group-addon">Project Pick 4</span>
-					<select class="form-control">
+					<select class="form-control projectSelect">
 						<option>Project 1</option>
 						<option>Project 2</option>
 					</select>
@@ -59,7 +59,7 @@
 				<br/>
 				<div class="input-group">
 					<span class="input-group-addon">Project Pick 5</span>
-					<select class="form-control">
+					<select class="form-control projectSelect">
 						<option>Project 1</option>
 						<option>Project 2</option>
 					</select>

@@ -117,7 +117,7 @@
 			<div class="col-md-12">
 				<div class="well">
 					<a class="btn btn-primary">Save Changes</a>
-					<p>All saved changes will be submitted automatically on the deadline (9/9/14)</p>
+					<p>All saved changes will be submitted automatically on the deadline.</p>
 				</div>
 			</div>
 		</div>

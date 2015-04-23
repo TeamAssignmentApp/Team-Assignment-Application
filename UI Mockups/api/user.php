@@ -149,7 +149,73 @@
 	}
 	
 	function handlePut($put) {
+		global $conn, $API_TOKEN;
+		$token = '' . $put["token"];
+		if ($token != $API_TOKEN) {
+			throwError(401, "API Token is not valid.");
+			return;
+		}
 		
+		$userId = $put["id"];
+		if($userId == null) {
+			throwError(500, "id field was missing");
+			return;
+		}
+		
+		$password = $put["password"];
+		if($password != null) {
+			updatePassword($userId, $password);
+		}
+		
+		$projectIdArrayStr = $put["projectPreferences"];
+		if($projectIdArrayStr != null) {
+			$projectIdArr = explode(',', $projectIdArrayStr);
+			if(!updateUserProjectSelection($userId, $projectIdArr)) {
+				return;
+			}
+		}	
+	}
+	
+	function updatePassword($userId, $password) {
+		global $conn;
+		$hashedPass = password_hash($password, PASSWORD_BCRYPT);
+		$sql = "UPDATE User set password = ? where userID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("si", $hashedPass, $userId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+	}
+	
+	function updateUserProjectSelection($userId, $projectIdArr) {
+		global $conn;
+		$sql = "DELETE from WantsProject where userID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $userId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+
+		$sql = "INSERT into WantsProject VALUES ";
+		$paramStr = "";
+		$args = array();
+		for($i = 0; $i < sizeof($projectIdArr); $i++) {
+			$sql .= "(?,?,?),";
+			$args[] = intval($userId);
+			$args[] = intval($projectIdArr[$i]);
+			$args[] = $i;
+			$paramStr .= "iii";
+		}
+		$sql = substr($sql, 0, -1);
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param($paramStr, ...$args);
+			$stmt->execute();
+			if($stmt->affected_rows == 0) {
+				throwError(500, "The user project preferences could not be altered");
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	function handleDelete($delete) {

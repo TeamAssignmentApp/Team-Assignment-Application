@@ -27,9 +27,9 @@
 						strToAdd += ''+
 							'<div class="col-md-4">' +
 								'<div class="well">' +
-									'<h2>' + value["projectName"] + '</h2>' +
+									'<h2>' + value["name"] + '</h2>' +
 									'<h3>Description</h3>' +
-									'<p>' + value["projectDesc"] + '</p>' +
+									'<p>' + value["description"] + '</p>' +
 									'<h3>Required Majors</h3>' +
 									'<ul class="list-group">';
 							$(value["majors"]).each(function(index,value){

@@ -1,0 +1,59 @@
+What We Need For
+
+	AdminDash.php
+		Classes (administered by current administrator)
+			-- Class Name
+			-- Start Date
+			-- End Date
+			-- Administrators
+
+		Users (in classes administered by current administrator)
+			-- Name (fname and lname)
+			-- Major(s)
+			-- Email
+
+		Projects (in classes administered by current administrator)
+			-- Project Name
+			-- Project Description
+			-- # Students
+			-- File Link
+			-- Student Majors
+
+		Request Page (in classes administered by current administrator)
+			-- Class Name
+			-- # Teammate Reqs
+			-- # Skills
+			-- # Project Reqs
+
+
+
+
+
+	masterAdminDash.php
+		Classes (all classes)
+			-- Class Name
+			-- Start Date
+			-- End Date
+			-- Administrators
+
+		Users (all users)
+			-- Name (fname and lname)
+			-- Major(s)
+			-- Email
+
+		Projects (all projects)
+			-- Project Name
+			-- Project Description
+			-- # Students
+			-- File Link
+			-- Student Majors
+
+		Administrator (all administrators)
+			-- Name (fname and lname)
+			-- Classes
+
+		Request Page (all classes)
+			-- Class Name
+			-- # Teammate Reqs
+			-- # Skills
+			-- # Project Reqs

@@ -43,7 +43,7 @@
 
 			$("#addClassBtn").click(function() {
 				$("#crudBody").html($("#loadingDisplay").html());
-				$("#crudBody").load("createClass.html", function() {
+				$("#crudBody").load("createClass.php", function() {
 					$("#crudTitle").html("Adding Class...");
 				});
 			});
@@ -51,21 +51,21 @@
 			//bind click events to add buttons
 			$("#addUserBtn").click(function() {
 				$("#crudBody").html($("#loadingDisplay").html());
-				$("#crudBody").load("createUser.html", function() {
+				$("#crudBody").load("createUser.php", function() {
 					$("#crudTitle").html("Adding User...");
 				});
 			});
 
 			$("#addProjectBtn").click(function() {
 				$("#crudBody").html($("#loadingDisplay").html());
-				$("#crudBody").load("CreateProject.html", function() {
+				$("#crudBody").load("CreateProject.php", function() {
 					$("#crudTitle").html("Adding Project...");
 				});
 			});
 
 			$("#addAdminBtn").click(function() {
 				$("#crudBody").html($("#loadingDisplay").html());
-				$("#crudBody").load("createAdmin.html", function() {
+				$("#crudBody").load("createAdmin.php", function() {
 					$("#crudTitle").html("Adding Administrator...");
 				});
 			});

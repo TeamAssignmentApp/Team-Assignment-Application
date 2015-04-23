@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/styles.css" />
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 
 	<script>
 	$(document).ready(function() {
@@ -24,8 +25,15 @@
 			var parsed = JSON.parse(data);
 			var projects = parsed["projects"];
 			var skills = parsed["skills"];
+			var users = parsed["users"];
 			var numProjPrefs = parsed["numProjPrefs"];
 			var numTeamPrefs = parsed["numTeamPrefs"];
+
+			var userNames = [];
+
+			for(var i = 0; i < users.length; i++) {
+				userNames[i] = users[i].fname + users[i].lname;
+			}
 
 
 			for(var i = 0; i < numProjPrefs; i++) {
@@ -56,6 +64,11 @@
 			$(skills).each(function(index, value) {
 				var newSkillStr = "<option value='" + value["id"] + "'>" + value["name"] + "</option>";
 				$(".skillSelect").append(newSkillStr);
+			});
+
+
+			$("#teamReqs").autocomplete({
+				source: userNames
 			});
 		});
 	});

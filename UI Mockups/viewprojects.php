@@ -36,7 +36,7 @@
 								strToAdd += '<li class="list-group-item">' + value["number"] + ' ' + value["name"] + '</li>';
 							});
 							strToAdd += '</ul>' + 
-									'<h3>Attachments</h3>';
+									'<h3>Attachment</h3>';
 							if(value["fileLink"] != "") {
 								strToAdd += "<a href='" + value["fileLink"] + "'>Link</a>";
 							}
@@ -56,19 +56,7 @@
             </div>
 		</div>
 		<div class="container" id="projectContainer" style="margin-top:50px">
-			<div class="col-md-4">
-				<div class="well">
-					<h2>Project 1</h2>
-					<h3>Description</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at tortor non lacus congue lacinia. Nunc nulla ipsum, laoreet in augue id, pharetra hendrerit eros. Pellentesque dignissim luctus lacus at condimentum. Aenean vitae diam nec tellus pellentesque egestas. Aenean a aliquam lorem. Praesent accumsan finibus nisl, sed vestibulum nibh tristique in. Vivamus semper sed justo quis varius. Donec consectetur neque egestas risus ultricies vestibulum. Etiam finibus mi ac dui imperdiet, ut pharetra urna hendrerit. Duis sagittis nisl eu purus accumsan venenatis. Morbi ex diam, efficitur id egestas sit amet, euismod et purus.</p>
-					<h3>Required Majors</h3>
-					<ul class="list-group">
-						<li class="list-group-item">2 Computer Science</li>
-						<li class="list-group-item">2 Mechanical Engineering</li>
-						<li class="list-group-item">2 Electrical Engineering</li>
-					</ul>
-				</div>
-			</div>
+			
 		</div>
 	</body>
 </html>

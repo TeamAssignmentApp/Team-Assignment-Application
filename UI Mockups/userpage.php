@@ -33,7 +33,7 @@
 			var userNames = [];
 
 			for(var i = 0; i < users.length; i++) {
-				userNames[i] = users[i].fname + users[i].lname;
+				userNames[i] = users[i].fname + " " + users[i].lname;
 			}
 
 

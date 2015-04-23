@@ -51,7 +51,7 @@
 			for(var i = 0; i < numTeamPrefs; i++) {
 				var newTeamPref = "<div class='input-group'>" +
 									"<span class='input-group-addon'>Team Member Request " + (i+1) + "</span>" +
-									"<input type='text' placeholder='Start typing name...'' class='form-control' />" +
+									"<input type='text' placeholder='Start typing name...'' class='form-control teamReqInput' />" +
 									"</div>" +
 									"<br/>";
 				$("#teamReqs").append(newTeamPref);
@@ -67,9 +67,10 @@
 				$(".skillSelect").append(newSkillStr);
 			});
 
-
-			$("#teamReqs").autocomplete({
-				source: userNames
+			$(".teamReqInput").each(function(index,value) {
+				$(this).autocomplete({
+					source: userNames
+				});
 			});
 		});
 	});

@@ -1,5 +1,6 @@
 To-Do List
 	-- changepassword page.  Need to do it.
+	-- LOGOUT BUTTON --> SESSION DESTROY
 	-- ADMINDASH
 	-- MASTERADMINDASH
 	-- ViewResults

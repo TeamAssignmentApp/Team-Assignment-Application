@@ -16,21 +16,19 @@
 			<div class="col-md-3"></div>
 			<form action = "loginCheck.php" method="post">
 				<div class="col-md-6 well">
-					<h3 style="margin-top:0px">Please log in.</h3>
+					<h3 style="margin-top:0px">Change your password.</h3>
 					<div class="input-group" style="margin-bottom:10px">
 						<span class="input-group-addon">
-							Email
+							New Password
 						</span>
 						<input class="form-control" type="text" name = "email"/>
 					</div>
 					<div class="input-group" style="margin-bottom:10px">
 						<span class="input-group-addon">
-							Password
+							Confirm Password
 						</span>
 						<input class="form-control" type="password" name = "password"/>
 					</div>
-					<button class="btn btn-primary" style="margin-bottom:10px" name="submit" type="submit">Log in</button>
-					<p><a href="#">Forgot your password?</a></p>
 				</div>
 			</form>
 			<div class="col-md-3"></div>

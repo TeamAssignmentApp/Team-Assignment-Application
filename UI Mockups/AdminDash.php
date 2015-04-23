@@ -192,31 +192,43 @@
 									<td>Project 1</td>
 									<td>Description</td>
 									<td>5</td>
+									<td></td>
+									<td></td>
 								</tr>
 								<tr>
 									<td>Project 2</td>
 									<td>Description</td>
 									<td>5</td>
+									<td></td>
+									<td></td>
 								</tr>
 								<tr>
 									<td>Project 3</td>
 									<td>Description</td>
 									<td>5</td>
+									<td></td>
+									<td></td>
 								</tr>
 								<tr>
 									<td>Project 4</td>
 									<td>Description</td>
 									<td>5</td>
+									<td></td>
+									<td></td>
 								</tr>
 								<tr>
 									<td>Project 5</td>
 									<td>Description</td>
 									<td>5</td>
+									<td></td>
+									<td></td>
 								</tr>
 								<tr>
 									<td>Project 6</td>
 									<td>Description</td>
 									<td>5</td>
+									<td></td>
+									<td></td>
 								</tr>
 							</tbody>
 						</table>

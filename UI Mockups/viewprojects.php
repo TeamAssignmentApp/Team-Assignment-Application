@@ -21,19 +21,22 @@
 					console.log(data);
 					var parsed = JSON.parse(data);
 					var projects = parsed["projects"];
+					
 					$(projects).each(function(index,value){
-						$("#projectContainer").append("" +
+						var strToAdd = "";
+						strToAdd += ''+
 							'<div class="col-md-4">' +
 								'<div class="well">' +
-									'<h2>' + value.projectName + '</h2>' +
+									'<h2>' + value["projectName"] + '</h2>' +
 									'<h3>Description</h3>' +
-									'<p>' + value.projectDesc + '</p>' +
+									'<p>' + value["projectDesc"] + '</p>' +
 									'<h3>Required Majors</h3>' +
-									'<ul class="list-group">');
-							$(value.majors).each(function(index,value){
-								$("#projectContainer").append('<li class="list-group-item">' + value.number + ' ' + value.name + '</li>');
+									'<ul class="list-group">';
+							$(value["majors"]).each(function(index,value){
+								strToAdd += '<li class="list-group-item">' + value["number"] + ' ' + value["name"] + '</li>';
 							});
-							$("#projectContainer").append('</ul></div></div>');		
+							strToAdd += '</ul></div></div>';		
+							$("#projectContainer").append(strToAdd);
 					});
 				});
 			})

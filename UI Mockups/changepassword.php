@@ -21,7 +21,7 @@
 						<span class="input-group-addon">
 							New Password
 						</span>
-						<input class="form-control" type="text" name = "email"/>
+						<input class="form-control" type="password" name = "password"/>
 					</div>
 					<div class="input-group" style="margin-bottom:10px">
 						<span class="input-group-addon">
@@ -29,6 +29,7 @@
 						</span>
 						<input class="form-control" type="password" name = "password"/>
 					</div>
+					<button class="btn btn-primary" style="margin-bottom:10px" name="submit" type="submit">Submit New Password</button>
 				</div>
 			</form>
 			<div class="col-md-3"></div>

@@ -26,6 +26,7 @@
 			var projects = parsed["projects"];
 			var skills = parsed["skills"];
 			var users = parsed["users"];
+			console.log(users);
 			var numProjPrefs = parsed["numProjPrefs"];
 			var numTeamPrefs = parsed["numTeamPrefs"];
 

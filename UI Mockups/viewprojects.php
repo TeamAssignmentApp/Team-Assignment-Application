@@ -18,6 +18,7 @@
 		<script>
 			$(document).ready(function(){
 				$.get("api/class.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+					console.log(data);
 					var projects = JSON.parse(data["projects"]);
 					$(projects).each(function(index,value){
 						$("#projectContainer").append("" +

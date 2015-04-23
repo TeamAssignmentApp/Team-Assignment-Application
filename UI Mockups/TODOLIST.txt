@@ -1,10 +1,10 @@
 To-Do List
-	-- changepassword page.  Need to do it.
-	-- LOGOUT BUTTON --> SESSION DESTROY
-	-- ADMINDASH
-	-- MASTERADMINDASH
-	-- ViewResults
+	-- changepassword page.  Need to do it. (Nick)
+	-- LOGOUT BUTTON --> SESSION DESTROY (Nick)
+	-- ADMINDASH (Alex)
+	-- MASTERADMINDASH (Nick)
+	-- ViewResults (dependent on sorting stuff)
 		* Display team members
 	-- Run team assignment and generate results
 	-- Update database with results from userpage.php
-	-- MODALS --> update database with user input
+	-- MODALS --> update database with user input 

@@ -21,7 +21,7 @@
 	<script>
 		$(document).ready(function(){
 			$.get("api/user.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
-				
+
 			});
 			$("#displayClasses").dataTable();			
 			$("#displayUsers").dataTable();
@@ -180,15 +180,11 @@
 						<table id="displayProjects" class="display">
 							<thead>
 								<tr>
-									<th>
-										Name
-									</th>
-									<th>
-										Description
-									</th>
-									<th>
-										# Students
-									</th>
+									<th>Name</th>
+									<th>Description</th>
+									<th># Students</th>
+									<th>File Link</th>
+									<th>Required Majors</th>
 								</tr>
 							</thead>
 							<tbody>

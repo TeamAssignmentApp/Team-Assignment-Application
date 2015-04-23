@@ -26,7 +26,6 @@
 			var projects = parsed["projects"];
 			var skills = parsed["skills"];
 			var users = parsed["users"];
-			console.log(users);
 			var numProjPrefs = parsed["numProjPrefs"];
 			var numTeamPrefs = parsed["numTeamPrefs"];
 
@@ -36,6 +35,7 @@
 				userNames[i] = users[i].fname + " " + users[i].lname;
 			}
 
+			console.log(userNames);
 
 			for(var i = 0; i < numProjPrefs; i++) {
 				var newProjPref = "<div class='input-group'>" +

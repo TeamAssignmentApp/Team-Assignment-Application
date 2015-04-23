@@ -93,9 +93,7 @@
 			$class['skills'] = $skillArr;
 		}
 		
-		echo "<pre>";
 		echo json_encode($class, JSON_PRETTY_PRINT);
-		echo "</pre>";
 	}
 	
 	function handlePost($post) {	

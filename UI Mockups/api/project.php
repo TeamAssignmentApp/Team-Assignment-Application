@@ -59,6 +59,18 @@
 			$project['users'] = $userArr;
 		}
 		
+		$majorArr = array();
+		$major = null;
+		$sql = 'SELECT m.majorId, m.majorName, rm.number from Major m INNER JOIN RequiresMajor rm on m.majorId = rm.majorId INNER JOIN Project p on p.projectId = rm.projectId where p.projectId = ?';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+			$stmt->bind_result($major['id'], $major['name'], $major['number']);
+			while($stmt->fetch()) {
+				$majorArr[] = unserialize(serialize($major));
+			}
+			$project['majors'] = $majorArr;
+		}
 		echo json_encode($project, JSON_PRETTY_PRINT);
 	}
 	

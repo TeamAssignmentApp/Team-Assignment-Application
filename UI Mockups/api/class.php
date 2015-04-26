@@ -93,6 +93,19 @@
 			$class['skills'] = $skillArr;
 		}
 		
+		$adminIdArr = array();
+		$adminId = null;
+		$sql = "SELECT userID from AdminOf where classID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+			$stmt->bind_result($adminId);
+			while($stmt->fetch()) {
+				$adminIdArr[] = unserialize(serialize($adminId));
+			}
+			$class['adminIds'] = $adminIdArr;
+		}
+		
 		echo json_encode($class, JSON_PRETTY_PRINT);
 	}
 	

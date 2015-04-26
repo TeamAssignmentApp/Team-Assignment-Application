@@ -95,6 +95,7 @@
 		$lname = $post["lname"];
 		$password = $post["password"];
 		$classId = $post["classId"];
+		$isAdmin = $post["isAdmin"];
 		
 		$isError = false;
 		$message = "";
@@ -118,15 +119,17 @@
 			$isError = true;
 			$message .= "classId field was missing \n";
 		}
+		if($isAdmin == null) {
+			$isError = true;
+			$message .= "isAdmin field was missing \n";
+		}
 		if($isError) {
 			throwError(500, $message);
 			return;
 		}
 		
-		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0)';
-		
-		$hashedPass = password_hash($password, PASSWORD_BCRYPT);
-		
+		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0)';		
+		$hashedPass = password_hash($password, PASSWORD_BCRYPT);		
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ssss", $email, $fname, $lname, $hashedPass);
 			$stmt->execute();
@@ -137,14 +140,22 @@
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 		$stmt->bind_result($userId);
-		while($stmt->fetch());
-		
+		while($stmt->fetch());		
 		
 		$sql = 'INSERT into InClass VALUES (?,?)';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ii", $userId,$classId);
 			$stmt->execute();
 			while($stmt->fetch());
+		}
+		
+		if($isAdmin) {
+			$sql = 'INSERT into AdminOf VALUES (?,?)';
+			if($stmt = $conn->prepare($sql)) {
+				$stmt->bind_param("ii", $userId,$classId);
+				$stmt->execute();
+				while($stmt->fetch());
+			}
 		}	
 	}
 	

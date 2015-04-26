@@ -95,6 +95,7 @@
 		$lname = $post["lname"];
 		$password = $post["password"];
 		$classId = $post["classId"];
+		$isAdmin = $post["isAdmin"];
 		
 		$isError = false;
 		$message = "";
@@ -118,15 +119,17 @@
 			$isError = true;
 			$message .= "classId field was missing \n";
 		}
+		if($isAdmin == null) {
+			$isError = true;
+			$message .= "isAdmin field was missing \n";
+		}
 		if($isError) {
 			throwError(500, $message);
 			return;
 		}
 		
-		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0)';
-		
-		$hashedPass = password_hash($password, PASSWORD_BCRYPT);
-		
+		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0)';		
+		$hashedPass = password_hash($password, PASSWORD_BCRYPT);		
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ssss", $email, $fname, $lname, $hashedPass);
 			$stmt->execute();
@@ -137,14 +140,22 @@
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 		$stmt->bind_result($userId);
-		while($stmt->fetch());
-		
+		while($stmt->fetch());		
 		
 		$sql = 'INSERT into InClass VALUES (?,?)';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ii", $userId,$classId);
 			$stmt->execute();
 			while($stmt->fetch());
+		}
+		
+		if($isAdmin) {
+			$sql = 'INSERT into AdminOf VALUES (?,?)';
+			if($stmt = $conn->prepare($sql)) {
+				$stmt->bind_param("ii", $userId,$classId);
+				$stmt->execute();
+				while($stmt->fetch());
+			}
 		}	
 	}
 	
@@ -173,7 +184,33 @@
 			if(!updateUserProjectSelection($userId, $projectIdArr)) {
 				return;
 			}
-		}	
+		}
+		
+		$userIdArrayStr = $put["teammatePreferences"];
+		if($userIdArrayStr != null) {
+			$teammateIdArr = explode(',', $userIdArrayStr);
+			if(!updateUserTeamMateSelection($userId, $teammateIdArr)) {
+				return;
+			}
+		}
+		
+		$skillIdArrayStr = $put["skills"];
+		if($skillIdArrayStr != null) {
+			$skillIdArr = explode(',', $skillIdArrayStr);
+			if(!updateUserSkills($userId, $skillIdArr)) {
+				return;
+			}
+		}
+		
+		$wantsToLead = $put["wantsToLead"];
+		if($wantsToLead != null && $wantsToLead) {
+			$sql = "UPDATE User set wantsToLead = 1 where userID = ?";
+			if($stmt = $conn->prepare($sql)) {
+				$stmt->bind_param("i", $userId);
+				$stmt->execute();
+				while($stmt->fetch());
+			}
+		}
 	}
 	
 	function updatePassword($userId, $password) {
@@ -212,6 +249,67 @@
 			$stmt->execute();
 			if($stmt->affected_rows == 0) {
 				throwError(500, "The user project preferences could not be altered");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	function updateUserTeamMateSelection($userId, $teammateIdArr) {
+		global $conn;
+		$sql = "DELETE from WantsTeammate where userID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $userId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+
+		$sql = "INSERT into WantsTeammate VALUES ";
+		$paramStr = "";
+		$args = array();
+		for($i = 0; $i < sizeof($teammateIdArr); $i++) {
+			$sql .= "(?,?,?),";
+			$args[] = intval($userId);
+			$args[] = intval($teammateIdArr[$i]);
+			$args[] = $i;
+			$paramStr .= "iii";
+		}
+		$sql = substr($sql, 0, -1);
+		if($stmt = $conn->prepare($sql)) {		
+			$stmt->bind_param($paramStr, ...$args);
+			$stmt->execute();
+			if($stmt->affected_rows == 0) {
+				throwError(500, "The user teammate preferences could not be altered");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	function updateUserSkills($userId, $skillIdArr) {
+		global $conn;
+		$sql = "DELETE from HasSkill where userID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $userId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+
+		$sql = "INSERT into HasSkill VALUES ";
+		$paramStr = "";
+		$args = array();
+		for($i = 0; $i < sizeof($skillIdArr); $i++) {
+			$sql .= "(?,?),";
+			$args[] = intval($skillIdArr[$i]);
+			$args[] = intval($userId);
+			$paramStr .= "ii";
+		}
+		$sql = substr($sql, 0, -1);
+		if($stmt = $conn->prepare($sql)) {		
+			$stmt->bind_param($paramStr, ...$args);
+			$stmt->execute();
+			if($stmt->affected_rows == 0) {
+				throwError(500, "The user skill preferences could not be altered");
 				return false;
 			}
 		}

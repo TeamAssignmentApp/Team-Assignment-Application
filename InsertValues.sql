@@ -19,10 +19,10 @@ TRUNCATE TABLE WantsTeammate;
 TRUNCATE TABLE WantsProject;
 
 INSERT INTO USER (email, fname, lname, password, isMaster) VALUES ("totally@real.email", "Adam", "N", "password", 1);
-INSERT INTO USER (email, fname, lname, password, isMaster) VALUES ("totally@real.email", "Joe", "Schmoe", "password", 0);
-INSERT INTO USER (email, fname, lname, password, isMaster) VALUES ("totally@real.email", "Nick", "Morris", "password", 0);
+INSERT INTO USER (email, fname, lname, password) VALUES ("totally@real.email", "Joe", "Schmoe", "password");
+INSERT INTO USER (email, fname, lname, password) VALUES ("totally@real.email", "Nick", "Morris", "password");
 
-INSERT INTO Class (className, projectPreferences, teammatePreferences, startTime, endTime) VALUES ("Senior Design", 3, 2, now(), now());
+INSERT INTO Class (className, teammatePreferences) VALUES ("Senior Design", 2);
 
 INSERT INTO Project (projectName, projectDesc, fileLink) VALUES ("TeamAssignmentApp", "Ipsum solom dolor et", "n/a");
 INSERT INTO Project (projectName, projectDesc, fileLink) VALUES ("ThatOtherProject", "Wow So cool Much Project", "n/a");

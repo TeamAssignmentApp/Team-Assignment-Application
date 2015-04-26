@@ -1,13 +1,6 @@
 USE TeamAssignmentApp;
-TRUNCATE TABLE Skill;
-TRUNCATE TABLE User;
 TRUNCATE TABLE HasSkill;
-TRUNCATE TABLE Project;
-TRUNCATE TABLE Discipline;
-TRUNCATE TABLE Class;
-TRUNCATE TABLE Major;
 TRUNCATE TABLE AdminOf;
-TRUNCATE TABLE InDiscipline;
 TRUNCATE TABLE IsMajor;
 TRUNCATE TABLE InClass;
 TRUNCATE TABLE ProjectRequiresSkill;
@@ -18,9 +11,9 @@ TRUNCATE TABLE RequiresMajor;
 TRUNCATE TABLE WantsTeammate;
 TRUNCATE TABLE WantsProject;
 
-INSERT INTO USER (email, fname, lname, password, isMaster) VALUES ("totally@real.email", "Adam", "N", "password", 1);
-INSERT INTO USER (email, fname, lname, password) VALUES ("totally@real.email", "Joe", "Schmoe", "password");
-INSERT INTO USER (email, fname, lname, password) VALUES ("totally@real.email", "Nick", "Morris", "password");
+INSERT INTO User (email, fname, lname, password, isMaster) VALUES ("totally@real.email", "Adam", "N", "password", 1);
+INSERT INTO User (email, fname, lname, password) VALUES ("totally@real.email", "Joe", "Schmoe", "password");
+INSERT INTO User (email, fname, lname, password) VALUES ("totally@real.email", "Nick", "Morris", "password");
 
 INSERT INTO Class (className, teammatePreferences) VALUES ("Senior Design", 2);
 

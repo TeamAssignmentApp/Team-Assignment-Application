@@ -20,16 +20,40 @@
 
 	<script>
 		$(document).ready(function(){
-			$.get("api/user.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
-
-			});
-			$("#displayClasses").dataTable();			
-			$("#displayUsers").dataTable();
-			$("#displayProjects").dataTable();
-			$("#displayAdmins").dataTable();
+			//load the tables first
+			var classTable = $("#displayClasses").dataTable();			
+			var userTable = $("#displayUsers").dataTable();
+			var projectTable = $("#displayProjects").dataTable();
+			var adminTable = $("#displayAdmins").dataTable();
 			$('#adminTabs a').click(function (e) {
 				e.preventDefault()
 				$(this).tab('show')
+			});
+
+			$.get("api/user.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+				var parsedData = JSON.parse(data);
+				var classes = parsedData["classIds"];
+				var classArr = [];
+				$(classes).each(function(index,value){
+					$.get("api/class.php", {id: value, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
+						var parsedClassData = JSON.parse(classData);
+						var allUsersAllProjects = parsedClassData["users"];
+						var thisClassProjects = parsedClassData["projects"];
+						$(allUsersAllProjects).each(function(index,value){
+							//prevent adding duplicate classes
+							if(classArr.indexOf(value["name"]) == -1) {
+								classArr.push(value["name"]);
+								classTable.row.add([value["name"], value["startTime"], value["endTime"], ""]);
+							}	
+							$.get("api/user.php", {id: value["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
+								userTable.row.add(userData["fname"] + " " + userData["lname"], userData["major"], userData["email"]);
+							});
+						});
+						$(thisClassProjects).each(function(index,value){
+							projectTable.row.add([value["name"], value["description"],"",value["fileLink"],""]);
+						});
+					});
+				});
 			});
 
 			$("#crudModal").on("hidden.bs.modal", function() {

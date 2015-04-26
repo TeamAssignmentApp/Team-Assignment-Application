@@ -24,15 +24,17 @@ CREATE TABLE User(
   fname varchar(30),
   lname varchar(30),
   password varchar(40),
-  isMaster tinyint(1)
+  isMaster tinyint(1) DEFAULT 0,
+  wantsToLead tinyint(1) DEFAULT 0,
+  submissionTime DATETIME DEFAULT NOW()
 );
 CREATE TABLE Class(
   classID int not null primary key auto_increment,
   className varchar(40),
-  projectPreferences int,
-  teammatePreferences int,
-  startTime DATETIME,
-  endTime DATETIME
+  projectPreferences int DEFAULT 3,
+  teammatePreferences int DEFAULT 3,
+  startTime DATETIME DEFAULT NOW(),
+  endTime DATETIME DEFAULT NOW() + INTERVAL 1 WEEK
 );
 CREATE TABLE Project(
   projectID int not null primary key auto_increment,
@@ -42,7 +44,8 @@ CREATE TABLE Project(
 );
 CREATE TABLE Skill(
   skillID int not null primary key auto_increment,
-  skillName varchar(40)
+  skillName varchar(40),
+  userCreated tinyint(1) DEFAULT 0
 );
 CREATE TABLE Major(
   majorID int not null primary key auto_increment,

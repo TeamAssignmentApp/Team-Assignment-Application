@@ -183,6 +183,8 @@
 			$projectIdArr = explode(',', $projectIdArrayStr);
 			if(!updateUserProjectSelection($userId, $projectIdArr)) {
 				return;
+			} else {
+				updateLastUpdateTime($userId);
 			}
 		}
 		
@@ -191,6 +193,8 @@
 			$teammateIdArr = explode(',', $userIdArrayStr);
 			if(!updateUserTeamMateSelection($userId, $teammateIdArr)) {
 				return;
+			} else {
+				updateLastUpdateTime($userId);
 			}
 		}
 		
@@ -199,6 +203,8 @@
 			$skillIdArr = explode(',', $skillIdArrayStr);
 			if(!updateUserSkills($userId, $skillIdArr)) {
 				return;
+			} else {
+				updateLastUpdateTime($userId);
 			}
 		}
 		
@@ -210,6 +216,16 @@
 				$stmt->execute();
 				while($stmt->fetch());
 			}
+		}
+	}
+	
+	function updateLastUpdateTime($userId) {
+		global $conn;
+		$sql = "UPDATE User set submissionTime = now() where userID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $userId);
+			$stmt->execute();
+			while($stmt->fetch());
 		}
 	}
 	

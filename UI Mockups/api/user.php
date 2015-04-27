@@ -38,11 +38,11 @@
 		$id = $get["id"];
 		$user = null;		
 		
-		$sql = 'SELECT u.userID, email, fname, lname, m.majorName FROM User u INNER JOIN IsMajor im INNER JOIN Major m ON m.majorID = im.majorID WHERE u.userID = ?';
+		$sql = 'SELECT u.userID, email, fname, lname, submissionTime, wantsToLead, m.majorName FROM User u INNER JOIN IsMajor im INNER JOIN Major m ON m.majorID = im.majorID WHERE u.userID = ?';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
-			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['major']);
+			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['wantsToLead'], $user['major']);
 			while($stmt->fetch()){}		
 		}
 		
@@ -128,7 +128,7 @@
 			return;
 		}
 		
-		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0)';		
+		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0, 0, null)';		
 		$hashedPass = password_hash($password, PASSWORD_BCRYPT);		
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ssss", $email, $fname, $lname, $hashedPass);

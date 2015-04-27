@@ -163,7 +163,63 @@
 	}
 	
 	function handlePut($put) {
+		global $conn, $API_TOKEN;
+		$token = '' . $put["token"];
+		if ($token != $API_TOKEN) {
+			throwError(401, "API Token is not valid.");
+			return;
+		}
 		
+		$classId = $put["id"];
+		if($classId == null) {
+			throwError(500, "id field was missing");
+		}
+		
+		$className = $put["name"];
+		$numProjectPrefs = $put["numProjectPrefs"];
+		$numTeammatePrefs = $put["numTeammatePrefs"];
+		$startTime = $put["startTime"];
+		$endTime = $put["endTime"];		
+		
+		$sql = "UPDATE Class SET ";
+		$paramStr = "";
+		$args = array();
+		if($className != null) {
+			$sql .= "className=?,";
+			$args[] = $className;
+			$paramStr .= "s";
+		}
+		if($numProjectPrefs != null) {		
+			$sql .= "projectPreferences=?,";
+			$args[] = $numProjectPrefs;
+			$paramStr .= "i";			
+		}
+		if($numTeammatePrefs != null) {
+			$sql .= "teammatePreferences=?,";
+			$args[] = $numTeammatePrefs;
+			$paramStr .= "i";
+		}
+		if($startTime != null) {
+			$sql .= "startTime=?,";
+			$args[] = $startTime;
+			$paramStr .= "s";
+		}
+		if($endTime != null) {
+			$sql .= "endTime=?,";
+			$args[] = $endTime;
+			$paramStr .= "s";
+		}
+		
+		$sql = substr($sql, 0, -1);
+		$sql .= " where classID = ?";
+		$paramStr .= "i";
+		$args[] = $classId;
+		
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param($paramStr, ...$args);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
 	}
 	
 	function handleDelete($delete) {

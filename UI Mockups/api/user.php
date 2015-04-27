@@ -69,11 +69,11 @@
 		
 		$skillArr = array();
 		$skill = null;
-		$sql = 'SELECT s.skillID, s.skillName from User u INNER JOIN HasSkill hs ON u.userID = hs.userID INNER JOIN Skill s ON s.skillID = hs.skillID WHERE u.userID = ?';
+		$sql = 'SELECT s.skillID, s.skillName, s.userCreated from User u INNER JOIN HasSkill hs ON u.userID = hs.userID INNER JOIN Skill s ON s.skillID = hs.skillID WHERE u.userID = ?';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
-			$stmt->bind_result($skill['id'], $skill['name']);
+			$stmt->bind_result($skill['id'], $skill['name'], $skill['isUserCreated']);
 			while($stmt->fetch()) {
 				$skillArr[] = unserialize(serialize($skill));
 			}

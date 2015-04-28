@@ -51,7 +51,9 @@
 								classTable.row.add([user["name"], user["startTime"], user["endTime"], "a"]);
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
-								userTable.row.add(userData["fname"] + " " + userData["lname"], userData["major"]["name"], userData["email"]);
+								console.log("userData");
+								console.log(userData);
+								userTable.row.add(userData["fname"] + " " + userData["lname"], userData["major"], userData["email"]);
 							});
 						});
 						$(thisClassProjects).each(function(index,proj){

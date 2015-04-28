@@ -17,5 +17,5 @@ h1 {
 }
 
 .ui-datepicker {
-  z-index: 1003 !important;
+  z-index: 10003 !important;
 }

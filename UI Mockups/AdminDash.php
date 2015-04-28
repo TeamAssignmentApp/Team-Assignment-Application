@@ -21,12 +21,12 @@
 	<script>
 		$(document).ready(function(){
 			//load the tables first
-			var classTable = $("#displayClasses").dataTable();
+			var classTable = $("#displayClasses").DataTable();
 			console.log("assigned object");	
 			console.log(classTable);		
-			var userTable = $("#displayUsers").dataTable();
-			var projectTable = $("#displayProjects").dataTable();
-			var adminTable = $("#displayAdmins").dataTable();
+			var userTable = $("#displayUsers").DataTable();
+			var projectTable = $("#displayProjects").DataTable();
+			var adminTable = $("#displayAdmins").DataTable();
 			$('#adminTabs a').click(function (e) {
 				e.preventDefault()
 				$(this).tab('show')

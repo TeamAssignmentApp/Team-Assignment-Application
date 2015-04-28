@@ -16,5 +16,6 @@ h1 {
 	margin-left: 210px;
 }
 
-
-
+.ui-datepicker {
+  z-index: 1003;
+}

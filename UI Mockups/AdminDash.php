@@ -50,12 +50,12 @@
  								console.log(user);
 								classTable.row.add([user["name"], user["startTime"], user["endTime"], "a"]);
 							}	
-							$.get("api/user.php", {id: value["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
+							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								userTable.row.add(userData["fname"] + " " + userData["lname"], userData["major"], userData["email"]);
 							});
 						});
-						$(thisClassProjects).each(function(index,value){
-							projectTable.row.add([value["name"], value["description"],"",value["fileLink"],""]);
+						$(thisClassProjects).each(function(index,proj){
+							projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],""]);
 						});
 					});
 				});

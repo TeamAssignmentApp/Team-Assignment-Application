@@ -47,7 +47,7 @@
  								classArr.push(user["name"]);
  								console.log("user");
  								console.log(user);
-								classTable.row.add([user["name"], user["startTime"], user["endTime"], "a"]);
+								classTable.row.add([parsedClassData["name"], parsedClassData["startTime"], parsedClassData["endTime"], "a"]);
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								console.log("userData");

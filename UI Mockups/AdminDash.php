@@ -147,6 +147,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<!--
 								<tr>
 									<td>Senior Design</td>
 									<td>January 1, 2015</td>
@@ -170,7 +171,7 @@
 									<td>January 1, 2015</td>
 									<td>May 2, 2015</td>
 									<td>Mark Fontenot</td>
-								</tr>
+								</tr>-->
 							</tbody>
 						</table>
 					</div>
@@ -186,7 +187,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
+								<!--<tr>
 									<td>Alex Russell</td>
 									<td>Computer Engineering</td>
 									<td>amrussell@smu.edu</td>
@@ -205,7 +206,7 @@
 									<td>Jeffrey Artigues</td>
 									<td>Computer Science</td>
 									<td>jartigues@smu.edu</td>
-								</tr>
+								</tr>-->
 							</tbody>
 						</table>
     				</div>
@@ -223,7 +224,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
+								<!--<tr>
 									<td>Project 1</td>
 									<td>Description</td>
 									<td>5</td>
@@ -264,7 +265,7 @@
 									<td>5</td>
 									<td></td>
 									<td></td>
-								</tr>
+								</tr>-->
 							</tbody>
 						</table>
     				</div>

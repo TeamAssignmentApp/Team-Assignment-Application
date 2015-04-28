@@ -49,22 +49,18 @@
  								classArr.push(user["name"]);
  								console.log("user");
  								console.log(user);
-								classTable.row.add([parsedClassData["name"], parsedClassData["startTime"], parsedClassData["endTime"], "a"]);
+								classTable.row.add([parsedClassData["name"], parsedClassData["startTime"], parsedClassData["endTime"], "a"]).draw();
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
-								userTable.row.add(userData["fname"] + " " + userData["lname"], userData["major"], userData["email"]);
+								userTable.row.add(userData["fname"] + " " + userData["lname"], userData["major"], userData["email"]).draw();
 							});
 						});
 						$(thisClassProjects).each(function(index,proj){
-							projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],""]);
+							projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],""]).draw();
 						});
 					});
 				});
 			});
-			classTable.draw();
-			userTable.draw();
-			projectTable.draw();
-			adminTable.draw();
 
 			$("#crudModal").on("hidden.bs.modal", function() {
 				$("#crudBody").empty();

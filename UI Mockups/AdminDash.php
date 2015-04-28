@@ -50,7 +50,21 @@
  								classArr.push(user["name"]);
  								console.log("user");
  								console.log(user);
-								classTable.row.add([parsedClassData["name"], parsedClassData["startTime"], parsedClassData["endTime"], "a"]).draw();
+ 								if(parsedClassData["adminIds"].length == 0) {
+									classTable.row.add([parsedClassData["name"], parsedClassData["startTime"], parsedClassData["endTime"], "None"]).draw();
+								}
+								else {
+									var commaSepAdminNames = '';
+									var numAdmins = parsedClassData["adminIds"].length;
+									$(parsedClassData["adminIds"]).each(function(ind, adminId) {
+										$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54'}, function(adminData) {
+											var parsedAdminData = JSON.parse(adminData);
+											commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
+											if(ind < (numAdmins - 1))
+												commaSepAdminNames += ', ';
+										});
+									});
+								}
 								$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
 								numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
 							}	

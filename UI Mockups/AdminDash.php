@@ -76,6 +76,7 @@
 			       });
 			});
 
+			/*
 			$("#addClassBtn").click(function() {
 				$("#crudBody").html($("#loadingDisplay").html());
 				$("#crudBody").load("createClass.php", function() {
@@ -97,6 +98,7 @@
 					$("#crudTitle").html("Adding Project...");
 				});
 			});
+*/
 
 			$("#reqPageSelect").change(function() {
 				console.log('hi');
@@ -106,6 +108,14 @@
 					$(".requestPageInput").removeAttr("disabled");
 				}
 
+			});
+
+			//brought these over from formerly remotely loaded modals
+			$("#numStudents").change(function(){
+				$("#majorForEachStudent").empty();
+				for(var i = 0; i < $("#numStudents").val(); i++){
+					$("#majorForEachStudent").append($("#studentMajorTemplate").html());
+				}
 			});
 		});
 	</script>
@@ -133,7 +143,7 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="classes">
 						<h3 style="margin-top:0; display:inline-block">Managing Classes</h3>
-						<button class="btn btn-success btn-sm" id="addClassBtn" style="display:inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add Class</button>
+						<button class="btn btn-success btn-sm" id="addClassBtn" style="display:inline-block" data-toggle="modal" data-target="#addClassModal"><span class="glyphicon glyphicon-plus"></span>Add Class</button>
 						<table id="displayClasses" class="display">
 							<thead>
 								<tr>
@@ -143,38 +153,12 @@
 									<th>Administrators</th>
 								</tr>
 							</thead>
-							<tbody>
-								<!--
-								<tr>
-									<td>Senior Design</td>
-									<td>January 1, 2015</td>
-									<td>May 2, 2015</td>
-									<td>Dona Mularkey, Don Evans, Carlos Davila</td>
-								</tr>
-								<tr>
-									<td>First Year Design</td>
-									<td>January 1, 2015</td>
-									<td>May 2, 2015</td>
-									<td>Mark Fontenot</td>
-								</tr>
-								<tr>
-									<td>GUI</td>
-									<td>January 1, 2015</td>
-									<td>May 2, 2015</td>
-									<td>Mark Fontenot, Harrison Jackson</td>
-								</tr>
-								<tr>
-									<td>Databases</td>
-									<td>January 1, 2015</td>
-									<td>May 2, 2015</td>
-									<td>Mark Fontenot</td>
-								</tr>-->
-							</tbody>
+							<tbody></tbody>
 						</table>
 					</div>
     				<div role="tabpanel" class="tab-pane" id="users">
     					<h3 style="margin-top:0; display:inline-block">Managing Users</h3>
-    					<button class="btn btn-success btn-sm" id="addUserBtn" style="display:inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add User</button>
+    					<button class="btn btn-success btn-sm" id="addUserBtn" style="display:inline-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus"></span>Add User</button>
     					<table id="displayUsers" class="display">
 							<thead>
 								<tr>
@@ -183,33 +167,12 @@
 									<th>Email</th>
 								</tr>
 							</thead>
-							<tbody>
-								<!--<tr>
-									<td>Alex Russell</td>
-									<td>Computer Engineering</td>
-									<td>amrussell@smu.edu</td>
-								</tr>
-								<tr>
-									<td>Nick Morris</td>
-									<td>Computer Science</td>
-									<td>nmorris@smu.edu</td>
-								</tr>
-								<tr>
-									<td>Ian Cowley</td>
-									<td>Computer Science</td>
-									<td>icowley@smu.edu</td>
-								</tr>
-								<tr>
-									<td>Jeffrey Artigues</td>
-									<td>Computer Science</td>
-									<td>jartigues@smu.edu</td>
-								</tr>-->
-							</tbody>
+							<tbody></tbody>
 						</table>
     				</div>
     				<div role="tabpanel" class="tab-pane" id="projects">
     					<h3 style="margin-top:0; display:inline-block">Managing Projects</h3>
-    					<button class="btn btn-success btn-sm" id="addProjectBtn" style="display:inline-block" data-toggle="modal" data-target="#crudModal"><span class="glyphicon glyphicon-plus"></span>Add Project</button>
+    					<button class="btn btn-success btn-sm" id="addProjectBtn" style="display:inline-block" data-toggle="modal" data-target="#addProjectModal"><span class="glyphicon glyphicon-plus"></span>Add Project</button>
 						<table id="displayProjects" class="display">
 							<thead>
 								<tr>
@@ -220,50 +183,7 @@
 									<th>Required Majors</th>
 								</tr>
 							</thead>
-							<tbody>
-								<!--<tr>
-									<td>Project 1</td>
-									<td>Description</td>
-									<td>5</td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Project 2</td>
-									<td>Description</td>
-									<td>5</td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Project 3</td>
-									<td>Description</td>
-									<td>5</td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Project 4</td>
-									<td>Description</td>
-									<td>5</td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Project 5</td>
-									<td>Description</td>
-									<td>5</td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Project 6</td>
-									<td>Description</td>
-									<td>5</td>
-									<td></td>
-									<td></td>
-								</tr>-->
-							</tbody>
+							<tbody></tbody>
 						</table>
     				</div>
     				<div role="tabpanel" class="tab-pane" id="requestpage">
@@ -274,8 +194,6 @@
     								<label for="reqPageToChange">Please Choose a Class to Edit Its Page</label>
     								<select class="form-control" id="reqPageSelect">
     									<option value="" selected>--Please Select--</option>
-    									<option value="1">Class 1</option>
-    									<option value="2">Class 2</option>
     								</select>
     							</div>
     							<hr />
@@ -312,15 +230,156 @@
 			</div>
 		</div>
 
-		<!--modal display for CRUD-->
-		<div class="modal fade" id="crudModal">
+		<!--modal display for classes-->
+		<div class="modal fade" id="addClassModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="crudTitle"></h4>
+						<h4 class="modal-title" id="addClassTitle"></h4>
 					</div>
-					<div class="modal-body" id="crudBody"></div>
+					<div class="modal-body" id="addClassBody">
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Class Name</span>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Start Time</span>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">End Time</span>
+							<input class="form-control" type="text" />
+						</div>
+						<button class="btn btn-success" style="display:inline-block">Create Class</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!--modal display for users-->
+		<div class="modal fade" id="addUserModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="addUserTitle"></h4>
+					</div>
+					<div class="modal-body" id="addUserBody">
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Class</span>
+							<select class="form-control studentMajorSelection">
+								<?php
+									$query = mysql_query("select className from Class", $connection);
+									$rows = mysql_num_rows($query);
+									if ($rows >= 1) {
+										while ($result = mysql_fetch_array($query)){ ?>
+											<option><?php echo $result['className'];?></option>
+										<?php
+										}
+									}
+								?>
+							</select>
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">First Name</span>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Last Name</span>
+							<input class="form-control" type="text" />
+						</div>
+
+
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Major</span>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Email Address</span>
+							<input class="form-control" type="text" />
+						</div>
+						<button class="btn btn-success" style="display:inline-block">Create User</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!--modal display for CRUD-->
+		<div class="modal fade" id="addProjectModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="addProjectTitle"></h4>
+					</div>
+					<div class="modal-body" id="addProjectBody">
+												<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Class</span>
+							<select class="form-control studentMajorSelection">
+									<option>Class 1</option>
+									<option>Class 2</option>
+									<option>Class 3</option>
+									<option>Class 4</option>
+								</select>
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Project Name</span>
+							<input class="form-control" type="text" />
+						</div>
+						<label>Project Description</label><br/>
+						<textarea class="form-control" style="margin-bottom:9px"></textarea>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Number of Students</span>
+							<input type="number" min="2" max="10" value="2" id="numStudents" class="form-control" />
+						</div>
+						<span id="majorForEachStudent">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student Discipline</span>
+								<select class="form-control studentMajorSelection">
+									<option>Computer Science</option>
+									<option>Computer Engineering</option>
+									<option>Mechanical Engineering</option>
+									<option>Electrical Engineering</option>
+									<option>Civil Engineering</option>
+									<option>Environmental Engineering</option>
+								</select>
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student Discipline</span>
+								<select class="form-control studentMajorSelection">
+									<option>Computer Science</option>
+									<option>Computer Engineering</option>
+									<option>Mechanical Engineering</option>
+									<option>Electrical Engineering</option>
+									<option>Civil Engineering</option>
+									<option>Environmental Engineering</option>
+								</select>
+							</div>
+						</span>
+						<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
+						<br/>
+						<button class="btn btn-success" style="display:inline-block">Submit</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
+						<div id="studentMajorTemplate" style="display:none">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student Discipline</span>
+								<select class="form-control studentMajorSelection">
+									<option>Computer Science</option>
+									<option>Computer Engineering</option>
+									<option>Mechanical Engineering</option>
+									<option>Electrical Engineering</option>
+									<option>Civil Engineering</option>
+									<option>Environmental Engineering</option>
+								</select>
+							</div>
+						</div>
+					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->

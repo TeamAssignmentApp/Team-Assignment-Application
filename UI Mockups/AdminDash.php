@@ -14,9 +14,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
         <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/jquery-ui.min.css" />
+        <link rel="stylesheet" href="css/jquery-ui.structure.min.css" />
+        <link rel="stylesheet" href="css/jquery-ui.theme.min.css" />
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
 
 	<script>
 		var numPrefs = [];
@@ -137,6 +141,10 @@
 					$("#majorForEachStudent").append($("#studentMajorTemplate").html());
 				}
 			});
+
+			//initialize datepickers for class start dates and end dates
+			$("#newClassStartDate").datepicker();
+			$("#newClassEndDate").datepicker();
 		});
 	</script>
 	</head>
@@ -264,12 +272,12 @@
 							<input class="form-control" type="text" />
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
-							<span class="input-group-addon">Start Time</span>
-							<input class="form-control" type="text" />
+							<span class="input-group-addon">Start Date</span>
+							<input class="form-control" type="text" id="newClassStartDate" />
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
-							<span class="input-group-addon">End Time</span>
-							<input class="form-control" type="text" />
+							<span class="input-group-addon">End Date</span>
+							<input class="form-control" type="text" id="newClassEndDate" />
 						</div>
 						<button class="btn btn-success" style="display:inline-block">Create Class</button>
 						&nbsp;&nbsp;
@@ -329,7 +337,7 @@
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 
-		<!--modal display for CRUD-->
+		<!--modal display for projects-->
 		<div class="modal fade" id="addProjectModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -341,11 +349,11 @@
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class</span>
 							<select class="form-control studentMajorSelection">
-									<option>Class 1</option>
-									<option>Class 2</option>
-									<option>Class 3</option>
-									<option>Class 4</option>
-								</select>
+								<option>Class 1</option>
+								<option>Class 2</option>
+								<option>Class 3</option>
+								<option>Class 4</option>
+							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Project Name</span>

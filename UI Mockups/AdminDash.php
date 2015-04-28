@@ -37,6 +37,8 @@
 				$(classes).each(function(index,classID){
 					$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
 						var parsedClassData = JSON.parse(classData);
+						console.log("parsedClassData");
+						console.log(parsedClassData);
 						var allUsersAllProjects = parsedClassData["users"];
 						var thisClassProjects = parsedClassData["projects"];
 						$(allUsersAllProjects).each(function(index,user){

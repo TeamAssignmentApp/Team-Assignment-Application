@@ -109,9 +109,9 @@
 					$(".requestPageInput").removeAttr("disabled");
 					var selectedClassID = $(this).val();
 					console.log(numPrefs);
-					var className = $("#reqPageSelect option:selected").text();
-					$("#numTeammateReqs").val(numPrefs["numTeamPrefs"]);
-					$("#numProjects").val(numPrefs["numProjPrefs"]);
+					var prefsObj = numPrefs[$("#reqPageSelect option:selected").text()];
+					$("#numTeammateReqs").val(prefsObj["numTeamPrefs"]);
+					$("#numProjects").val(prefsObj["numProjPrefs"]);
 				}
 
 			});

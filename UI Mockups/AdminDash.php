@@ -38,17 +38,17 @@
 				var parsedData = JSON.parse(data);
 				var classes = parsedData["classIds"];
 				var classArr = [];
-				$(classes).each(function(index,value){
-					$.get("api/class.php", {id: value, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
+				$(classes).each(function(index,classID){
+					$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
 						var parsedClassData = JSON.parse(classData);
 						var allUsersAllProjects = parsedClassData["users"];
 						var thisClassProjects = parsedClassData["projects"];
-						$(allUsersAllProjects).each(function(index,value){
+						$(allUsersAllProjects).each(function(index,user){
 							//prevent adding duplicate classes
-							if(classArr.indexOf(value["name"]) == -1) {
- 								classArr.push(value["name"]);
- 								console.log(value);
-								classTable.row.add([value["name"], value["startTime"], value["endTime"], "a"]);
+							if(classArr.indexOf(user["name"]) == -1) {
+ 								classArr.push(user["name"]);
+ 								console.log(user);
+								classTable.row.add([user["name"], user["startTime"], user["endTime"], "a"]);
 							}	
 							$.get("api/user.php", {id: value["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								userTable.row.add(userData["fname"] + " " + userData["lname"], userData["major"], userData["email"]);

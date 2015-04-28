@@ -110,8 +110,8 @@
 					var selectedClassID = $(this).val();
 					console.log(numPrefs);
 					var className = $("#reqPageSelect option:selected").text();
-					$("#numTeammateReqs").val(prefsObj[className]);
-					$("#numProjects").val(prefsObj["numProjPrefs"]);
+					$("#numTeammateReqs").val(numPrefs["numTeamPrefs"]);
+					$("#numProjects").val(numPrefs["numProjPrefs"]);
 				}
 
 			});

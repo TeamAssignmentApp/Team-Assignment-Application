@@ -52,7 +52,7 @@
  								console.log(user);
 								classTable.row.add([parsedClassData["name"], parsedClassData["startTime"], parsedClassData["endTime"], "a"]).draw();
 								$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
-								numPrefs.push({parsedClassData["name"]: {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]}});
+								numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								var parsedUserData = JSON.parse(userData);

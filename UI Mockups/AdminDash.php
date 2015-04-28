@@ -21,8 +21,9 @@
 	<script>
 		$(document).ready(function(){
 			//load the tables first
-			var classTable = $("#displayClasses").dataTable();	
-			console.log("created classTable " + classTable);		
+			var classTable = $("#displayClasses").dataTable();
+			console.log("assigned object");	
+			console.log(classTable);		
 			var userTable = $("#displayUsers").dataTable();
 			var projectTable = $("#displayProjects").dataTable();
 			var adminTable = $("#displayAdmins").dataTable();
@@ -32,6 +33,8 @@
 			});
 
 			$.get("api/user.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+				console.log("in user get");
+				console.log(classTable);
 				var parsedData = JSON.parse(data);
 				var classes = parsedData["classIds"];
 				var classArr = [];

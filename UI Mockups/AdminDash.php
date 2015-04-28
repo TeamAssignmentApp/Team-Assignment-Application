@@ -47,7 +47,8 @@
 							//prevent adding duplicate classes
 							if(classArr.indexOf(value["name"]) == -1) {
 								classArr.push(value["name"]);
-								classTable.row.add([value["name"], value["startTime"], value["endTime"], ""]);
+								console.log([value["name"],value["startTime"],value["endTime"], "a"]);
+								classTable.row.add([value["name"], value["startTime"], value["endTime"], "a"]);
 							}	
 							$.get("api/user.php", {id: value["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								userTable.row.add(userData["fname"] + " " + userData["lname"], userData["major"], userData["email"]);

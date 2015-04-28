@@ -21,7 +21,8 @@
 	<script>
 		$(document).ready(function(){
 			//load the tables first
-			var classTable = $("#displayClasses").dataTable();			
+			var classTable = $("#displayClasses").dataTable();	
+			console.log("created classTable " + classTable);		
 			var userTable = $("#displayUsers").dataTable();
 			var projectTable = $("#displayProjects").dataTable();
 			var adminTable = $("#displayAdmins").dataTable();

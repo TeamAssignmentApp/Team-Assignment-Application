@@ -19,6 +19,7 @@
 		<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
 	<script>
+		var numPrefs = [];
 		$(document).ready(function(){
 			//load the tables first
 			var classTable = $("#displayClasses").DataTable();
@@ -51,6 +52,7 @@
  								console.log(user);
 								classTable.row.add([parsedClassData["name"], parsedClassData["startTime"], parsedClassData["endTime"], "a"]).draw();
 								$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
+								numPrefs.push({parsedClassData["id"]: {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]}});
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								var parsedUserData = JSON.parse(userData);
@@ -101,11 +103,14 @@
 */
 
 			$("#reqPageSelect").change(function() {
-				console.log('hi');
 				if($(this).val() == "")
 					$(".requestPageInput").attr("disabled","disabled");
 				else {
 					$(".requestPageInput").removeAttr("disabled");
+					var selectedClassID = $(this).val();
+					var prefsObj = numPrefs[selectedClassID];
+					$("#numTeammateReqs").val(prefsObj["numTeamPrefs"]);
+					$("#numProjects").val(prefsObj["numProjPrefs"]);
 				}
 
 			});

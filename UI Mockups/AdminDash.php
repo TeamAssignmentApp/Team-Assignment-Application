@@ -62,6 +62,10 @@
 					});
 				});
 			});
+			classTable.draw();
+			userTable.draw();
+			projectTable.draw();
+			adminTable.draw();
 
 			$("#crudModal").on("hidden.bs.modal", function() {
 				$("#crudBody").empty();

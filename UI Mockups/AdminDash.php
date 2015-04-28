@@ -236,7 +236,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="addClassTitle"></h4>
+						<h4 class="modal-title" id="addClassTitle">Adding Class...</h4>
 					</div>
 					<div class="modal-body" id="addClassBody">
 						<div class="input-group" style="margin-bottom:10px">
@@ -265,7 +265,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="addUserTitle"></h4>
+						<h4 class="modal-title" id="addUserTitle">Adding User...</h4>
 					</div>
 					<div class="modal-body" id="addUserBody">
 						<div class="input-group" style="margin-bottom:10px">
@@ -315,10 +315,10 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="addProjectTitle"></h4>
+						<h4 class="modal-title" id="addProjectTitle">Adding Project...</h4>
 					</div>
 					<div class="modal-body" id="addProjectBody">
-												<div class="input-group" style="margin-bottom:10px">
+						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class</span>
 							<select class="form-control studentMajorSelection">
 									<option>Class 1</option>

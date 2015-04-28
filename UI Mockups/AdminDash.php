@@ -109,6 +109,7 @@
 				else {
 					$(".requestPageInput").removeAttr("disabled");
 					var selectedClassID = $(this).val();
+					console.log(numPrefs);
 					var prefsObj = numPrefs[selectedClassID + ''];
 					$("#numTeammateReqs").val(prefsObj["numTeamPrefs"]);
 					$("#numProjects").val(prefsObj["numProjPrefs"]);

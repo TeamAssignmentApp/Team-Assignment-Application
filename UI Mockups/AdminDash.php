@@ -46,8 +46,8 @@
 						$(allUsersAllProjects).each(function(index,value){
 							//prevent adding duplicate classes
 							if(classArr.indexOf(value["name"]) == -1) {
-								classArr.push(value["name"]);
-								console.log([value["name"],value["startTime"],value["endTime"], "a"]);
+ 								classArr.push(value["name"]);
+ 								console.log(value);
 								classTable.row.add([value["name"], value["startTime"], value["endTime"], "a"]);
 							}	
 							$.get("api/user.php", {id: value["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){

@@ -22,8 +22,6 @@
 		$(document).ready(function(){
 			//load the tables first
 			var classTable = $("#displayClasses").DataTable();
-			console.log("assigned object");	
-			console.log(classTable);		
 			var userTable = $("#displayUsers").DataTable();
 			var projectTable = $("#displayProjects").DataTable();
 			var adminTable = $("#displayAdmins").DataTable();
@@ -33,8 +31,6 @@
 			});
 
 			$.get("api/user.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
-				console.log("in user get");
-				console.log(classTable);
 				var parsedData = JSON.parse(data);
 				var classes = parsedData["classIds"];
 				var classArr = [];
@@ -47,6 +43,7 @@
 							//prevent adding duplicate classes
 							if(classArr.indexOf(user["name"]) == -1) {
  								classArr.push(user["name"]);
+ 								console.log("user");
  								console.log(user);
 								classTable.row.add([user["name"], user["startTime"], user["endTime"], "a"]);
 							}	

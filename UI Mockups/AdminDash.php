@@ -61,8 +61,8 @@
  								var prettyStartDate = dateToString(convertedStartDate);
  								var prettyEndDate = dateToString(convertedEndDate);
 
- 								var actionButtons = '<a class="btn-primary btn-xs" href="#" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
- 													'<a class="btn-danger btn-xs" href="#" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+ 								var actionButtons = '<a class="btn-primary btn-sm" href="#" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
+ 													'<a class="btn-danger btn-sm" href="#" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
  								if(parsedClassData["adminIds"].length == 0) {
 									classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 								}
@@ -171,6 +171,15 @@
 			return "None";
 		else
 			return strToRet;
+	}
+
+	//CLASS FUNCTIONS
+	function editClass(id) {
+		console.log('will edit class ' + id);
+	}
+
+	function deleteClass(id){
+		console.log('will delete class ' + id);
 	}
 	</script>
 	</head>

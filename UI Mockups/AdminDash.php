@@ -43,6 +43,8 @@
 				var classArr = [];
 				$(classes).each(function(index,classID){
 					$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
+						console.log('classData');
+						console.log(classData);
 						var parsedClassData = JSON.parse(classData);
 						console.log("parsedClassData");
 						console.log(parsedClassData);

@@ -46,7 +46,9 @@
 						var parsedClassData = JSON.parse(classData);
 						console.log("parsedClassData");
 						console.log(parsedClassData);
-						console.log(parsedClassData["endTime"]);
+						var endTime = new Date(Date.parse(parsedClassData["endTime"]));
+						console.log('endTime');
+						console.log(endTime);
 						var allUsersAllProjects = parsedClassData["users"];
 						var thisClassProjects = parsedClassData["projects"];
 						$(allUsersAllProjects).each(function(index,user){

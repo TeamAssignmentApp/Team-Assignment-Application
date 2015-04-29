@@ -60,8 +60,11 @@
  								var convertedEndDate = convertDate(parsedClassData["endTime"]);
  								var prettyStartDate = dateToString(convertedStartDate);
  								var prettyEndDate = dateToString(convertedEndDate);
+
+ 								var actionButtons = '<a class="btn-primary btn-xs" href="#" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
+ 													'<a class="btn-danger btn-xs" href="#" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
  								if(parsedClassData["adminIds"].length == 0) {
-									classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None"]).draw();
+									classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 								}
 								else {
 									var commaSepAdminNames = '';
@@ -74,7 +77,7 @@
 												commaSepAdminNames += ', ';
 										});
 									});
-									classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames]).draw();
+									classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
 								}
 								$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
 								numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
@@ -202,6 +205,7 @@
 									<th>Start Date</th>
 									<th>End Date</th>
 									<th>Administrators</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody></tbody>

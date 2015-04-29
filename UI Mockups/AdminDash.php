@@ -46,7 +46,7 @@
 						var parsedClassData = JSON.parse(classData);
 						console.log("parsedClassData");
 						console.log(parsedClassData);
-						var endTime = new Date(Date.parse(parsedClassData["endTime"]));
+						var endTime = new Date(parsedClassData["endTime"]);
 						console.log('endTime');
 						console.log(endTime);
 						var allUsersAllProjects = parsedClassData["users"];

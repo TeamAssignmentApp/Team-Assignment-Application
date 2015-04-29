@@ -163,7 +163,11 @@
 	}
 
 	function dateToString(date) {
-		return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+		var strToRet = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+		if(strToRet == '11/30/1899')
+			return "None";
+		else
+			return strToRet;
 	}
 	</script>
 	</head>

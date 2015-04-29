@@ -48,9 +48,6 @@
 						var parsedClassData = JSON.parse(classData);
 						console.log("parsedClassData");
 						console.log(parsedClassData);
-						var startTime = convertDate(parsedClassData["startTime"]);
-						console.log('startTime');
-						console.log(startTime);
 						var allUsersAllProjects = parsedClassData["users"];
 						var thisClassProjects = parsedClassData["projects"];
 						$(allUsersAllProjects).each(function(index,user){
@@ -59,8 +56,12 @@
  								classArr.push(user["name"]);
  								console.log("user");
  								console.log(user);
+ 								var convertedStartDate = convertDate(parsedClassData["startTime"]);
+ 								var convertedEndDate = convertDate(parsedClassData["endTime"]);
+ 								var prettyStartDate = dateToString(convertedStartDate);
+ 								var prettyEndDate = dateToString(convertedEndDate);
  								if(parsedClassData["adminIds"].length == 0) {
-									classTable.row.add([parsedClassData["name"], parsedClassData["startTime"], parsedClassData["endTime"], "None"]).draw();
+									classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None"]).draw();
 								}
 								else {
 									var commaSepAdminNames = '';
@@ -73,6 +74,7 @@
 												commaSepAdminNames += ', ';
 										});
 									});
+									classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames]).draw();
 								}
 								$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
 								numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
@@ -158,6 +160,10 @@
 		var t=a[1].split(":");
 		var date = new Date(d[0],(d[1]-1),d[2],t[0],t[1],t[2]);
 		return date;
+	}
+
+	function dateToString(date) {
+		return date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
 	}
 	</script>
 	</head>

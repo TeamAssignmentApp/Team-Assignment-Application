@@ -48,7 +48,7 @@
 						var parsedClassData = JSON.parse(classData);
 						console.log("parsedClassData");
 						console.log(parsedClassData);
-						var startTime = new Date(parsedClassData["startTime"]);
+						var startTime = convertDate(parsedClassData["startTime"]);
 						console.log('startTime');
 						console.log(startTime);
 						var allUsersAllProjects = parsedClassData["users"];
@@ -151,6 +151,14 @@
 			$("#newClassStartDate").datepicker();
 			$("#newClassEndDate").datepicker();
 		});
+
+	function convertDate(dateStr) {
+		var a=dateStr.split(" ");
+		var d=a[0].split("-");
+		var t=a[1].split(":");
+		var date = new Date(d[0],(d[1]-1),d[2],t[0],t[1],t[2]);
+		return date;
+	}
 	</script>
 	</head>
 	<body>

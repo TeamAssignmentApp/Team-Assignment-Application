@@ -1,5 +1,6 @@
 body {
 	background-image: url("NewBackground.jpg");
+	background-size: cover;
 	background-attachment: fixed;
 	font-family: "Georgia", serif;
 }
@@ -13,7 +14,7 @@ h1 {
 }
 
 #projectButton {
-	margin-left: 210px;
+	margin-top:5px;
 }
 
 .ui-datepicker {

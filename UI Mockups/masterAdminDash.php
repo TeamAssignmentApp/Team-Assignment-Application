@@ -109,7 +109,10 @@
 	</script>
 	</head>
 	<body>
-		<h1 style="text-align:center; color:white">SMU Lyle Multidisciplinary Senior Design</h1>
+		<div class="col-md-12" id="header" style="text-align:center">
+			<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
+		</div>
+
 		<div class="container well" style="width:90%; height:650px">
 			<h3 style="text-align:center">Master Administrator Dashboard</h3>
 			<div class="col-md-12" role="tabpanel">

@@ -271,7 +271,7 @@
     					<h3 style="margin-top:0; display:inline-block">Managing Users</h3>
     					<button class="btn btn-success btn-sm" id="addUserBtn" style="display:inline-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus"></span>Add User</button>
     					<select class="classDropdown" id="userClassDropdown" style="display:inline-block">
-    						<option value="-1">--Please Select--</option>
+    						<option value="-1">--Please Select a Class To View--</option>
     					</select>
     					<table id="displayUsers" class="display">
 							<thead>
@@ -289,7 +289,7 @@
     					<h3 style="margin-top:0; display:inline-block">Managing Projects</h3>
     					<button class="btn btn-success btn-sm" id="addProjectBtn" style="display:inline-block" data-toggle="modal" data-target="#addProjectModal"><span class="glyphicon glyphicon-plus"></span>Add Project</button>
 						<select class="classDropdown" id="projectClassDropdown" style="display:inline-block">
-    						<option value="-1">--Please Select--</option>
+    						<option value="-1">--Please Select a Class To View--</option>
     					</select>
 						<table id="displayProjects" class="display">
 							<thead>

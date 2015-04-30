@@ -159,15 +159,15 @@
 			$("#newClassStartDate").datepicker();
 			$("#newClassEndDate").datepicker();
 
-			$("#displayUsers").columns(3).search(-1).draw();
-			$("#displayProjects").columns(5).search(-1).draw();
+			userTable.columns(3).search(-1).draw();
+			classTable.columns(5).search(-1).draw();
 
 			//make it so that the class dropdowns will filter the user and project tables
 			$("#userClassDropdown").change(function() {
-				$("#displayUsers").columns(3).search($(this).val()).draw();
+				userTable.columns(3).search($(this).val()).draw();
 			});
 			$("#projectClassDropdown").change(function() {
-				$("#displayClasses").columns(5).search($(this).val()).draw();
+				classTable.columns(5).search($(this).val()).draw();
 			})
 		});
 

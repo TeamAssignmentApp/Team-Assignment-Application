@@ -322,11 +322,6 @@
     							</div>
     							<br/>
     							<div class="input-group" style="width:400px">
-    								<label for="numSkills">Number of Skills Allowed</label>
-    								<input class="form-control requestPageInput" disabled type="number" min="1" max="9" value="1" id="numSkills"/>
-    							</div>
-    							<br/>
-    							<div class="input-group" style="width:400px">
     								<label for="numProjects">Number of Project Requests Allowed</label>
     								<input class="form-control requestPageInput" disabled type="number" min="2" max="9" value="2" id="numProjects"/>
     							</div>

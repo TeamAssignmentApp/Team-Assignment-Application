@@ -91,7 +91,7 @@
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								var parsedUserData = JSON.parse(userData);
-								var deleteUserButton = '<a class="btn-danger btn-sm" href="#" onclick="deleteClass(' + user["id"] + ')">Delete</a>';
+								var deleteUserButton = '<a class="btn-danger btn-sm" href="#" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
 								userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID, deleteUserButton]).draw();
 							});
 						});

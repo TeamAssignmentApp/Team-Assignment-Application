@@ -64,6 +64,10 @@
  								//add this class to the dropdown for letting the admin select which class to manipulate (users and projects)
  								$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
+ 								//add this class to the dropdowns in the add modals
+ 								$("#newUserClassSelect").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
+ 								$("#newProjectClassSelect").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
+
  								var actionButtons = '<a class="btn-primary btn-sm" href="#" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
  													'<a class="btn-danger btn-sm" href="#" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
  								if(parsedClassData["adminIds"].length == 0) {
@@ -87,7 +91,8 @@
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								var parsedUserData = JSON.parse(userData);
-								userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID]).draw();
+								var deleteUserButton = '<a class="btn-danger btn-sm" href="#" onclick="deleteClass(' + user["id"] + ')">Delete</a>';
+								userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID, deleteUserButton]).draw();
 							});
 						});
 						$(thisClassProjects).each(function(index,proj){
@@ -230,6 +235,47 @@
 	function deleteClass(id){
 		console.log('will delete class ' + id);
 	}*/
+
+	//USER FUNCTIONS
+	function addUser() {
+		var error = false;
+		$(".newUserInput").each(function(i, input) {
+			if($(this).val() == "")
+				error = true;
+		});
+
+		if(!error) {
+			$("#newUserError").hide();
+			var newUserClassSelect = $("#newUserClassSelect").val();
+			var newUserFirstName = $("#newUserFirstName").val();
+			var newUserLastName = $("#newUserLastName").val();
+			var newUserMajor = $("#newUserMajor").val();
+			var newUserEmail = $("#newUserEmail").val();
+			$.post("api/user.php", {
+				email: newUserEmail,
+				fname: newUserFirstName,
+				lname: newUserLastName,
+				password: 'password', //temporary. on first login user has to change it
+				classId: newUserClassSelect,
+				isAdmin: false
+			}, function(){
+				location.reload();
+			});
+		}
+	}
+
+	function deleteUser(idToDelete) {
+		if(confirm('Delete this user?')) {
+			$.ajax({
+				url: "api/user.php",
+				type: 'DELETE',
+				data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
+				success: function(result) {
+					location.reload();
+				}
+			})
+		}
+	}
 	</script>
 	</head>
 	<body>
@@ -285,6 +331,7 @@
 									<th>Major</th>
 									<th>Email</th>
 									<th>Class ID</th>
+									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -388,7 +435,7 @@
 			</div>
 		</div>-->
 
-		<!--modal display for users-->
+		<!--modal display for adding users-->
 		<div class="modal fade" id="addUserModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -399,40 +446,39 @@
 					<div class="modal-body" id="addUserBody">
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class</span>
-							<select class="form-control studentMajorSelection">
-								<?php
-									$query = mysql_query("select className from Class", $connection);
-									$rows = mysql_num_rows($query);
-									if ($rows >= 1) {
-										while ($result = mysql_fetch_array($query)){ ?>
-											<option><?php echo $result['className'];?></option>
-										<?php
-										}
-									}
-								?>
+							<select class="form-control newUserInput" id="newUserClassSelect">
+								<option value="">--Please Select--</option>
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">First Name</span>
-							<input class="form-control" type="text" />
+							<input class="form-control newUserInput" id="newUserFirstName" type="text" />
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Last Name</span>
-							<input class="form-control" type="text" />
+							<input class="form-control newUserInput" id="newUserLastName" type="text" />
 						</div>
 
 
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Major</span>
-							<input class="form-control" type="text" />
+							<select class="form-control newUserInput" id="newUserMajor">
+								<option>Computer Science</option>
+								<option>Computer Engineering</option>
+								<option>Mechanical Engineering</option>
+								<option>Electrical Engineering</option>
+								<option>Civil Engineering</option>
+								<option>Environmental Engineering</option>
+							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Email Address</span>
-							<input class="form-control" type="text" />
+							<input class="form-control newUserInput" id="newUserEmail" type="text" />
 						</div>
-						<button class="btn btn-success" style="display:inline-block">Create User</button>
+						<p id="newUserError" style="display:none; text-color:red">All fields are required.</p>
+						<button class="btn btn-success" style="display:inline-block" id="newUserSubmit">Create User</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
+						<button class="btn btn-danger" style="display:inline-block" id="newUserReset">Reset Form</button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -449,11 +495,8 @@
 					<div class="modal-body" id="addProjectBody">
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class</span>
-							<select class="form-control studentMajorSelection">
-								<option>Class 1</option>
-								<option>Class 2</option>
-								<option>Class 3</option>
-								<option>Class 4</option>
+							<select class="form-control" id="newProjectClassSelect">
+								<option value="">--Please Select--</option>
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">

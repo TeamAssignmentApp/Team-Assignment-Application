@@ -81,7 +81,7 @@
 	<body>
 		<div class="container">
 			<div class="col-md-12" id="header" style="text-align:center">
-				<img src = "images/LyleLogo.png" alt = "Cluck cluck motherfucker">
+				<img src="images/LyleLogo.png" alt="LyleLogo" height="50" width="70">
 
 
 

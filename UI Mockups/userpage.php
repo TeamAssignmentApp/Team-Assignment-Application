@@ -93,7 +93,8 @@
 					<h4>Prioritize your group member requests.</h4>
 				</div>
 			</div>
-			<a class="btn btn-primary" id="projectButton">List of Projects</a>
+
+			<a class="btn btn-primary" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')">List of Projects</a>
 			<div class="col-md-12" id="skillSet">
 				<div class="well" style="padding-top:0px">
 					<h4>What skills do you have?</h4>

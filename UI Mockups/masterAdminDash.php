@@ -20,15 +20,36 @@
 
 	<script>
 		$(document).ready(function(){
+			var classDisplay = $("#displayClasses").dataTable();			
+			var usersDisplay = $("#displayUsers").dataTable();
+			var projectsDisplay = $("#displayProjects").dataTable();
+			var adminDisplay = $("#displayAdmins").dataTable();
+
+
 			$.get("api/user.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+				var userData = JSON.parse(data);
+				
+				$('displayUsers')({
+					
+
+				});
 				
 			});
 
+			$.get("api/class.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+				var classData = JSON.parse(data);
+				var className = parsed('name');
+				var classStart = parsed('startTime');
+				var classEnd = parsed('endTime');
+				var classAdmins = parsed(''); // need this still
 
-			$("#displayClasses").dataTable();			
-			$("#displayUsers").dataTable();
-			$("#displayProjects").dataTable();
-			$("#displayAdmins").dataTable();
+				$('displayClasses')({
+					
+
+				});
+			});
+
+
 			$('#adminTabs a').click(function (e) {
 				e.preventDefault()
 				$(this).tab('show')

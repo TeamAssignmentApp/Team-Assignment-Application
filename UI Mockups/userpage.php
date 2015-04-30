@@ -86,7 +86,7 @@
 			<div class="col-md-6">
 				<div class="well" style="padding-top:0px;" id="projReqs">
 					<h4 style="display:inline-block">Prioritize your project requests.</h4>
-					<a class="btn btn-primary" style="display:inline-block; float:right" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')">List of Projects</a>
+					<a class="btn btn-primary btn-sm" style="display:inline-block; float:right" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')">List of Projects</a>
 				</div>
 			</div>
 			<div class="col-md-6">

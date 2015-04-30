@@ -28,7 +28,7 @@
 				<div class="input-group">
 					<span class="input-group-addon">Class</span>
 					<select class="form-control">
-						<?php
+						<?php/*
 							$userId = $_SESSION['login_user'];
 						    $url="http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/api/user.php?token=9164fe76dd046345905767c3bc2ef54&id=" + $userId;
 						    $json = file_get_contents($url);
@@ -38,12 +38,12 @@
 						    	$json2 = file_get_contents($url2);
     							$data2 = json_decode($json2, TRUE);
     							$className = $data2['name'];
-    							?>
-									<option value = "<?php echo $item;?>"><?php echo $className;?></option>
-								<?php
+    							*/?>
+									<option value = "<?php echo $item;?>"><?/*php echo $className;*/?></option>
+								<?php/*
 								}
 							}
-						?>
+						*/?>
 					</select>
 				</div>
 				<button class="btn btn-primary" style="margin-bottom:10px">Enter Class</button>

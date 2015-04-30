@@ -1,13 +1,6 @@
 USE TeamAssignmentApp;
-TRUNCATE TABLE Skill;
-TRUNCATE TABLE User;
 TRUNCATE TABLE HasSkill;
-TRUNCATE TABLE Project;
-TRUNCATE TABLE Discipline;
-TRUNCATE TABLE Class;
-TRUNCATE TABLE Major;
 TRUNCATE TABLE AdminOf;
-TRUNCATE TABLE InDiscipline;
 TRUNCATE TABLE IsMajor;
 TRUNCATE TABLE InClass;
 TRUNCATE TABLE ProjectRequiresSkill;
@@ -18,9 +11,9 @@ TRUNCATE TABLE RequiresMajor;
 TRUNCATE TABLE WantsTeammate;
 TRUNCATE TABLE WantsProject;
 
-INSERT INTO USER (email, fname, lname, password, isMaster) VALUES ("totally@real.email", "Adam", "N", "password", 1);
-INSERT INTO USER (email, fname, lname, password) VALUES ("totally@real.email", "Joe", "Schmoe", "password");
-INSERT INTO USER (email, fname, lname, password) VALUES ("totally@real.email", "Nick", "Morris", "password");
+INSERT INTO User (email, fname, lname, password, isMaster) VALUES ("totally2@real.email", "Adam", "N", "password", 1);
+INSERT INTO User (email, fname, lname, password) VALUES ("totally3@real.email", "Joe", "Schmoe", "password");
+INSERT INTO User (email, fname, lname, password) VALUES ("totally@real.email", "Nick", "Morris", "password");
 
 INSERT INTO Class (className, teammatePreferences) VALUES ("Senior Design", 2);
 
@@ -36,3 +29,30 @@ INSERT INTO Skill (skillName) VALUES ("Leader");
 INSERT INTO Major (majorName) VALUES ("CSE");
 INSERT INTO Major (majorName) VALUES ("EE");
 INSERT INTO Major (majorName) VALUES ("ME");
+
+INSERT INTO HasSkill(userID, skillID) VALUES (3, 1);
+INSERT INTO HasSkill(userID, skillID) VALUES (3, 2);
+INSERT INTO HasSkill(userID, skillID) VALUES (2, 3);
+INSERT INTO HasSkill(userID, skillID) VALUES (2, 4);
+
+INSERT INTO AdminOf(userID, classID) VALUES (3, 1);
+
+INSERT INTO IsMajor(userID, majorID) VALUES (2, 1);
+
+INSERT INTO InClass(userID, classID) VALUES (2, 1);
+
+INSERT INTO ProjectRequiresSkill(projectID, skillID) VALUES (1, 1);
+INSERT INTO ProjectRequiresSkill(projectID, skillID) VALUES (1, 2);
+INSERT INTO ProjectRequiresSkill(projectID, skillID) VALUES (1, 3);
+INSERT INTO ProjectRequiresSkill(projectID, skillID) VALUES (2, 3);
+INSERT INTO ProjectRequiresSkill(projectID, skillID) VALUES (2, 4);
+
+INSERT INTO ClassHasSkill(classID, skillID) VALUES (1, 1);
+INSERT INTO ClassHasSkill(classID, skillID) VALUES (1, 2);
+INSERT INTO ClassHasSkill(classID, skillID) VALUES (1, 3);
+INSERT INTO ClassHasSkill(classID, skillID) VALUES (1, 4);
+INSERT INTO ClassHasSkill(classID, skillID) VALUES (1, 5);
+
+INSERT INTO HasProject(classID, projectID) VALUES (1, 1);
+
+INSERT INTO RequiresMajor(projectID, majorID, number) VALUES (1, 1, 1);

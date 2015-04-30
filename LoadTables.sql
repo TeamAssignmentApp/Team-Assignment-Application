@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS Class;
 DROP TABLE IF EXISTS Major;
 DROP TABLE IF EXISTS AdminOf;
 DROP TABLE IF EXISTS IsMajor;
+DROP TABLE IF EXISTS InClass;
 DROP TABLE IF EXISTS ProjectRequiresSkill;
 DROP TABLE IF EXISTS ClassHasSkill;
 DROP TABLE IF EXISTS HasProject;
@@ -26,15 +27,15 @@ CREATE TABLE User(
   password varchar(40),
   isMaster tinyint(1) DEFAULT 0,
   wantsToLead tinyint(1) DEFAULT 0,
-  submissionTime DATETIME DEFAULT NOW()
+  submissionTime DATETIME
 );
 CREATE TABLE Class(
   classID int not null primary key auto_increment,
   className varchar(40),
   projectPreferences int DEFAULT 3,
   teammatePreferences int DEFAULT 3,
-  startTime DATETIME DEFAULT NOW(),
-  endTime DATETIME DEFAULT NOW() + INTERVAL 1 WEEK
+  startTime DATETIME,
+  endTime DATETIME
 );
 CREATE TABLE Project(
   projectID int not null primary key auto_increment,
@@ -57,8 +58,17 @@ CREATE TABLE AdminOf(
     PRIMARY KEY (classID, userID), 
     FOREIGN KEY (classID) REFERENCES Class(classID),
     FOREIGN KEY (userID) REFERENCES User(userID) 
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
+)ENGINE = InnoDB;
+CREATE TABLE InClass(
+    userID int,
+    classID int,
+    PRIMARY KEY (classID, userID), 
+    FOREIGN KEY (classID) REFERENCES Class(classID),
+    FOREIGN KEY (userID) REFERENCES User(userID) 
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;
 CREATE TABLE IsMajor(
   majorID int,
@@ -66,8 +76,8 @@ CREATE TABLE IsMajor(
   foreign key(majorID) references Major(majorID),
   foreign key(userID) references User(userID),
   primary key(majorID, userID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;
 CREATE TABLE HasSkill(
   skillID int,
@@ -75,8 +85,8 @@ CREATE TABLE HasSkill(
   foreign key(skillID) references Skill(skillID),
   foreign key(userID) references User(userID),
   primary key(skillID, userID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 ) ENGINE = InnoDB;
 CREATE TABLE ProjectRequiresSkill(
   skillID int,
@@ -84,8 +94,8 @@ CREATE TABLE ProjectRequiresSkill(
   foreign key(skillID) references Skill(skillID),
   foreign key(projectID) references Project(projectID),
   primary key(skillID, projectID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;
 CREATE TABLE ClassHasSkill(
   skillID int,
@@ -93,8 +103,8 @@ CREATE TABLE ClassHasSkill(
   foreign key(skillID) references Skill(skillID),
   foreign key(classID) references Class(classID),
   primary key(skillID, classID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;
 CREATE TABLE HasProject(
   classID int,
@@ -102,8 +112,8 @@ CREATE TABLE HasProject(
   foreign key(classID) references Class(classID),
   foreign key(projectID) references Project(projectID),
   primary key(classID, projectID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;
 CREATE TABLE InProject(
   userID int,
@@ -111,8 +121,8 @@ CREATE TABLE InProject(
   foreign key(userID) references User(userID),
   foreign key(projectID) references Project(projectID),
   primary key(userID, projectID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;
 CREATE TABLE RequiresMajor(
   majorID int,
@@ -121,8 +131,8 @@ CREATE TABLE RequiresMajor(
   foreign key(majorID) references Major(majorID),
   foreign key(projectID) references Project(projectID),
   primary key(majorID, projectID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;
 CREATE TABLE WantsTeammate(
   userID int,
@@ -131,8 +141,8 @@ CREATE TABLE WantsTeammate(
   foreign key(userID) references User(userID),
   foreign key(teammateID) references User(userID),
   primary key(userID, teammateID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;
 CREATE TABLE WantsProject(
   userID int,
@@ -141,6 +151,6 @@ CREATE TABLE WantsProject(
   foreign key(userID) references User(userID),
   foreign key(projectID) references Project(projectID),
   primary key(userID, projectID)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+/*    ON DELETE CASCADE
+    ON UPDATE CASCADE*/
 )ENGINE = InnoDB;

@@ -61,6 +61,9 @@
  								var prettyStartDate = dateToString(convertedStartDate);
  								var prettyEndDate = dateToString(convertedEndDate);
 
+ 								//add this class to the dropdown for letting the admin select which class to manipulate (users and projects)
+ 								$(".classDropdown").append("<option value='" + classID + "'>" + user["name"] + "</option>");
+
  								var actionButtons = '<a class="btn-primary btn-sm" href="#" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
  													'<a class="btn-danger btn-sm" href="#" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
  								if(parsedClassData["adminIds"].length == 0) {
@@ -155,6 +158,17 @@
 			//initialize datepickers for class start dates and end dates
 			$("#newClassStartDate").datepicker();
 			$("#newClassEndDate").datepicker();
+
+			$("#displayUsers").columns(3).search(-1).draw();
+			$("#displayProjects").columns(5).search(-1).draw();
+
+			//make it so that the class dropdowns will filter the user and project tables
+			$("#userClassDropdown").change(function() {
+				$("#displayUsers").columns(3).search($(this).val()).draw();
+			});
+			$("#projectClassDropdown").change(function() {
+				$("#displayClasses").columns(5).search($(this).val()).draw();
+			})
 		});
 
 	function convertDate(dateStr) {
@@ -167,6 +181,7 @@
 
 	function dateToString(date) {
 		var strToRet = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+		//this results from a null PHP date
 		if(strToRet == '11/30/1899')
 			return "None";
 		else
@@ -174,8 +189,40 @@
 	}
 
 	//CLASS FUNCTIONS
-	function editClass(id) {
-		console.log('will edit class ' + id);
+	//GET THESE OUTTA HERE
+	function addClass() {
+		console.log("creating new class");
+		var error = false;
+		$(".newClassField").each(function(i, field) {
+			if($(this).val() == "")
+				error = true;
+		});
+		if(!error) {
+			$("#newClassError").hide();
+			var name = $("#newClassName").val();
+			var numProjPrefs = $("#newClassNumProjPrefs").val();
+			var numTeamPrefs = $("#newClassNumTeammatePrefs").val();
+			var startDate = $("#newClassStartDate").val();
+			var endDate = $("#newClassEndDate").val();
+			$.post("api/class.php", {
+				id: classid, 
+				token:'9164fe76dd046345905767c3bc2ef54',
+				className: name,
+				numProjectPrefs: numprojPrefs,
+				numTeammatePrefs: numTeamPrefs,
+				startTime: startDate,
+				endTime: endDate
+			});
+		}
+
+		else {
+			$("#newClassError").show();
+		}
+	}
+
+	function editClass(classid) {
+		console.log('will edit class ' + classid);
+		
 	}
 
 	function deleteClass(id){
@@ -223,12 +270,16 @@
     				<div role="tabpanel" class="tab-pane" id="users">
     					<h3 style="margin-top:0; display:inline-block">Managing Users</h3>
     					<button class="btn btn-success btn-sm" id="addUserBtn" style="display:inline-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus"></span>Add User</button>
+    					<select class="classDropdown" id="userClassDropdown" style="display:inline-block">
+    						<option value="-1">--Please Select--</option>
+    					</select>
     					<table id="displayUsers" class="display">
 							<thead>
 								<tr>
 									<th>Name</th>
 									<th>Major</th>
 									<th>Email</th>
+									<th>Class ID</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -237,6 +288,9 @@
     				<div role="tabpanel" class="tab-pane" id="projects">
     					<h3 style="margin-top:0; display:inline-block">Managing Projects</h3>
     					<button class="btn btn-success btn-sm" id="addProjectBtn" style="display:inline-block" data-toggle="modal" data-target="#addProjectModal"><span class="glyphicon glyphicon-plus"></span>Add Project</button>
+						<select class="classDropdown" id="projectClassDropdown" style="display:inline-block">
+    						<option value="-1">--Please Select--</option>
+    					</select>
 						<table id="displayProjects" class="display">
 							<thead>
 								<tr>
@@ -245,6 +299,7 @@
 									<th># Students</th>
 									<th>File Link</th>
 									<th>Required Majors</th>
+									<th>Class ID</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -305,16 +360,25 @@
 					<div class="modal-body" id="addClassBody">
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class Name</span>
-							<input class="form-control" type="text" />
+							<input class="form-control newClassField" type="text" id="newClassName" />
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon"># Project Requests</span>
+							<input class="form-control newClassField" type="text" id="newClassNumProjPrefs" />
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon"># Teammate Requests</span>
+							<input class="form-control newClassField" type="text" id="newClassNumTeammatePrefs" />
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Start Date</span>
-							<input class="form-control" type="text" id="newClassStartDate" />
+							<input class="form-control newClassField" type="text" id="newClassStartDate" />
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">End Date</span>
-							<input class="form-control" type="text" id="newClassEndDate" />
+							<input class="form-control newClassField" type="text" id="newClassEndDate" />
 						</div>
+						<p id="newClassError" style="display:none; text-color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block">Create Class</button>
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>

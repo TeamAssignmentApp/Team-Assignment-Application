@@ -81,7 +81,7 @@
 	<body>
 		<div class="container">
 			<div class="col-md-12" id="header" style="text-align:center">
-				<img src="images/LyleLogo.png" alt="LyleLogo" height="100" width="800">
+				<img src="images/LyleLogo.png" alt="LyleLogo" height="100" width="800" padding="20">
 
 
 

@@ -62,7 +62,7 @@
  								var prettyEndDate = dateToString(convertedEndDate);
 
  								//add this class to the dropdown for letting the admin select which class to manipulate (users and projects)
- 								$(".classDropdown").append("<option value='" + classID + "'>" + user["name"] + "</option>");
+ 								$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
  								var actionButtons = '<a class="btn-primary btn-sm" href="#" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
  													'<a class="btn-danger btn-sm" href="#" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
@@ -87,11 +87,11 @@
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								var parsedUserData = JSON.parse(userData);
-								userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"]]).draw();
+								userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID]).draw();
 							});
 						});
 						$(thisClassProjects).each(function(index,proj){
-							projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],""]).draw();
+							projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID]).draw();
 						});
 					});
 				});

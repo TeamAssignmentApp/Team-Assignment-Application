@@ -84,9 +84,9 @@
 				<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
 			</div>
 			<div class="col-md-6">
-				<div class="well" style="padding-top:0px;" id="projReqs">
-					<h4 style="display:inline-block">Prioritize your project requests.</h4>
-					<a class="btn btn-primary" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')" style="display:inline-block">List of Projects</a>
+				<div class="well" style="padding-top:0px; display:inline-block" id="projReqs">
+					<h4>Prioritize your project requests.</h4>
+					<a class="btn btn-primary" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')">List of Projects</a>
 				</div>
 			</div>
 			<div class="col-md-6">

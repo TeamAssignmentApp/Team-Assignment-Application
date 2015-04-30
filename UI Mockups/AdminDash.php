@@ -190,6 +190,8 @@
 
 	//CLASS FUNCTIONS
 	//GET THESE OUTTA HERE
+	//save these for master admindash
+	/*
 	function addClass() {
 		console.log("creating new class");
 		var error = false;
@@ -227,7 +229,7 @@
 
 	function deleteClass(id){
 		console.log('will delete class ' + id);
-	}
+	}*/
 	</script>
 	</head>
 	<body>
@@ -253,7 +255,8 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="classes">
 						<h3 style="margin-top:0; display:inline-block">Managing Classes</h3>
-						<button class="btn btn-success btn-sm" id="addClassBtn" style="display:inline-block" data-toggle="modal" data-target="#addClassModal"><span class="glyphicon glyphicon-plus"></span>Add Class</button>
+						<!--This goes in masteradmindash, not here-->
+						<!--<button class="btn btn-success btn-sm" id="addClassBtn" style="display:inline-block" data-toggle="modal" data-target="#addClassModal"><span class="glyphicon glyphicon-plus"></span>Add Class</button>-->
 						<table id="displayClasses" class="display">
 							<thead>
 								<tr>
@@ -261,7 +264,7 @@
 									<th>Start Date</th>
 									<th>End Date</th>
 									<th>Administrators</th>
-									<th>Actions</th>
+									<!--<th>Actions</th>-->
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -344,7 +347,8 @@
 			</div>
 		</div>
 
-		<!--modal display for classes-->
+		<!--modal display for classes for masteradmin only-->
+		<!--
 		<div class="modal fade" id="addClassModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -378,9 +382,9 @@
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
 					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+				</div>
+			</div>
+		</div>-->
 
 		<!--modal display for users-->
 		<div class="modal fade" id="addUserModal">

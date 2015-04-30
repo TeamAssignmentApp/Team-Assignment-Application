@@ -8,11 +8,6 @@ h1 {
 	font-size: 40px;
 }
 
-#header {
-	background-image: url("LyleLogo.png");
-
-}
-
 #sidebarLabel, #resultsExplanation, #projectView, #labels {
 	color: white;
 }

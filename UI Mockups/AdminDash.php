@@ -62,7 +62,7 @@
  								var prettyEndDate = dateToString(convertedEndDate);
 
  								//add this class to the dropdown for letting the admin select which class to manipulate (users and projects)
- 								$(".classDropdown").append("<option value='" + classID + "'>" + user["name"] + "</option>");
+ 								$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
  								var actionButtons = '<a class="btn-primary btn-sm" href="#" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
  													'<a class="btn-danger btn-sm" href="#" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
@@ -87,11 +87,11 @@
 							}	
 							$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 								var parsedUserData = JSON.parse(userData);
-								userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"]]).draw();
+								userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID]).draw();
 							});
 						});
 						$(thisClassProjects).each(function(index,proj){
-							projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],""]).draw();
+							projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID]).draw();
 						});
 					});
 				});
@@ -159,15 +159,15 @@
 			$("#newClassStartDate").datepicker();
 			$("#newClassEndDate").datepicker();
 
-			$("#displayUsers").columns(3).search(-1).draw();
-			$("#displayProjects").columns(5).search(-1).draw();
+			userTable.columns(3).search(-1).draw();
+			classTable.columns(5).search(-1).draw();
 
 			//make it so that the class dropdowns will filter the user and project tables
 			$("#userClassDropdown").change(function() {
-				$("#displayUsers").columns(3).search($(this).val()).draw();
+				userTable.columns(3).search($(this).val()).draw();
 			});
 			$("#projectClassDropdown").change(function() {
-				$("#displayClasses").columns(5).search($(this).val()).draw();
+				classTable.columns(5).search($(this).val()).draw();
 			})
 		});
 
@@ -271,7 +271,7 @@
     					<h3 style="margin-top:0; display:inline-block">Managing Users</h3>
     					<button class="btn btn-success btn-sm" id="addUserBtn" style="display:inline-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus"></span>Add User</button>
     					<select class="classDropdown" id="userClassDropdown" style="display:inline-block">
-    						<option value="-1">--Please Select--</option>
+    						<option value="-1">--Please Select a Class To View--</option>
     					</select>
     					<table id="displayUsers" class="display">
 							<thead>
@@ -289,7 +289,7 @@
     					<h3 style="margin-top:0; display:inline-block">Managing Projects</h3>
     					<button class="btn btn-success btn-sm" id="addProjectBtn" style="display:inline-block" data-toggle="modal" data-target="#addProjectModal"><span class="glyphicon glyphicon-plus"></span>Add Project</button>
 						<select class="classDropdown" id="projectClassDropdown" style="display:inline-block">
-    						<option value="-1">--Please Select--</option>
+    						<option value="-1">--Please Select a Class To View--</option>
     					</select>
 						<table id="displayProjects" class="display">
 							<thead>

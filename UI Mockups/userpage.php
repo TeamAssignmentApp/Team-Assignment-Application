@@ -81,11 +81,7 @@
 	<body>
 		<div class="container">
 			<div class="col-md-12" id="header" style="text-align:center">
-				<img src="images/LyleLogo.png" alt="LyleLogo" height="100" width="800" padding="20">
-
-
-
-				<!--<h1>SMU Lyle Multidisciplinary Senior Design</h1>-->
+				<img src="images/LyleLogo.png" alt="LyleLogo" height="100" width="800">
 			</div>
 			<div class="col-md-6">
 				<div class="well" style="padding-top:0px;" id="projReqs">

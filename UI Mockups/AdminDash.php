@@ -50,6 +50,7 @@
 						console.log(parsedClassData);
 						var allUsersAllProjects = parsedClassData["users"];
 						var thisClassProjects = parsedClassData["projects"];
+						console.log(allUsersAllProjects);
 						$(allUsersAllProjects).each(function(index,user){
 							//prevent adding duplicate classes
 							if(classArr.indexOf(user["name"]) == -1) {

@@ -505,7 +505,7 @@
 									$response = $connection->query($sql);
 									$response = $response->fetch_all();
 									foreach ($response as $major) {
-										echo '<option value="' . $major['majorID'] . '">' . $major['majorName'] . '</option>';
+										echo 'hi';
 									}
 								?>
 							</select>

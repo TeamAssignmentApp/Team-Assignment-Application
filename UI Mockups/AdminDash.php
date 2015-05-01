@@ -153,7 +153,7 @@
 			});
 
 			//brought these over from formerly remotely loaded modals
-			$("#numStudents").change(function(){
+			$("#newProjectNumStudents").change(function(){
 				$("#majorForEachStudent").empty();
 				for(var i = 0; i < $("#numStudents").val(); i++){
 					$("#majorForEachStudent").append($("#studentMajorTemplate").html());
@@ -252,6 +252,7 @@
 			var newUserMajor = $("#newUserMajor").val();
 			var newUserEmail = $("#newUserEmail").val();
 			$.post("api/user.php", {
+				token:'9164fe76dd046345905767c3bc2ef54',
 				email: newUserEmail,
 				fname: newUserFirstName,
 				lname: newUserLastName,
@@ -274,6 +275,34 @@
 					location.reload();
 				}
 			})
+		}
+	}
+
+	//PROJECT FUNCTIONS
+	function addProject() {
+		var error = false;
+		$(".newProjectInput").each(function(i, input) {
+			if($(this).val() == "")
+				error = true;
+		});
+
+		if(!error) {
+			$("#newUserError").hide();
+			var newUserClassSelect = $("#newUserClassSelect").val();
+			var newUserFirstName = $("#newUserFirstName").val();
+			var newUserLastName = $("#newUserLastName").val();
+			var newUserMajor = $("#newUserMajor").val();
+			var newUserEmail = $("#newUserEmail").val();
+			$.post("api/user.php", {
+				email: newUserEmail,
+				fname: newUserFirstName,
+				lname: newUserLastName,
+				password: 'password', //temporary. on first login user has to change it
+				classId: newUserClassSelect,
+				isAdmin: false
+			}, function(){
+				location.reload();
+			});
 		}
 	}
 	</script>
@@ -495,24 +524,24 @@
 					<div class="modal-body" id="addProjectBody">
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class</span>
-							<select class="form-control" id="newProjectClassSelect">
+							<select class="form-control newProjectInput" id="newProjectClassSelect">
 								<option value="">--Please Select--</option>
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Project Name</span>
-							<input class="form-control" type="text" />
+							<input class="form-control newProjectInput" id="newProjectName" type="text" />
 						</div>
 						<label>Project Description</label><br/>
-						<textarea class="form-control" style="margin-bottom:9px"></textarea>
+						<textarea class="form-control" id="newProjectDescription" style="margin-bottom:9px"></textarea>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Number of Students</span>
-							<input type="number" min="2" max="10" value="2" id="numStudents" class="form-control" />
+							<input type="number" min="2" max="10" value="2" id="newProjectNumStudents" class="form-control newProjectInput" />
 						</div>
 						<span id="majorForEachStudent">
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
-								<select class="form-control studentMajorSelection">
+								<select class="form-control newProjectInput studentMajorSelection">
 									<option>Computer Science</option>
 									<option>Computer Engineering</option>
 									<option>Mechanical Engineering</option>
@@ -523,7 +552,7 @@
 							</div>
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
-								<select class="form-control studentMajorSelection">
+								<select class="form-control newProjectInput studentMajorSelection">
 									<option>Computer Science</option>
 									<option>Computer Engineering</option>
 									<option>Mechanical Engineering</option>

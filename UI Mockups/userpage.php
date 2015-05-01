@@ -29,6 +29,10 @@
 			var users = parsed["users"];
 			var numProjPrefs = parsed["numProjPrefs"];
 			var numTeamPrefs = parsed["numTeamPrefs"];
+			console.log("numProjPrefs");
+			console.log(numProjPrefs);
+			console.log("numTeamPrefs");
+			console.log(numTeamPrefs);
 
 			var userNames = [];
 

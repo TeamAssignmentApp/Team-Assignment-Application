@@ -22,7 +22,7 @@
 
 	<script>
 	$(document).ready(function() {
-		$.get("api/class.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+		$.get("api/class.php", {id:<?php echo $_GET['id']; ?>, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
 			var parsed = JSON.parse(data);
 			var projects = parsed["projects"];
 			var skills = parsed["skills"];

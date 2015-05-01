@@ -10,7 +10,6 @@
 	$DBUser   = 'root';
 	$DBPass   = '321Testing';
 	$DBName   = 'TeamAssignmentApp';
-	$API_TOKEN = '9164fe76dd046345905767c3bc2ef54';
 	
 	$connection = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 ?>
@@ -502,13 +501,11 @@
 							<span class="input-group-addon">Major</span>
 							<select class="form-control newUserInput" id="newUserMajor">
 								<?php
-									$query = mysql_query("select * from Major", $connection);
-									$rows = mysql_num_rows($query);
-									if ($rows >= 1) {
-										while ($result = mysql_fetch_array($query)){ ?>
-											<option value="<?php echo $result['majorID'];?>"><?php echo $result['majorName'];?></option>
-										<?php
-										}
+									$sql = "select * from Major";
+									$response = $connection->query($sql);
+									$response = $response->fetch_all();
+									foreach ($response as $major) {
+										echo "<option value='" . $major["majorID"] . "'>" . $major["majorName"] . "</option>";
 									}
 								?>
 							</select>

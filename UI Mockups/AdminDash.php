@@ -166,7 +166,7 @@
 			//brought these over from formerly remotely loaded modals
 			$("#newProjectNumStudents").change(function(){
 				$("#majorForEachStudent").empty();
-				for(var i = 0; i < $("#numStudents").val(); i++){
+				for(var i = 0; i < $("#newProjectNumStudents").val(); i++){
 					$("#majorForEachStudent").append($("#studentMajorTemplate").html());
 				}
 			});
@@ -303,18 +303,17 @@
 
 		if(!error) {
 			$("#newUserError").hide();
-			var newUserClassSelect = $("#newUserClassSelect").val();
-			var newUserFirstName = $("#newUserFirstName").val();
-			var newUserLastName = $("#newUserLastName").val();
-			var newUserMajor = $("#newUserMajor").val();
-			var newUserEmail = $("#newUserEmail").val();
-			$.post("api/user.php", {
-				email: newUserEmail,
-				fname: newUserFirstName,
-				lname: newUserLastName,
-				password: 'password', //temporary. on first login user has to change it
-				classId: newUserClassSelect,
-				isAdmin: false
+			var newProjectClassSelect = $("#newProjectClassSelect").val();
+			var newProjectName = $("#newProjectName").val();
+			var newProjectDescription = $("#newProjectDescription").text();
+			//var newProjectNumStudents = $("#newProjectNumStudents").val();
+			var newProjectFileLink = 'N/A';
+
+			$.post("api/project.php", {
+				name: newProjectName,
+				descrip: newProjectDescription,
+				file: newProjectFileLink,
+				classId: newProjectClassSelect
 			}, function(){
 				location.reload();
 			});
@@ -517,7 +516,7 @@
 						<p id="newUserError" style="display:none; text-color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block" id="newUserSubmit" onclick="addUser()">Create User</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-danger" style="display:inline-block" id="newUserReset">Reset Form</button>
+						<button class="btn btn-danger" style="display:inline-block" id="newUserReset" onclick="$('.newUserInput').val('')">Reset Form</button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -552,6 +551,63 @@
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
 								<select class="form-control newProjectInput studentMajorSelection">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student Discipline</span>
+								<select class="form-control newProjectInput studentMajorSelection">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+						</span>
+						<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
+						<br/>
+						<button class="btn btn-success" style="display:inline-block">Submit</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
+						<div id="studentMajorTemplate" style="display:none">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student Discipline</span>
+								<select class="form-control studentMajorSelection">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!--modal display for editing projects-->
+		<div class="modal fade" id="editProjectModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="editProjectTitle">Editing Project...</h4>
+					</div>
+					<div class="modal-body" id="editProjectBody">
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Class</span>
+							<select class="form-control editProjectInput" id="editProjectClassSelect">
+								<option value="">--Please Select--</option>
+							</select>
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Project Name</span>
+							<input class="form-control editProjectInput" id="editProjectName" type="text" />
+						</div>
+						<label>Project Description</label><br/>
+						<textarea class="form-control" id="editProjectDescription" style="margin-bottom:9px"></textarea>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Number of Students</span>
+							<input type="number" min="2" max="10" value="2" id="editProjectNumStudents" class="form-control editProjectInput" />
+						</div>
+						<span id="majorForEachStudent">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student Discipline</span>
+								<select class="form-control editProjectInput studentMajorSelection">
 									<option value="">--Please Select--</option>
 								</select>
 							</div>

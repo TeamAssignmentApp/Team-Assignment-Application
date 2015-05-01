@@ -500,14 +500,7 @@
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Major</span>
 							<select class="form-control newUserInput" id="newUserMajor">
-								<?php
-									$sql = "select * from Major";
-									$response = $connection->query($sql);
-									$response = $response->fetch_all();
-									foreach ($response as $major) {
-										echo 'hi';
-									}
-								?>
+								<option>This is a major</option>
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">

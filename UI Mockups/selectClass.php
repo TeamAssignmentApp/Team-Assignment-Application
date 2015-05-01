@@ -28,22 +28,20 @@
 				<div class="input-group">
 					<span class="input-group-addon">Class</span>
 					<select class="form-control">
-						<?php/*
-							$userId = $_SESSION['login_user'];
-						    $url="http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/api/user.php?token=9164fe76dd046345905767c3bc2ef54&id=" + $userId;
-						    $json = file_get_contents($url);
-    						$data = json_decode($json, TRUE);
-    						foreach($data['classIds'] as $item) {
-    							$url2="http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/api/class.php?token=9164fe76dd046345905767c3bc2ef54&id=" + $item;
-						    	$json2 = file_get_contents($url2);
-    							$data2 = json_decode($json2, TRUE);
-    							$className = $data2['name'];
-    							*/?>
-									<option value = "<?php echo $item;?>"><?/*php echo $className;*/?></option>
-								<?php/*
-								}
+						<?php
+							$userID = $_SESSION['login_user'];
+							$connection = mysql_connect("localhost", "root", "321Testing");
+							$db = mysql_select_db("TeamAssignmentApp", $connection);
+							$query = mysql_query("select Class.classID, className from Class join InClass on Class.classID=InClass.classID where InClass.userID='$userID'", $connection);
+							while ($row = mysql_fetch_row($query)) {
+								$className = $row[1];
+								$classID = $row[0];
+								?>
+								<option value = "<?php echo $classID?>"><?php echo $className;?></option>
+								<?php
 							}
-						*/?>
+
+						?>
 					</select>
 				</div>
 				<button class="btn btn-primary" style="margin-bottom:10px">Enter Class</button>

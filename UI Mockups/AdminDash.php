@@ -282,6 +282,7 @@
 	function addProject() {
 		var error = false;
 		$(".newProjectInput").each(function(i, input) {
+			console.log(input);
 			if($(this).val() == "")
 				error = true;
 		});

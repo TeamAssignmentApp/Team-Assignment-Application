@@ -96,6 +96,7 @@
 		$password = $post["password"];
 		$classId = $post["classId"];
 		$isAdmin = $post["isAdmin"];
+		$majorId = $post["majorId"];
 		
 		$isError = false;
 		$message = "";
@@ -123,6 +124,10 @@
 			$isError = true;
 			$message .= "isAdmin field was missing \n";
 		}
+		if($majorId == null) {
+			$isError = true;
+			$message .= "majorId field was missing \n";
+		}
 		if($isError) {
 			throwError(500, $message);
 			return;
@@ -149,6 +154,13 @@
 			while($stmt->fetch());
 		}
 		
+		$sql = 'INSERT into IsMajor VALUES (?,?)';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("ii", $majorId,$userId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+
 		if($isAdmin) {
 			$sql = 'INSERT into AdminOf VALUES (?,?)';
 			if($stmt = $conn->prepare($sql)) {

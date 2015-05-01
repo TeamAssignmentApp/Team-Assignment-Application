@@ -285,6 +285,7 @@
 				type: 'DELETE',
 				data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
 				success: function(result) {
+					console.log(result);
 					location.reload();
 				}
 			})

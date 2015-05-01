@@ -16,9 +16,9 @@
         </head>
         <body>
 		<div class="container">
-                        <div class="col-md-12" id="header" style="text-align:center">
-                                <h1>SMU Lyle Multidisciplinary Senior Design</h1>
-                        </div>
+			<div class="col-md-12" id="header" style="text-align:center">
+				<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
+			</div>
 		</div>
 		<div class="container" style="margin-top:150px">
 			<div class="col-md-3"></div>

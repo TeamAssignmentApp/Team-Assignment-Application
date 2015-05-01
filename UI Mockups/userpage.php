@@ -72,6 +72,19 @@
 				});
 			});
 		});
+		function updatePreferences(sameID, samePassword, projectPrefs, teammatePrefs, newSkills, wantsLead){
+			if(){
+				$.ajax({
+		            url: "api/user.php",
+		            type: 'PUT',    
+		            data: {token:'9164fe76dd046345905767c3bc2ef54', id:sameID , password:samePassword, projectPreferences:projectPrefs, teammatePreferences:teammatePrefs, skills:newSkills, wantsToLead:wantsLead},
+		            dataType: 'json',
+		            success: function(result) {
+		                alert("success?");
+		            }
+			    });
+			}
+		}
 	});
 	</script>
 

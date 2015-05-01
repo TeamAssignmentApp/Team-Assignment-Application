@@ -6,6 +6,13 @@
 	else if ($_SESSION['isAdmin']==0){
 		header("selectClass.php");
 	}
+	$DBServer = 'localhost';
+	$DBUser   = 'root';
+	$DBPass   = '321Testing';
+	$DBName   = 'TeamAssignmentApp';
+	$API_TOKEN = '9164fe76dd046345905767c3bc2ef54';
+	
+	$connection = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 ?>
 
 <!doctype html>

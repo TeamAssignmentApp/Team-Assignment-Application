@@ -79,6 +79,18 @@
 			}
 			$user['skills'] = $skillArr;
 		}
+
+		$majorArr = array();
+		$major = null;
+		$sql = 'SELECT * from Major';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->execute();
+			$stmt->bind_result($major['majorID'], $major['majorName']);
+			while($stmt->fetch()) {
+				$majorArr[] = unserialize(serialize($major));
+			}
+			$user['allMajors'] = $majorArr;
+		}
 		
 		echo json_encode($user, JSON_PRETTY_PRINT);
 	}

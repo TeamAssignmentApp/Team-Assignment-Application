@@ -47,6 +47,10 @@
 				console.log(parsedData)
 				var classes = parsedData["classIds"];
 				var classArr = [];
+				var allMajors = parsedData["allMajors"];
+				$(allMajors).each(function(i,major){
+					$(".studentMajorSelection").append('<option value="' + major["majorID"] + '">' + major["majorName"] + '</option>');
+				});
 				$(classes).each(function(index,classID){
 					$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
 						console.log('classData');
@@ -258,6 +262,7 @@
 			var newUserLastName = $("#newUserLastName").val();
 			var newUserMajor = $("#newUserMajor").val();
 			var newUserEmail = $("#newUserEmail").val();
+			var newUserMajor = $("#newUserMajor").val();
 			$.post("api/user.php", {
 				token:'9164fe76dd046345905767c3bc2ef54',
 				email: newUserEmail,
@@ -265,6 +270,7 @@
 				lname: newUserLastName,
 				password: 'password', //temporary. on first login user has to change it
 				classId: newUserClassSelect,
+				majorId: newUserMajor,
 				isAdmin: false
 			}, function(){
 				location.reload();
@@ -499,8 +505,8 @@
 
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Major</span>
-							<select class="form-control newUserInput" id="newUserMajor">
-								<?php echo '<option>This is a major</option>'; ?>
+							<select class="form-control newUserInput studentMajorSelection" id="newUserMajor">
+								
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
@@ -545,23 +551,13 @@
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
 								<select class="form-control newProjectInput studentMajorSelection">
-									<option>Computer Science</option>
-									<option>Computer Engineering</option>
-									<option>Mechanical Engineering</option>
-									<option>Electrical Engineering</option>
-									<option>Civil Engineering</option>
-									<option>Environmental Engineering</option>
+									<option value="">--Please Select--</option>
 								</select>
 							</div>
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
 								<select class="form-control newProjectInput studentMajorSelection">
-									<option>Computer Science</option>
-									<option>Computer Engineering</option>
-									<option>Mechanical Engineering</option>
-									<option>Electrical Engineering</option>
-									<option>Civil Engineering</option>
-									<option>Environmental Engineering</option>
+									<option value="">--Please Select--</option>
 								</select>
 							</div>
 						</span>
@@ -574,12 +570,7 @@
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
 								<select class="form-control studentMajorSelection">
-									<option>Computer Science</option>
-									<option>Computer Engineering</option>
-									<option>Mechanical Engineering</option>
-									<option>Electrical Engineering</option>
-									<option>Civil Engineering</option>
-									<option>Environmental Engineering</option>
+									<option value="">--Please Select--</option>
 								</select>
 							</div>
 						</div>

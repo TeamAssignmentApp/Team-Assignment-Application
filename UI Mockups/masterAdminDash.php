@@ -3,8 +3,11 @@
 	if(!isset($_SESSION['login_user'])){
 		header("location: login.php");
 	}
+	else if (!isset($_SESSION['isMaster']) && $_SESSION['isAdmin'] == 0){
+		header("userpage.php");
+	}
 	else if (!isset($_SESSION['isMaster'])){
-		header("selectClass.php");
+		header("adminDash.php");
 	}
 ?>
 
@@ -148,30 +151,38 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Senior Design</td>
-									<td>January 1, 2015</td>
-									<td>May 2, 2015</td>
-									<td>Dona Mularkey, Don Evans, Carlos Davila</td>
+								<?php
+									$connection = mysql_connect("localhost", "root", "321Testing");
+									$db = mysql_select_db("TeamAssignmentApp", $connection);
+									$query = mysql_query("select Class.classID, Class.className, Class.startTime, Class.endTime from Class", $connection);
+									while ($row = mysql_fetch_row($query)) {
+										$className = $row[1];
+										$classID = $row[0];
+										$start = $row[2];
+										$end = $row[3];
+										$query2 = mysql_query("select User.fname, User.lname FROM AdminOf JOIN User ON User.userID = AdminOf.userID WHERE AdminOf.classID='$classID'", $connection);
+								?>
+									<tr>
+									<td><?php echo $className;?></td>
+									<td><?php echo $start;?></td>
+									<td><?php echo $end;?></td>
+									<td><?php 
+									$numAdmins = mysql_num_rows($query2);
+									while ($row2 = mysql_fetch_row($query2)) {
+										echo $row2[0] + ' ' + $row2[1];
+										$numAdmins--;
+										if ($numAdmins>0){
+											echo ", ";
+										}
+									}?></td>
 								</tr>
-								<tr>
-									<td>First Year Design</td>
-									<td>January 1, 2015</td>
-									<td>May 2, 2015</td>
-									<td>Mark Fontenot</td>
-								</tr>
-								<tr>
-									<td>GUI</td>
-									<td>January 1, 2015</td>
-									<td>May 2, 2015</td>
-									<td>Mark Fontenot, Harrison Jackson</td>
-								</tr>
-								<tr>
-									<td>Databases</td>
-									<td>January 1, 2015</td>
-									<td>May 2, 2015</td>
-									<td>Mark Fontenot</td>
-								</tr>
+
+
+								<?php
+
+									}
+
+								?>
 							</tbody>
 						</table>
 					</div>
@@ -187,26 +198,22 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php
+								$query = mysql_query("select User.userID, User.fname, User.lname, User.email, Major.majorName FROM User JOIN IsMajor ON User.userID = IsMajor.userID JOIN Major ON Major.majorID = IsMajor.majorID", $connection);
+									while ($row = mysql_fetch_row($query)) {
+										$userID = $row[0];
+										$firstName = $row[1];
+										$lastName = $row[2];
+										$email = $row[3];
+										$major = $row[4];?>
 								<tr>
-									<td>Alex Russell</td>
-									<td>Computer Engineering</td>
-									<td>amrussell@smu.edu</td>
+									<td><?php echo $firstName + ' ' + $lastName;?></td>
+									<td><?php echo $major;?></td>
+									<td><?php echo $email;?></td>
 								</tr>
-								<tr>
-									<td>Nick Morris</td>
-									<td>Computer Science</td>
-									<td>nmorris@smu.edu</td>
-								</tr>
-								<tr>
-									<td>Ian Cowley</td>
-									<td>Computer Science</td>
-									<td>icowley@smu.edu</td>
-								</tr>
-								<tr>
-									<td>Jeffrey Artigues</td>
-									<td>Computer Science</td>
-									<td>jartigues@smu.edu</td>
-								</tr>
+								<?php
+									}
+								?>
 							</tbody>
 						</table>
     				</div>

@@ -24,7 +24,6 @@
 			$rows = mysql_num_rows($query);
 			if ($rows == 1) {
 				$result = mysql_fetch_row($query);
-				echo $result;
 				session_start();
 				$_SESSION['login_user']=$result[0]; // Initializing Session
 				$query2 = mysql_query("select * from AdminOf where userId = '$result[0]'", $connection);

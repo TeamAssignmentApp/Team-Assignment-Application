@@ -3,8 +3,11 @@
 	if(!isset($_SESSION['login_user'])){
 		header("location: login.php");
 	}
-	else if ($_SESSION['isAdmin']==0){
-		header("selectClass.php");
+	else if (isset($_SESSION['isMaster'])){
+		header("location: masterAdminDash.php");
+	}
+	else if ($_SESSION['isAdmin']==1){
+		header("location: AdminDash.php");
 	}
 ?>
 

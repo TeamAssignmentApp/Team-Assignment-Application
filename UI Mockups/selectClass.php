@@ -3,6 +3,12 @@
 	if(!isset($_SESSION['login_user'])){
 		header("location: login.php");
 	}
+	if ($_SESSION['isMaster'] == 1){
+		header("location: masterAdminDash.php");
+	}
+	else if ($_SESSION['isAdmin'] == 1){
+		header("location: AdminDash.php");
+	}
 ?>
 
 
@@ -40,7 +46,7 @@
 								<option value = "<?php echo $classID?>"><?php echo $className;?></option>
 								<?php
 							}
-
+							mysql_close($connection);
 						?>
 					</select>
 				</div>

@@ -54,7 +54,7 @@
 		
 		$projectArr = array();
 		$project = null;
-		$sql = 'SELECT p.projectID, p.projectName, p.projectDesc, p.fileLink from Class c INNER JOIN HasProject hp INNER JOIN Project p ON p.projectID = hp.projectID WHERE c.classID = ?';
+		$sql = 'SELECT p.projectID, p.projectName, p.projectDesc, p.fileLink from Class c JOIN HasProject hp ON c.classID = hp.classID JOIN Project p ON p.projectID = hp.projectID WHERE c.classID = ?';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
@@ -82,7 +82,7 @@
 		
 		$skillArr = array();
 		$skill = null;
-		$sql = 'SELECT s.skillID, s.skillName, s.userCreated from Class c INNER JOIN ClassHasSkill chs INNER JOIN Skill s ON s.skillID = chs.skillID WHERE c.classID = ?';
+		$sql = 'SELECT s.skillID, s.skillName, s.userCreated from Class c JOIN ClassHasSkill chs ON c.classID = chs.classID JOIN Skill s ON s.skillID = chs.skillID WHERE c.classID = ?';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();

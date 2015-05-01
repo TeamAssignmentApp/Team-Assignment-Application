@@ -27,7 +27,7 @@
 				<h3 style="margin-top:0px">Select a class...</h3>
 				<div class="input-group">
 					<span class="input-group-addon">Class</span>
-					<select class="form-control">
+					<select class="form-control" id="classSelect">
 						<?php
 							$userID = $_SESSION['login_user'];
 							$connection = mysql_connect("localhost", "root", "321Testing");
@@ -44,7 +44,12 @@
 						?>
 					</select>
 				</div>
-				<button class="btn btn-primary" style="margin-bottom:10px">Enter Class</button>
+				<button class="btn btn-primary" style="margin-bottom:10px" id="enterClassBtn">Enter Class</button>
+				<script>
+					$("#enterClassBtn").click(function() {
+						window.location = "userpage.php?id=" + $("#classSelect").val();
+					});
+				</script>
 			</div>
 			<div class="col-md-3"></div>
 		</div>

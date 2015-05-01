@@ -494,12 +494,16 @@
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Major</span>
 							<select class="form-control newUserInput" id="newUserMajor">
-								<option>Computer Science</option>
-								<option>Computer Engineering</option>
-								<option>Mechanical Engineering</option>
-								<option>Electrical Engineering</option>
-								<option>Civil Engineering</option>
-								<option>Environmental Engineering</option>
+								<?php
+									$query = mysql_query("select * from Major", $connection);
+									$rows = mysql_num_rows($query);
+									if ($rows >= 1) {
+										while ($result = mysql_fetch_array($query)){ ?>
+											<option value="<?php echo $result['majorID'];?>"><?php echo $result['majorName'];?></option>
+										<?php
+										}
+									}
+								?>
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">

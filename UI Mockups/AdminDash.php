@@ -500,7 +500,7 @@
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Major</span>
 							<select class="form-control newUserInput" id="newUserMajor">
-								<option>This is a major</option>
+								<?php echo '<option>This is a major</option>'; ?>
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">

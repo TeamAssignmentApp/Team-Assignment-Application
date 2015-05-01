@@ -506,7 +506,7 @@
 							<input class="form-control newUserInput" id="newUserEmail" type="text" />
 						</div>
 						<p id="newUserError" style="display:none; text-color:red">All fields are required.</p>
-						<button class="btn btn-success" style="display:inline-block" id="newUserSubmit">Create User</button>
+						<button class="btn btn-success" style="display:inline-block" id="newUserSubmit" onclick="addUser()">Create User</button>
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block" id="newUserReset">Reset Form</button>
 					</div>

@@ -76,7 +76,7 @@
 				});
 			});
 		});
-		function updatePreferences(sameID, samePassword, projectPrefs, teammatePrefs, newSkills, wantsLead){
+		/*function updatePreferences(sameID, samePassword, projectPrefs, teammatePrefs, newSkills, wantsLead){
 			if(){
 				$.ajax({
 		            url: "api/user.php",
@@ -88,7 +88,7 @@
 		            }
 			    });
 			}
-		}
+		}*/
 	});
 	</script>
 

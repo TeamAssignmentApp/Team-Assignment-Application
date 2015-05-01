@@ -41,7 +41,7 @@
 				$(this).tab('show')
 			});
 
-			$.get("api/user.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+			$.get("api/user.php", {id:<?php echo $_SESSION['login_user']; ?>, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
 				var parsedData = JSON.parse(data);
 				console.log("parsedData");
 				console.log(parsedData)

@@ -299,7 +299,7 @@
 						<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
 						<br/>
 						<p id="newProjectError" style="display:none; color:red">All fields are required.</p>
-						<button class="btn btn-success" style="display:inline-block">Submit</button>
+						<button class="btn btn-success" style="display:inline-block" onclick="addProject()">Submit</button>
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
 						<div id="studentMajorTemplate" style="display:none">

@@ -294,11 +294,9 @@ function deleteUser(idToDelete) {
 function addProject() {
 	var error = false;
 	$(".newProjectInput").each(function(i, input) {
-		console.log(input);
 		if($(this).val() == "")
 			error = true;
 	});
-	console.log('error? ' + error);
 	if(!error) {
 		$("#newProjectError").hide();
 		var newProjectClassSelect = $("#newProjectClassSelect").val();

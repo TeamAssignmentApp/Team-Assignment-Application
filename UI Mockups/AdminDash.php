@@ -42,7 +42,7 @@
 				<a href="logout.php" class="btn btn-danger" style="display:inline-block; float:right; margin-top:20px">Logout</a>
 			</div>
 
-			<div class="container well" style="width:90%; height:650px; margin-top:100px">
+			<div class="container well" style="width:90%; height:600px; margin-top:120px">
 				<h3 style="text-align:center">Senior Design Administrator Dashboard</h3>
 				<div class="col-md-12" role="tabpanel">
 					<ul class="nav nav-tabs" role="tablist" id="adminTabs">

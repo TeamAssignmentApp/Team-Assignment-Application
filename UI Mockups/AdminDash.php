@@ -148,7 +148,7 @@
     							<hr />
     							<div class="input-group" style="width:400px">
     								<label for="numTeammateReqs">Number of Teammate Requests Allowed</label>
-    								<input class="form-control requestPageInput" disabled type="number" min="2" max="8" value="2" id="numTeammateReqs"/>
+    								<input class="form-control requestPageInput" disabled type="number" min="0" max="8" value="0" id="numTeammateReqs"/>
     							</div>
     							<br/>
     							<div class="input-group" style="width:400px">
@@ -301,7 +301,7 @@
 						<p id="newProjectError" style="display:none; color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block" onclick="addProject()">Submit</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
+						<button class="btn btn-danger" style="display:inline-block" onclick='$(".newProjectInput").val(""); $("#newProjectDescription").empty()'>Reset Form</button>
 						<div id="studentMajorTemplate" style="display:none">
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>

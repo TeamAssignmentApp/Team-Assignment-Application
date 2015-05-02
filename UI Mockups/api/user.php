@@ -60,7 +60,7 @@
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
-			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['wantsToLead'], $user['isMaster']);
+			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['wantsToLead'], $user['isMaster'], $user['majorName']);
 			while($stmt->fetch()){}		
 		}
 		

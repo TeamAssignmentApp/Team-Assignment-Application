@@ -104,8 +104,6 @@
 				<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
 			</div>
 
-			<!-- <button class="btn btn-danger" style="display:inline-block" onclick="$('.newSkillInput').val('')">Reset Form</button> -->
-
 			<a href="logout.php" class="btn btn-danger" style="display:inline-block">Logout</a>
 
 			<div class="col-md-6">

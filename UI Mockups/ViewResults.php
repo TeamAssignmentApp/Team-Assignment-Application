@@ -51,6 +51,9 @@
             <div class="col-md-12" id="header" style="text-align:center">
 				<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
 			</div>
+
+			<a href="logout.php" class="btn btn-danger" style="display:inline-block">Logout</a>
+
 		</div>
 		<div class="container" id="results" style="margin-top:50px">
 		</div>

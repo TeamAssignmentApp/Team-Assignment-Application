@@ -32,22 +32,24 @@ $(document).ready(function(){
 				var thisClassProjects = parsedClassData["projects"];
 				console.log(allUsersAllProjects);
 				$(allUsersAllProjects).each(function(index,user){
+					console.log('classArr');
+					console.log(classArr);
 					//prevent adding duplicate classes
 					if(classArr.indexOf(user["name"]) == -1) {
-							classArr.push(user["name"]);
-							console.log("user");
-							console.log(user);
-							var convertedStartDate = convertDate(parsedClassData["startTime"]);
-							var convertedEndDate = convertDate(parsedClassData["endTime"]);
-							var prettyStartDate = dateToString(convertedStartDate);
-							var prettyEndDate = dateToString(convertedEndDate);
+						classArr.push(user["name"]);
+						console.log("user");
+						console.log(user);
+						var convertedStartDate = convertDate(parsedClassData["startTime"]);
+						var convertedEndDate = convertDate(parsedClassData["endTime"]);
+						var prettyStartDate = dateToString(convertedStartDate);
+						var prettyEndDate = dateToString(convertedEndDate);
 
-							//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
-							$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
+						//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
+						$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
-							var actionButtons = '<a class="btn-primary btn-sm" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
-												'<a class="btn-danger btn-sm" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
-							if(parsedClassData["adminIds"].length == 0) {
+						var actionButtons = '<a class="btn-primary btn-sm" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
+											'<a class="btn-danger btn-sm" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+						if(parsedClassData["adminIds"].length == 0) {
 							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 						}
 						else {

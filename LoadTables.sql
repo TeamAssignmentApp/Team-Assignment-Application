@@ -24,7 +24,7 @@ CREATE TABLE User(
   email varchar(30) UNIQUE,
   fname varchar(30),
   lname varchar(30),
-  password varchar(40),
+  password varchar(64),
   isMaster tinyint(1) DEFAULT 0,
   wantsToLead tinyint(1) DEFAULT 0,
   submissionTime DATETIME
@@ -76,7 +76,7 @@ CREATE TABLE InClass(
 )ENGINE = InnoDB;
 CREATE TABLE IsMajor(
   majorID int,
-  userID int,
+  userID int UNIQUE,
   foreign key(majorID) references Major(majorID)
       ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -121,7 +121,7 @@ CREATE TABLE ClassHasSkill(
 )ENGINE = InnoDB;
 CREATE TABLE HasProject(
   classID int,
-  projectID int,
+  projectID int UNIQUE,
   foreign key(classID) references Class(classID)
   ON DELETE CASCADE
     ON UPDATE CASCADE,
@@ -131,7 +131,7 @@ CREATE TABLE HasProject(
   primary key(classID, projectID)
 )ENGINE = InnoDB;
 CREATE TABLE InProject(
-  userID int,
+  userID int UNIQUE,
   projectID int,
   foreign key(userID) references User(userID)
   ON DELETE CASCADE

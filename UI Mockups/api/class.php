@@ -41,7 +41,7 @@
 
 		$userArr = array();
 		$user = null;	
-		$sql = 'Select u.userID, email, fname, lname, m.majorID, m.majorName, c.className, c.projectPreferences, c.teammatePreferences, c.startTime, c.endTime from Class c INNER JOIN InClass ic INNER JOIN User u ON u.userID = ic.userID INNER JOIN IsMajor im ON im.userID = u.userID INNER JOIN Major m ON m.majorID = im.majorID WHERE c.classID = ?';
+		$sql = 'Select u.userID, email, fname, lname, m.majorID, m.majorName, c.className, c.projectPreferences, c.teammatePreferences, c.startTime, c.endTime from Class c INNER JOIN InClass ic ON c.classID = ic.classID INNER JOIN User u ON u.userID = ic.userID INNER JOIN IsMajor im ON im.userID = u.userID INNER JOIN Major m ON m.majorID = im.majorID WHERE c.classID = ?';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();

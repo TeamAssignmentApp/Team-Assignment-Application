@@ -20,26 +20,33 @@
 
 			$db = mysql_select_db("TeamAssignmentApp", $connection);
 
-			$query = mysql_query("select userId, isMaster from User where password='$password' AND email='$email'", $connection);
+			$query = mysql_query("select userId, isMaster, password from User where email='$email'", $connection);
+
 			$rows = mysql_num_rows($query);
 			if ($rows == 1) {
 				$result = mysql_fetch_row($query);
-				session_start();
-				$_SESSION['login_user']=$result[0]; // Initializing Session
-				$query2 = mysql_query("select * from AdminOf where userId = '$result[0]'", $connection);
-				$rows2 = mysql_num_rows($query2);
-				$isAdmin = 0;
-				if ($rows2 >=1 || $result[1]==1){
-					$isAdmin = 1;
+				if (password_verify($password, $result[2])){
+					session_start();
+					$_SESSION['login_user']=$result[0]; // Initializing Session
+					$query2 = mysql_query("select * from AdminOf where userId = '$result[0]'", $connection);
+					$rows2 = mysql_num_rows($query2);
+					$isAdmin = 0;
+					if ($rows2 >=1 || $result[1]==1){
+						$isAdmin = 1;
+					}
+					if ($result[1]==1){
+						$_SESSION['isMaster']=1;
+					}
+					$_SESSION['isAdmin']=$isAdmin;
+					header("location: selectClass.php"); // Redirecting To Other Page
 				}
-				if ($result[1]==1){
-					$_SESSION['isMaster']=1;
+				else {
+					$error = "Username or Password is invalid";
+					echo $error;
 				}
-				$_SESSION['isAdmin']=$isAdmin;
-				header("location: selectClass.php"); // Redirecting To Other Page
 			}
 			else {
-				$error = "Username or Password is invalid";
+				$error = "No such user";
 				echo $error;
 			}
 			mysql_close($connection); // Closing Connection

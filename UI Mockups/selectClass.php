@@ -37,6 +37,7 @@
 				<div class="input-group">
 					<span class="input-group-addon">Class</span>
 					<select class="form-control" id="classSelect">
+						<option value="">--Please Select--</option>
 						<?php
 							$userID = $_SESSION['login_user'];
 							$connection = mysql_connect("localhost", "root", "321Testing");

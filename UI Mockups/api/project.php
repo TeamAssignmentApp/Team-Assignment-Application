@@ -71,6 +71,15 @@
 			}
 			$project['majors'] = $majorArr;
 		}
+		
+		$sql = 'SELECT classID from HasProject WHERE projectID = ?';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+			$stmt->bind_result($project['classId']);
+			while($stmt->fetch()) {}
+		}
+		
 		echo json_encode($project, JSON_PRETTY_PRINT);
 	}
 	
@@ -86,6 +95,8 @@
 		$projectDescrip = $post["descrip"];
 		$fileLink = $post["file"];
 		$classId = $post["classId"];
+		
+		$majorsStr = $post["majors"];
 		
 		$isError = false;
 		$message = "";
@@ -104,6 +115,16 @@
 		if($classId == null) {
 			$isError = true;
 			$message .= "classId field was missing \n";
+		}
+		if($majorsStr != null) {
+			$majors = json_decode($majorsStr, true);
+			if($majors == null) {
+				$isError = true;
+				$message .= "majors was not valid json \n";
+			}
+		} else {
+			$isError = true;
+			$message .= "majors field was missing \n";
 		}
 		if($isError) {
 			throwError(500, $message);
@@ -130,7 +151,40 @@
 			$stmt->bind_param("ii", $classId,$projectId);
 			$stmt->execute();
 			while($stmt->fetch());
-		}		
+		}	
+		
+		addProjectMajors($projectId, $majors);
+	}
+	
+	function addProjectMajors($projectId, $majors) {
+		global $conn;
+		$sql = "DELETE from RequiresMajor where projectID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $projectId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+
+		$sql = "INSERT into RequiresMajor VALUES ";
+		$paramStr = "";
+		$args = array();
+		for($i = 0; $i < sizeof($majors); $i++) {
+			$sql .= "(?,?,?),";
+			$args[] = intval($majors[$i]['majorId']);
+			$args[] = intval($projectId);
+			$args[] = intval($majors[$i]['amount']);
+			$paramStr .= "iii";
+		}
+		$sql = substr($sql, 0, -1);
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param($paramStr, ...$args);
+			$stmt->execute();
+			if($stmt->affected_rows == 0) {
+				throwError(500, "The project majors preferences could not be added");
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	function handlePut($put) {

@@ -244,6 +244,19 @@
 							<span class="input-group-addon">Major</span>
 							<select class="form-control newUserInput studentMajorSelection" id="newUserMajor">
 								<option value="">--Please Select--</option>
+								<?php
+									$connection = mysql_connect("localhost", "root", "321Testing");
+									$db = mysql_select_db("TeamAssignmentApp", $connection);
+									$query = mysql_query("select Major.majorID, Major.majorName from Major", $connection);
+									while ($row = mysql_fetch_row($query)) {
+										$majorName = $row[1];
+										$majorID = $row[0];
+										?>
+										<option value = "<?php echo $majorID?>"><?php echo $majorName;?></option>
+										<?php
+									}
+									mysql_close($connection);
+								?>
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">

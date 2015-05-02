@@ -9,6 +9,21 @@
 	else if ($_SESSION['isAdmin']==1){
 		header("location: AdminDash.php");
 	}
+	else{
+		if (!isset($_GET['id'])){
+			header("location: selectClass.php");
+		}
+		else{
+			$connection = mysql_connect("localhost", "root", "321Testing");
+			$db = mysql_select_db("TeamAssignmentApp", $connection);
+			$user = $_SESSION['login_user'];
+			$class = $_GET['id'];
+			$query = mysql_query("SELECT * FROM InClass WHERE InClass.userID='$user' AND InClass.classID = '$class'", $connection);
+			if (mysql_num_rows($query) < 1){
+				header("location: selectClass.php");
+			}
+		}
+	}
 ?>
 
 

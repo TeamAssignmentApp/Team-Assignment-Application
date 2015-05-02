@@ -36,27 +36,68 @@
 			return;
 		}		
 		$id = $get["id"];
+		$isAdmin = $get["isAdmin"];
+		
+		if($id == null) {
+			throwError(500, "id field is missing");
+			return;
+		} 
+		if($isAdmin == null) {
+			throwError(500, "isAdmin field is missing");
+			return;
+		}
 		$user = null;		
 		
-		$sql = 'SELECT u.userID, email, fname, lname, submissionTime, wantsToLead, m.majorName FROM User u INNER JOIN IsMajor im INNER JOIN Major m ON m.majorID = im.majorID WHERE u.userID = ?';
+		$sql = 'SELECT u.userID, email, fname, lname, submissionTime, wantsToLead, isMaster FROM User u WHERE u.userID = ?';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
-			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['wantsToLead'], $user['major']);
+			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['wantsToLead'], $user['isMaster']);
+			while($stmt->fetch()){}		
+		}
+		
+		$sql = 'SELECT m.majorName FROM User u INNER JOIN IsMajor im ON u.userID = im.userID INNER JOIN Major m ON m.majorID = im.majorID WHERE u.userID = ?';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['wantsToLead'], $user['isMaster']);
 			while($stmt->fetch()){}		
 		}
 		
 		$classIdArr = array();
 		$classId = null;
-		$sql = 'SELECT c.classID FROM Class c INNER JOIN InClass ic ON c.classID = ic.classID INNER JOIN User u ON u.userID = ic.userID WHERE u.userID = ?';
-		if($stmt = $conn->prepare($sql)) {
-			$stmt->bind_param("i", $id);
-			$stmt->execute();
-			$stmt->bind_result($classId);
-			while($stmt->fetch()){
-				$classIdArr[] = unserialize(serialize($classId));
+		if($user['isMaster'] == 0) {
+			if($isAdmin) {
+				$sql = 'SELECT classID FROM AdminOf ao where ao.userID = ? ORDER BY classId ASC';
+				if($stmt = $conn->prepare($sql)) {
+					$stmt->bind_param("i", $id);
+					$stmt->execute();
+					$stmt->bind_result($classId);
+					while($stmt->fetch()){
+						$classIdArr[] = unserialize(serialize($classId));
+					}
+				}
+			} else {
+				$sql = 'SELECT c.classID FROM Class c INNER JOIN InClass ic ON c.classID = ic.classID INNER JOIN User u ON u.userID = ic.userID WHERE u.userID = ?';
+				if($stmt = $conn->prepare($sql)) {
+					$stmt->bind_param("i", $id);
+					$stmt->execute();
+					$stmt->bind_result($classId);
+					while($stmt->fetch()){
+						$classIdArr[] = unserialize(serialize($classId));
+					}
+				}
 			}
-		}
+		} else {
+			$sql = 'SELECT classID FROM Class c ORDER BY classId ASC';
+			if($stmt = $conn->prepare($sql)) {
+				$stmt->execute();
+				$stmt->bind_result($classId);
+				while($stmt->fetch()){
+					$classIdArr[] = unserialize(serialize($classId));
+				}
+			}
+		}		
 		$user['classIds'] = $classIdArr;
 		
 		$sql = 'SELECT p.projectID FROM Project p INNER JOIN InProject ip INNER JOIN User u ON u.userID = ip.userID WHERE u.userID = ?';
@@ -82,7 +123,7 @@
 
 		$majorArr = array();
 		$major = null;
-		$sql = 'SELECT * from Major';
+		$sql = 'SELECT * from Major ORDER BY majorID ASC';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->execute();
 			$stmt->bind_result($major['majorID'], $major['majorName']);
@@ -145,11 +186,14 @@
 			return;
 		}
 		
-		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0, 0, null)';		
+		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0, 0, null)';	
 		$hashedPass = password_hash($password, PASSWORD_BCRYPT);		
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ssss", $email, $fname, $lname, $hashedPass);
-			$stmt->execute();
+			if(!$stmt->execute()) {
+				throwError(500, "User could not be created");
+				return;
+			}
 			while($stmt->fetch());
 		}
 		
@@ -239,6 +283,16 @@
 				$stmt->bind_param("i", $userId);
 				$stmt->execute();
 				while($stmt->fetch());
+			}
+		}
+		
+		$classIdArrayStr = $put["classes"];
+		if($classIdArrayStr != null) {
+			$classIdArr = explode(',', $classIdArrayStr);
+			if(!updateUserClasses($userId, $classIdArr)) {
+				return;
+			} else {
+				updateLastUpdateTime($userId);
 			}
 		}
 	}
@@ -350,6 +404,36 @@
 			$stmt->execute();
 			if($stmt->affected_rows == 0) {
 				throwError(500, "The user skill preferences could not be altered");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	function updateUserClasses($userId, $classIdArr) {
+		global $conn;
+		$sql = "DELETE from InClass where userID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $userId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+
+		$sql = "INSERT into InClass VALUES ";
+		$paramStr = "";
+		$args = array();
+		for($i = 0; $i < sizeof($classIdArr); $i++) {
+			$sql .= "(?,?),";
+			$args[] = intval($userId);
+			$args[] = intval($classIdArr[$i]);
+			$paramStr .= "ii";
+		}
+		$sql = substr($sql, 0, -1);
+		if($stmt = $conn->prepare($sql)) {		
+			$stmt->bind_param($paramStr, ...$args);
+			$stmt->execute();
+			if($stmt->affected_rows == 0) {
+				throwError(500, "The user class preferences could not be altered");
 				return false;
 			}
 		}

@@ -186,10 +186,11 @@ function getParameterByName(name) {
 }
 
 function convertDate(dateStr) {
-	var a=dateStr.split(" ");
-	var d=a[0].split("-");
-	var t=a[1].split(":");
-	var date = new Date(d[0],(d[1]-1),d[2],t[0],t[1],t[2]);
+	var split = dateStr.split('-');
+	var year = split[0];
+	var month = split[1];
+	var day = split[2];
+	var date = new Date(year,month-1,day);
 	return date;
 }
 

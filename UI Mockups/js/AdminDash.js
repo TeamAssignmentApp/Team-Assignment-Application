@@ -300,7 +300,7 @@ function addProject() {
 	});
 
 	if(!error) {
-		$("#newUserError").hide();
+		$("#newProjectError").hide();
 		var newProjectClassSelect = $("#newProjectClassSelect").val();
 		var newProjectName = $("#newProjectName").val();
 		var newProjectDescription = $("#newProjectDescription").text();
@@ -315,6 +315,9 @@ function addProject() {
 		}, function(){
 			location.reload();
 		});
+	}
+	else {
+		$("#newProjectError").show();
 	}
 }
 

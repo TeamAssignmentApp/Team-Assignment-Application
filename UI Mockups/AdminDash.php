@@ -298,6 +298,7 @@
 						</span>
 						<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
 						<br/>
+						<p id="newProjectError" style="display:none; color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block">Submit</button>
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
@@ -355,6 +356,7 @@
 						</span>
 						<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
 						<br/>
+						<p id="editProjectError" style="display:none; color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block">Submit</button>
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>

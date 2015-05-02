@@ -277,16 +277,15 @@ function addUser() {
 }
 
 function deleteUser(idToDelete) {
-	if(confirm('Delete this user?')) {
+	if(confirm('Are you sure you would like to delete this user?')) {
 		$.ajax({
 			url: "api/user.php",
 			type: 'DELETE',
 			data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
 			success: function(result) {
-				console.log(result);
-				//location.reload();
+				location.reload();
 			}
-		})
+		});
 	}
 }
 
@@ -306,6 +305,7 @@ function addProject() {
 		var newProjectFileLink = 'N/A';
 
 		$.post("api/project.php", {
+			token: '9164fe76dd046345905767c3bc2ef54',
 			name: newProjectName,
 			descrip: newProjectDescription,
 			file: newProjectFileLink,
@@ -319,19 +319,110 @@ function addProject() {
 	}
 }
 
-function editProject(id) {
+function editProject(idToEdit) {
+	//get the project's info first so that we can pre-populate the modal
+	$.get("api/project.php",{id:idToEdit, token: '9164fe76dd046345905767c3bc2ef54'}, function(dataToEdit) {
+		var parsedDataToEdit = JSON.parse(dataToEdit);
+		var classIdToEdit = parsedDataToEdit['classId']; //this doesn't work
+		var projectNameToEdit = parsedDataToEdit['name'];
+		var allMajorsToEdit = parsedDataToEdit['majors'];
+		var descriptionToEdit = parsedDataToEdit['projectDesc'];
+		var totalNumStudents = 0;
+		$(allMajorsToEdit).each(function(i, major) {
+			totalNumStudents += major["number"];
+			$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
+			$("#editProjMajorForEachStudent .studentMajorSelection").last().val(major["id"]);
+		});
+		$("#editProjectName").val(projectNameToEdit);
+		$("#editProjectNumStudents").val(totalNumStudents);
+		$("#editProjectClassSelect").val(classIdToEdit);
+		$("#editProjectDescription").text(descriptionToEdit);
+	});
+	$("#submitProjectEditBtn").click(function(){submitProjectEdit(idToEdit)});
+}
 
+function submitProjectEdit(idToEdit) {
+	var error = false;
+	$(".editProjectInput").each(function(i, input) {
+		if($(this).val() == "")
+			error = true;
+	});
+	if(!error) {
+		$("#editProjectError").hide();
+		var editProjectClassSelect = $("#editProjectClassSelect").val();
+		var editProjectName = $("#editProjectName").val();
+		var editProjectDescription = $("#editProjectDescription").text();
+		var newProjectNumStudents = $("#newProjectNumStudents").val();
+		var editProjectFileLink = 'N/A';
+
+		$.ajax(
+			url: 'api/project.php', 
+			type: 'PUT',
+			data: {
+				token: '9164fe76dd046345905767c3bc2ef54',
+				name: editProjectName,
+				descrip: editProjectDescription,
+				file: editProjectFileLink,
+				classId: editProjectClassSelect
+		}, 
+		success: function(){
+			location.reload();
+		});
+	}
+	else {
+		$("#editProjectError").show();
+	}
 }
 
 function deleteProject(id) {
-
+	if(confirm("Are you sure you would like to delete this project?")) {
+		$.ajax({
+			url: "api/project.php",
+			type: 'DELETE',
+			data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
+			success: function(result) {
+				location.reload();
+			}
+		});
+	}
 }
 
 //SKILL FUNCTIONS
 function addSkill() {
+	var error = false;
+	$(".newSkillInput").each(function(i, input) {
+		if($(this).val() == "")
+			error = true;
+	});
 
+	if(!error) {
+		$("#newSkillError").hide();
+		var newSkillClassSelect = $("#newSkillClassSelect").val();
+		var newSkillName = $("#newSkillName").val();
+
+		$.post("api/project.php", {
+			token: '9164fe76dd046345905767c3bc2ef54',
+			isUserCreated: 0,
+			name: newSkillName,
+			classId: newSkillClassSelect
+		}, function() {
+			location.reload();
+		});
+	}
+	else {
+		$("#newSkillError").show();
+	}
 }
 
-function deleteSkill(id) {
-
+function deleteSkill(idToDelete) {
+	if(confirm("Are you sure you would like to delete this skill?")) {
+		$.ajax({
+			url: "api/skill.php",
+			type: 'DELETE',
+			data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
+			success: function(result) {
+				location.reload();
+			}
+		});
+	}
 }

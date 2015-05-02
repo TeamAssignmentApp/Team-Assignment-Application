@@ -302,7 +302,7 @@
 						<button class="btn btn-success" style="display:inline-block" onclick="addProject()">Submit</button>
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block" onclick='$(".newProjectInput").val(""); $("#newProjectDescription").empty()'>Reset Form</button>
-						<div id="studentMajorTemplate" style="display:none">
+						<div id="addStudentMajorTemplate" style="display:none">
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
 								<select class="form-control studentMajorSelection">
@@ -340,27 +340,14 @@
 							<span class="input-group-addon">Number of Students</span>
 							<input type="number" min="2" max="10" value="2" id="editProjectNumStudents" class="form-control editProjectInput" />
 						</div>
-						<span id="majorForEachStudent">
-							<div class="input-group" style="margin-bottom:10px">
-								<span class="input-group-addon">Student Discipline</span>
-								<select class="form-control editProjectInput studentMajorSelection">
-									<option value="">--Please Select--</option>
-								</select>
-							</div>
-							<div class="input-group" style="margin-bottom:10px">
-								<span class="input-group-addon">Student Discipline</span>
-								<select class="form-control newProjectInput studentMajorSelection">
-									<option value="">--Please Select--</option>
-								</select>
-							</div>
-						</span>
+						<span id="editProjMajorForEachStudent"></span>
 						<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
 						<br/>
 						<p id="editProjectError" style="display:none; color:red">All fields are required.</p>
-						<button class="btn btn-success" style="display:inline-block">Submit</button>
+						<button class="btn btn-success" style="display:inline-block" id="submitProjectEditBtn">Submit</button>
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
-						<div id="studentMajorTemplate" style="display:none">
+						<div id="editStudentMajorTemplate" style="display:none">
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
 								<select class="form-control studentMajorSelection">

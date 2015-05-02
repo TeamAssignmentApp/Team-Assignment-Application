@@ -50,6 +50,7 @@
 						?>
 					</select>
 				</div>
+				<br/>
 				<button class="btn btn-primary" style="margin-bottom:10px" id="enterClassBtn">Enter Class</button>
 				<script>
 					$("#enterClassBtn").click(function() {

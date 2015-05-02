@@ -102,7 +102,7 @@
 		<div class="container">
 			<div class="col-md-12" id="header" style="text-align:center">
 				<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
-				<a href="logout.php" class="btn btn-danger" style="display:inline-block; float:right">Logout</a>
+				<a href="logout.php" class="btn btn-danger" style="display:inline-block; float:right; margin-top:10px">Logout</a>
 			</div>
 
 			<!-- <a href="logout.php" class="btn btn-danger" style="display:inline-block">Logout</a> -->

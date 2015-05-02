@@ -25,8 +25,6 @@ $(document).ready(function(){
 		});
 		$(classes).each(function(index,classID){
 			$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
-				console.log('classData');
-				console.log(classData);
 				var parsedClassData = JSON.parse(classData);
 				console.log("parsedClassData");
 				console.log(parsedClassData);
@@ -34,22 +32,25 @@ $(document).ready(function(){
 				var thisClassProjects = parsedClassData["projects"];
 				console.log(allUsersAllProjects);
 				$(allUsersAllProjects).each(function(index,user){
+					console.log('classArr');
+					console.log(classArr);
 					//prevent adding duplicate classes
 					if(classArr.indexOf(user["name"]) == -1) {
-							classArr.push(user["name"]);
-							console.log("user");
-							console.log(user);
-							var convertedStartDate = convertDate(parsedClassData["startTime"]);
-							var convertedEndDate = convertDate(parsedClassData["endTime"]);
-							var prettyStartDate = dateToString(convertedStartDate);
-							var prettyEndDate = dateToString(convertedEndDate);
+						console.log('going to insert to the class table');
+						classArr.push(user["name"]);
+						console.log("user");
+						console.log(user);
+						var convertedStartDate = convertDate(parsedClassData["startTime"]);
+						var convertedEndDate = convertDate(parsedClassData["endTime"]);
+						var prettyStartDate = dateToString(convertedStartDate);
+						var prettyEndDate = dateToString(convertedEndDate);
 
-							//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
-							$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
+						//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
+						$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
-							var actionButtons = '<a class="btn-primary btn-sm" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
-												'<a class="btn-danger btn-sm" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
-							if(parsedClassData["adminIds"].length == 0) {
+						var actionButtons = '<a class="btn-primary btn-sm" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
+											'<a class="btn-danger btn-sm" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+						if(parsedClassData["adminIds"].length == 0) {
 							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 						}
 						else {
@@ -73,7 +74,7 @@ $(document).ready(function(){
 						console.log('parsedUserData');
 						console.log(parsedUserData);
 						var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
-						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID, deleteUserButton]).draw();
+						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, deleteUserButton]).draw();
 					});
 				});
 				$(thisClassProjects).each(function(index,proj){

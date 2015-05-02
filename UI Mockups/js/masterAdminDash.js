@@ -71,7 +71,7 @@ $(document).ready(function(){
 						console.log('parsedUserData');
 						console.log(parsedUserData);
 						var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
-						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID, deleteUserButton]).draw();
+						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, deleteUserButton]).draw();
 					});
 				});
 				$(thisClassProjects).each(function(index,proj){

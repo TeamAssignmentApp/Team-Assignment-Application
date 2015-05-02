@@ -52,7 +52,7 @@ $(document).ready(function(){
 							var commaSepAdminNames = '';
 							var numAdmins = parsedClassData["adminIds"].length;
 							$(parsedClassData["adminIds"]).each(function(ind, adminId) {
-								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin: 0}, function(adminData) {
+								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin: 1}, function(adminData) {
 									var parsedAdminData = JSON.parse(adminData);
 									commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
 									if(ind < (numAdmins - 1))

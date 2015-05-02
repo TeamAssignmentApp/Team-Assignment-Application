@@ -24,7 +24,7 @@ $(document).ready(function(){
 			$(".studentMajorSelection").append('<option value="' + major["majorID"] + '">' + major["majorName"] + '</option>');
 		});
 		$(classes).each(function(index,classID){
-			$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(classData){
+			$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
 				console.log('classData');
 				console.log(classData);
 				var parsedClassData = JSON.parse(classData);

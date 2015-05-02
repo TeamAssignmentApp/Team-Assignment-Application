@@ -113,7 +113,7 @@
 	</head>
 	<body>
 		<div class="col-md-12" id="header" style="text-align:center">
-			<img src="css/smulogo.png" alt="LyleLogo" height="100" width="800">
+			<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
 			<a href="logout.php" class="btn btn-danger" style="display:inline-block; float:right; margin-top:20px">Logout</a>
 		</div>
 

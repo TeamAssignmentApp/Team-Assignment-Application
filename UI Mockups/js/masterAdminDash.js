@@ -13,7 +13,7 @@ $(document).ready(function(){
 		$(this).tab('show')
 	});
 
-	$.get("api/user.php", {id: getThisUserID(), token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+	$.get("api/user.php", {id: getThisUserID(), token:'9164fe76dd046345905767c3bc2ef54', isAdmin: 1}, function(data){
 		var parsedData = JSON.parse(data);
 		console.log("parsedData");
 		console.log(parsedData)

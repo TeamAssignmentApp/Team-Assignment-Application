@@ -44,12 +44,8 @@ $(document).ready(function(){
 							var prettyStartDate = dateToString(convertedStartDate);
 							var prettyEndDate = dateToString(convertedEndDate);
 
-							//add this class to the dropdown for letting the admin select which class to manipulate (users and projects)
+							//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
 							$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
-
-							//add this class to the dropdowns in the add modals
-							$("#newUserClassSelect").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
-							$("#newProjectClassSelect").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
 							var actionButtons = '<a class="btn-primary btn-sm" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
 												'<a class="btn-danger btn-sm" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
@@ -79,7 +75,10 @@ $(document).ready(function(){
 					});
 				});
 				$(thisClassProjects).each(function(index,proj){
-					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID]).draw();
+					var editProjectButton = '<a class="btn-info btn-sm editProjectBtn" onclick="editProject(' + proj["id"] + ')">Edit</a>';
+					var deleteProjectButton = '<a class="btn-danger btn-sm" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
+					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
+					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID, projectActionButtons]).draw();
 				});
 			});
 			$.get('api/skill.php', {id: classID, token: '9164fe76dd046345905767c3bc2ef54'}, function(skillData) {
@@ -93,8 +92,8 @@ $(document).ready(function(){
 	});
 
 
-
-	$("#crudModal").on("hidden.bs.modal", function() {
+	//Single CRUD modal is no longer a thing
+	/*$("#crudModal").on("hidden.bs.modal", function() {
 		$("#crudBody").empty();
 	});
 
@@ -104,8 +103,9 @@ $(document).ready(function(){
 	              height:'auto', //probably not needed 
 	              'max-height':'100%'
 	       });
-	});
+	});*/
 
+	//Asynchronous modal population is no longer a thing
 	/*
 	$("#addClassBtn").click(function() {
 		$("#crudBody").html($("#loadingDisplay").html());
@@ -328,5 +328,5 @@ function addSkill() {
 }
 
 function deleteSkill(id) {
-	
+
 }

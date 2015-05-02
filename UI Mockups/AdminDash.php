@@ -112,6 +112,7 @@
 									<th>File Link</th>
 									<th>Required Majors</th>
 									<th>Class ID</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -389,9 +390,10 @@
 							<input class="form-control newSkillInput" id="newSkillName" type="text" />
 						</div>
 						<br/>
+						<p id="newSkillError" style="display:none; color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block" onclick="addSkill()">Submit</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-danger" style="display:inline-block" onclick="resetSkillForm()">Reset Form</button>
+						<button class="btn btn-danger" style="display:inline-block" onclick="$('.newSkillInput').val('')">Reset Form</button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->

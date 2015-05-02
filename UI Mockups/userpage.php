@@ -130,7 +130,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="well" style="padding-top:0px" id="teamReqs">
-					<h4>Prioritize your group member requests.</h4>
+					<h4>Prioritize your team member requests.</h4>
 				</div>
 			</div>
 

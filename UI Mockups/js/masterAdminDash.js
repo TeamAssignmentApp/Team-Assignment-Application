@@ -36,6 +36,7 @@ $(document).ready(function(){
 					console.log(classArr);
 					//prevent adding duplicate classes
 					if(classArr.indexOf(user["name"]) == -1) {
+						console.log('going to insert to the class table');
 						classArr.push(user["name"]);
 						console.log("user");
 						console.log(user);

@@ -241,14 +241,14 @@
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Major</span>
 							<select class="form-control newUserInput studentMajorSelection" id="newUserMajor">
-								
+								<option value="">--Please Select--</option>
 							</select>
 						</div>
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Email Address</span>
 							<input class="form-control newUserInput" id="newUserEmail" type="text" />
 						</div>
-						<p id="newUserError" style="display:none; text-color:red">All fields are required.</p>
+						<p id="newUserError" style="display:none; color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block" id="newUserSubmit" onclick="addUser()">Create User</button>
 						&nbsp;&nbsp;
 						<button class="btn btn-danger" style="display:inline-block" id="newUserReset" onclick="$('.newUserInput').val('')">Reset Form</button>

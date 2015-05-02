@@ -270,6 +270,10 @@ function addUser() {
 			location.reload();
 		});
 	}
+
+	else {
+		$("#newUserError").show();
+	}
 }
 
 function deleteUser(idToDelete) {

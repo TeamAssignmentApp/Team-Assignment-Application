@@ -51,8 +51,8 @@ $(document).ready(function(){
 							$("#newUserClassSelect").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 							$("#newProjectClassSelect").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
-							var actionButtons = '<a class="btn-primary btn-sm" href="#" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
-												'<a class="btn-danger btn-sm" href="#" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+							var actionButtons = '<a class="btn-primary btn-sm" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
+												'<a class="btn-danger btn-sm" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
 							if(parsedClassData["adminIds"].length == 0) {
 							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 						}
@@ -74,7 +74,7 @@ $(document).ready(function(){
 					}	
 					$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
 						var parsedUserData = JSON.parse(userData);
-						var deleteUserButton = '<a class="btn-danger btn-sm" href="#" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
+						var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
 						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID, deleteUserButton]).draw();
 					});
 				});
@@ -82,8 +82,17 @@ $(document).ready(function(){
 					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID]).draw();
 				});
 			});
+			$.get('api/skill.php', {id: classID, token: '9164fe76dd046345905767c3bc2ef54'}, function(skillData) {
+				var parsedSkillData = JSON.parse(skillData);
+				$(parsedSkillData).each(function(skillIndex,theSkill) {
+					var deleteSkillButton = '<a class="btn-danger btn-sm" onclick="deleteSkill(' + theSkill["id"] + ')">Delete</a>';
+					skillTable.row.add([parsedSkillData["name"], classID, deleteSkillButton]);
+				});
+			});
 		});
 	});
+
+
 
 	$("#crudModal").on("hidden.bs.modal", function() {
 		$("#crudBody").empty();
@@ -156,6 +165,9 @@ $(document).ready(function(){
 	});
 	$("#projectClassDropdown").change(function() {
 		classTable.columns(5).search($(this).val()).draw();
+	});
+	$("#skillClassDropdown").change(function() {
+		skillTable.columns(1).search($(this).val()).draw();
 	});
 });
 ////////////////////////////
@@ -300,4 +312,21 @@ function addProject() {
 			location.reload();
 		});
 	}
+}
+
+function editProject(id) {
+
+}
+
+function deleteProject(id) {
+
+}
+
+//SKILL FUNCTIONS
+function addSkill() {
+
+}
+
+function deleteSkill(id) {
+	
 }

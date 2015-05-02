@@ -128,6 +128,7 @@
 								<tr>
 									<th>Name</th>
 									<th>Class ID</th>
+									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -222,7 +223,7 @@
 					<div class="modal-body" id="addUserBody">
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class</span>
-							<select class="form-control newUserInput" id="newUserClassSelect">
+							<select class="form-control newUserInput classDropdown" id="newUserClassSelect">
 								<option value="">--Please Select--</option>
 							</select>
 						</div>
@@ -266,7 +267,7 @@
 					<div class="modal-body" id="addProjectBody">
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class</span>
-							<select class="form-control newProjectInput" id="newProjectClassSelect">
+							<select class="form-control newProjectInput classDropdown" id="newProjectClassSelect">
 								<option value="">--Please Select--</option>
 							</select>
 						</div>
@@ -323,7 +324,7 @@
 					<div class="modal-body" id="editProjectBody">
 						<div class="input-group" style="margin-bottom:10px">
 							<span class="input-group-addon">Class</span>
-							<select class="form-control editProjectInput" id="editProjectClassSelect">
+							<select class="form-control editProjectInput classDropdown" id="editProjectClassSelect">
 								<option value="">--Please Select--</option>
 							</select>
 						</div>
@@ -368,5 +369,33 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+
+		<div class="modal fade" id="addSkillModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="addSkillTitle">Adding Skill...</h4>
+					</div>
+					<div class="modal-body" id="addSkillBody">
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Class</span>
+							<select class="form-control newSkillInput classDropdown" id="newSkillClassSelect">
+								<option value="">--Please Select--</option>
+							</select>
+						</div>
+						<div class="input-group" style="margin-bottom:10px">
+							<span class="input-group-addon">Skill Name</span>
+							<input class="form-control newSkillInput" id="newSkillName" type="text" />
+						</div>
+						<br/>
+						<button class="btn btn-success" style="display:inline-block" onclick="addSkill()">Submit</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-danger" style="display:inline-block" onclick="resetSkillForm()">Reset Form</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
 	</body>
 </html>

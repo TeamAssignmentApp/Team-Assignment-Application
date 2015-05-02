@@ -15,8 +15,6 @@
 	$DBName   = 'TeamAssignmentApp';
 	
 	$connection = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
-
-	$thisUserID = $_SESSION["login_user"];
 ?>
 
 <!doctype html>
@@ -28,11 +26,11 @@
         <link rel="stylesheet" href="css/jquery-ui.min.css" />
         <link rel="stylesheet" href="css/jquery-ui.structure.min.css" />
         <link rel="stylesheet" href="css/jquery-ui.theme.min.css" />
+        <script>function getThisUserID(){return <?php echo $_SESSION['login_user']; ?>}
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
-		<script>var thisUserID = <?php echo $thisUserID; ?>;</script>
 		<script src="js/AdminDash.js"></script>
 
 

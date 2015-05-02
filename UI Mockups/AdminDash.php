@@ -38,9 +38,8 @@
 	<body>
 		<div class="col-md-12" id="header" style="text-align:center">
 			<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
+			<a href="logout.php" class="btn btn-danger" style="display:inline-block; float:right; margin-top:20px">Logout</a>
 		</div>
-
-		<a href="logout.php" class="btn btn-danger" style="display:inline-block">Logout</a>
 
 		<div class="container well" style="width:90%; height:650px">
 			<h3 style="text-align:center">Senior Design Administrator Dashboard</h3>

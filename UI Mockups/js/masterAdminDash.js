@@ -30,6 +30,7 @@ $(document).ready(function(){
 				console.log(parsedClassData);
 				var allUsersAllProjects = parsedClassData["users"];
 				var thisClassProjects = parsedClassData["projects"];
+				console.log('allUsersAllProjects');
 				console.log(allUsersAllProjects);
 				$(allUsersAllProjects).each(function(index,user){
 					console.log('classArr');

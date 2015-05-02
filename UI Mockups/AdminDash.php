@@ -301,7 +301,7 @@
 						<p id="newProjectError" style="display:none; color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block" onclick="addProject()">Submit</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-danger" style="display:inline-block" onclick='$(".newProjectInput").val(""); $("#newProjectDescription").empty()'>Reset Form</button>
+						<button class="btn btn-danger" style="display:inline-block" onclick='$(".newProjectInput:not(#newProjectNumStudents)").val(""); $("#newProjectDescription").empty()'>Reset Form</button>
 						<div id="addStudentMajorTemplate" style="display:none">
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>
@@ -346,7 +346,6 @@
 						<p id="editProjectError" style="display:none; color:red">All fields are required.</p>
 						<button class="btn btn-success" style="display:inline-block" id="submitProjectEditBtn">Submit</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-danger" style="display:inline-block">Reset Form</button>
 						<div id="editStudentMajorTemplate" style="display:none">
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Student Discipline</span>

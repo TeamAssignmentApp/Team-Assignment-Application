@@ -12,7 +12,7 @@ $(document).ready(function(){
 		$(this).tab('show')
 	});
 
-	$.get("api/user.php", {id: thisUserID, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+	$.get("api/user.php", {id: getParameterByName('id'), token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
 		var parsedData = JSON.parse(data);
 		console.log("parsedData");
 		console.log(parsedData)
@@ -160,6 +160,13 @@ $(document).ready(function(){
 ////////////////////////////
 //END DOCUMENT READY
 ////////////////////////////
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 function convertDate(dateStr) {
 	var a=dateStr.split(" ");

@@ -32,7 +32,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
-		<script>var thisUserID = '<?php echo $thisUserID; ?>';</script>
+		<script>var thisUserID = <?php echo $thisUserID; ?>;</script>
 		<script src="js/AdminDash.js"></script>
 
 

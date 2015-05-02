@@ -355,7 +355,7 @@ function submitProjectEdit(idToEdit) {
 		var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var editProjectFileLink = 'N/A';
 
-		$.ajax(
+		$.ajax({
 			url: 'api/project.php', 
 			type: 'PUT',
 			data: {
@@ -364,9 +364,10 @@ function submitProjectEdit(idToEdit) {
 				descrip: editProjectDescription,
 				file: editProjectFileLink,
 				classId: editProjectClassSelect
-		}, 
-		success: function(){
-			location.reload();
+			}, 
+			success: function(){
+				location.reload();
+			}
 		});
 	}
 	else {

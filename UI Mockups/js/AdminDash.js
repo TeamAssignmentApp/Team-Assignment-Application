@@ -13,7 +13,7 @@ $(document).ready(function(){
 		$(this).tab('show')
 	});
 
-	$.get("api/user.php", {id: getThisUserID(), token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+	$.get("api/user.php", {id: getThisUserID(), token:'9164fe76dd046345905767c3bc2ef54', isAdmin: 1}, function(data){
 		var parsedData = JSON.parse(data);
 		console.log("parsedData");
 		console.log(parsedData)
@@ -52,7 +52,7 @@ $(document).ready(function(){
 							var commaSepAdminNames = '';
 							var numAdmins = parsedClassData["adminIds"].length;
 							$(parsedClassData["adminIds"]).each(function(ind, adminId) {
-								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54'}, function(adminData) {
+								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin: 0}, function(adminData) {
 									var parsedAdminData = JSON.parse(adminData);
 									commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
 									if(ind < (numAdmins - 1))
@@ -64,7 +64,7 @@ $(document).ready(function(){
 						$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
 						numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
 					}	
-					$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(userData){
+					$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
 						var parsedUserData = JSON.parse(userData);
 						var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
 						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID, deleteUserButton]).draw();

@@ -15,6 +15,8 @@
 	$DBName   = 'TeamAssignmentApp';
 	
 	$connection = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
+
+	$thisUserID = $_SESSION["login_user"];
 ?>
 
 <!doctype html>
@@ -31,6 +33,8 @@
 		<script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/AdminDash.js"></script>
+
+		<script>var thisUserID = '<?php echo $thisUserID; ?>';
 	</head>
 	<body>
 		<div class="col-md-12" id="header" style="text-align:center">

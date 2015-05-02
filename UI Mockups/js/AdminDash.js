@@ -298,7 +298,7 @@ function addProject() {
 		if($(this).val() == "")
 			error = true;
 	});
-
+	console.log('error? ' + error);
 	if(!error) {
 		$("#newProjectError").hide();
 		var newProjectClassSelect = $("#newProjectClassSelect").val();

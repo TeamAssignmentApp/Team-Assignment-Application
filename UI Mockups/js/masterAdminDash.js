@@ -215,7 +215,7 @@ $(document).ready(function(){
 	});
 
 	$("#saveProjReqPageChanges").click(function(){
-		editProjectRequestPage();
+		editRequestPage();
 	});
 });
 ////////////////////////////

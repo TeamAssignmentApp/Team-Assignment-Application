@@ -205,13 +205,16 @@ $(document).ready(function(){
 
 	//make it so that the class dropdowns will filter the user and project tables
 	$("#userClassDropdown").change(function() {
-		userTable.columns(3).search($(this).val(),true,false).draw();
+		var searchReg = new RegExp("^" + $(this).val() + "$", "g")
+		userTable.columns(3).search(searchReg,true,false).draw();
 	});
 	$("#projectClassDropdown").change(function() {
-		projectTable.columns(4).search($(this).val(),true,false).draw();
+		var searchReg = new RegExp("^" + $(this).val() + "$", "g")
+		projectTable.columns(4).search(searchReg,true,false).draw();
 	});
 	$("#skillClassDropdown").change(function() {
-		skillTable.columns(1).search($(this).val(),true,false).draw();
+		var searchReg = new RegExp("^" + $(this).val() + "$", "g")
+		skillTable.columns(1).search(searchReg,true,false).draw();
 	});
 
 	$("#saveProjReqPageChanges").click(function(){

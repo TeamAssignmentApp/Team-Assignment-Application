@@ -5,7 +5,6 @@
 	// }
 ?>
 
-
 <!doctype html>
 <html>
 	<head>
@@ -16,13 +15,6 @@
 
         <script>
         	$(document).ready(function(){
-
-
-
-
-
-
-
 
 
 

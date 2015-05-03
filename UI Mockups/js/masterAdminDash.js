@@ -444,7 +444,7 @@ function submitProjectEdit(idToEdit) {
 				descrip: editProjectDescription,
 				file: editProjectFileLink,
 				classId: editProjectClassSelect,
-				majors: JSON.stringify(majorsAndNumbers);
+				majors: JSON.stringify(majorsAndNumbers)
 			}, 
 			success: function(){
 				location.reload();

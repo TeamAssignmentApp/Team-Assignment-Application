@@ -185,6 +185,10 @@ $(document).ready(function(){
 	});
 */
 
+	$("#editProjectModal").on("hidden.bs.modal", function() {
+		$("#editProjMajorForEachStudent").empty();
+	});
+
 	$("#reqPageSelect").change(function() {
 		if($(this).val() == "")
 			$(".requestPageInput").attr("disabled","disabled");

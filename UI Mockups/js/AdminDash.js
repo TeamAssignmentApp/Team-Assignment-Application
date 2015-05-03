@@ -67,7 +67,7 @@ $(document).ready(function(){
 					$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
 						var parsedUserData = JSON.parse(userData);
 						var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
-						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], parsedUserData["major"], parsedUserData["email"], classID, deleteUserButton]).draw();
+						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, deleteUserButton]).draw();
 					});
 				});
 				$(thisClassProjects).each(function(index,proj){

@@ -427,6 +427,31 @@
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
+
+			<div class="modal fade" id="uploadCSVModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="uploadCSVTitle">Uploading CSV File...</h4>
+						</div>
+						<div class="modal-body" id="uploadCSVBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Class</span>
+								<select class="form-control uploadCSVInput studentMajorSelection" id="uploadCSVMajorSelect">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+							<button class="btn btn-primary" id="uploadCSVButton">Upload File...</button>
+							<br/>
+							<p id="uploadCSVError" style="display:none; color:red">All fields are required.</p>
+							<button class="btn btn-success" style="display:inline-block" onclick="addSkill()">Submit</button>
+							&nbsp;&nbsp;
+							<button class="btn btn-danger" style="display:inline-block" onclick="$('.newSkillInput').val('')">Reset Form</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
 		</div>
 	</body>
 </html>

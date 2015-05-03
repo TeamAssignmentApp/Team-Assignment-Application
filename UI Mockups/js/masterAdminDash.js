@@ -58,6 +58,7 @@ $(document).ready(function(){
 
 					var actionButtons = '<a class="btn-primary btn-xs btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
 										'<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
+										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;' +
 										'<a class="btn-danger btn-xs btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
 
 					if(parsedClassData["adminIds"].length == 0) {
@@ -99,6 +100,7 @@ $(document).ready(function(){
 
 							var actionButtons = '<a class="btn-primary btn-xs btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
 										'<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
+										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;' +
 										'<a class="btn-danger btn-xs btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
 							if(parsedClassData["adminIds"].length == 0) {
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
@@ -727,4 +729,14 @@ function editRequestPage() {
 			}
 		});
 	}
+}
+
+//UPLOAD CSV FUNCTION
+function addUsersFromCSV(classid) {
+
+}
+
+//TEAM ASSIGNMENT FUNCTION
+function runTeamAssignment(classid) {
+	
 }

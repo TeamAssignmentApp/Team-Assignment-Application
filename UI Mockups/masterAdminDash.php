@@ -436,18 +436,19 @@
 							<h4 class="modal-title" id="uploadCSVTitle">Uploading CSV File...</h4>
 						</div>
 						<div class="modal-body" id="uploadCSVBody">
-							<div class="input-group" style="margin-bottom:10px">
-								<span class="input-group-addon">Class</span>
-								<select class="form-control uploadCSVInput studentMajorSelection" id="uploadCSVMajorSelect">
-									<option value="">--Please Select--</option>
-								</select>
-							</div>
-							<button class="btn btn-primary" id="uploadCSVButton">Upload File...</button>
-							<br/>
-							<p id="uploadCSVError" style="display:none; color:red">All fields are required.</p>
-							<button class="btn btn-success" style="display:inline-block" onclick="addSkill()">Submit</button>
-							&nbsp;&nbsp;
-							<button class="btn btn-danger" style="display:inline-block" onclick="$('.newSkillInput').val('')">Reset Form</button>
+							<form action="../addUsersFromCSV.php" method="post" enctype="multipart/form-data">
+								<input type="text" name="classID" id="classID" style="display:none" />
+								<div class="input-group" style="margin-bottom:10px">
+									<span class="input-group-addon">Class</span>
+									<select class="form-control uploadCSVInput studentMajorSelection" id="majorID" name="majorID">
+										<option value="">--Please Select--</option>
+									</select>
+								</div>
+								<input type="file" name="csvFile" id="csvFile">Upload File...</button>
+								<br/>
+								<p id="uploadCSVError" style="display:none; color:red">All fields are required.</p>
+								<button class="btn btn-success" style="display:inline-block">Submit</button>
+							</form>
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->

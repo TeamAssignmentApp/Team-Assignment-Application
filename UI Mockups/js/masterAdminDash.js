@@ -733,10 +733,11 @@ function editRequestPage() {
 
 //UPLOAD CSV FUNCTION
 function addUsersFromCSV(classid) {
-
+	$("#uploadCSVModal").modal('show');
+	$("#classID").val(classid);
 }
 
 //TEAM ASSIGNMENT FUNCTION
 function runTeamAssignment(classid) {
-	
+
 }

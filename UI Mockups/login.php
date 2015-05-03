@@ -38,7 +38,10 @@
 						<input class="form-control" type="password" name = "password"/>
 					</div>
 					<button class="btn btn-primary" style="margin-bottom:10px" name="submit" type="submit">Log in</button>
-					<p><a href="#">Forgot your password?</a></p>
+					<!-- <a href="logout.php" class="btn btn-primary btn-sm" style="margin-bottom:10px" name="submit" type="submit">Forgot your</a> -->
+
+
+					<a href="changepassword.php">Forgot your password?</a>
 				</div>
 			</form>
 			<div class="col-md-3"></div>

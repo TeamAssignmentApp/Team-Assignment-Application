@@ -15,7 +15,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
         <script>
-        	// $(document).ready(function(){
+        	$(document).ready(function(){
 
 
 
@@ -54,7 +54,7 @@
 						</span>
 						<input class="form-control" type="password" id="confirmPassword"/>
 					</div>
-					<a href="logout.php" class="btn btn-primary btn-sm" style="margin-bottom:10px" name="submit" type="submit">Submit New Password</button>
+					<a href="logout.php" class="btn btn-primary btn-sm" style="margin-bottom:10px" name="submit" type="submit">Submit New Password</a>
 				</div>
 			</form>
 			<div class="col-md-3"></div>

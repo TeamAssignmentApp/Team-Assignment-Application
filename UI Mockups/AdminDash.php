@@ -402,6 +402,32 @@
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
+
+			<div class="modal fade" id="uploadCSVModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="uploadCSVTitle">Uploading CSV File...</h4>
+						</div>
+						<div class="modal-body" id="uploadCSVBody">
+							<form action="addUsersFromCSV.php" method="post" enctype="multipart/form-data">
+								<input type="text" name="classID" id="classID" style="display:none" />
+								<div class="input-group" style="margin-bottom:10px">
+									<span class="input-group-addon">Class</span>
+									<select class="form-control uploadCSVInput studentMajorSelection" id="majorID" name="majorID">
+										<option value="">--Please Select--</option>
+									</select>
+								</div>
+								<input type="file" name="csvFile" id="csvFile">Upload File...</button>
+								<br/>
+								<p id="uploadCSVError" style="display:none; color:red">All fields are required.</p>
+								<input type="submit" class="btn btn-success" style="display:inline-block">Submit</input>
+							</form>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
 		</div>
 	</body>
 </html>

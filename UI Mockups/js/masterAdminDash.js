@@ -132,6 +132,12 @@ $(document).ready(function(){
 			$("#crudTitle").html("Adding Project...");
 		});
 	});
+
+	$('#saveProjReqPageChanges').click(function(){
+        var projPrefs = $("#numProjects").val();
+        var teammatePrefs = $("#numTeammateReqs").val();
+        
+    });
 */
 
 	$("#reqPageSelect").change(function() {

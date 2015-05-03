@@ -38,14 +38,23 @@
 		$id = $get["id"];
 		$class = null;
 		$class['id'] = $id;
-
-		$userArr = array();
-		$user = null;	
-		$sql = 'Select u.userID, email, fname, lname, m.majorID, m.majorName, c.className, c.projectPreferences, c.teammatePreferences, c.startTime, c.endTime from Class c INNER JOIN InClass ic ON c.classID = ic.classID INNER JOIN User u ON u.userID = ic.userID INNER JOIN IsMajor im ON im.userID = u.userID INNER JOIN Major m ON m.majorID = im.majorID WHERE c.classID = ?';
+		
+		$sql = 'Select c.className, c.projectPreferences, c.teammatePreferences, c.startTime, c.endTime from Class c WHERE c.classID = ?';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
-			$stmt->bind_result($user['id'], $user['email'], $user['fname'], $user['lname'], $user['major']['id'], $user['major']['name'], $class['name'], $class['numProjPrefs'], $class['numTeamPrefs'], $class['startTime'], $class['endTime']);
+			$stmt->bind_result($class['name'], $class['numProjPrefs'], $class['numTeamPrefs'], $class['startTime'], $class['endTime']);
+			while($stmt->fetch()) {
+			}
+		}
+
+		$userArr = array();
+		$user = null;	
+		$sql = 'Select u.userID, email, fname, lname, m.majorID, m.majorName from InClass ic INNER JOIN User u ON u.userID = ic.userID INNER JOIN IsMajor im ON im.userID = u.userID INNER JOIN Major m ON m.majorID = im.majorID WHERE ic.classID = ?';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+			$stmt->bind_result($user['id'], $user['email'], $user['fname'], $user['lname'], $user['major']['id'], $user['major']['name']);
 			while($stmt->fetch()) {
 				$userArr[] = unserialize(serialize($user));
 			}

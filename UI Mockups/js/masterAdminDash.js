@@ -100,6 +100,8 @@ $(document).ready(function(){
 										console.log('parsedAdminData');
 										console.log(parsedAdminData);
 										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
+										console.log('commaSepAdminNames');
+										console.log(commaSepAdminNames);
 										if(ind < (numAdmins - 1))
 											commaSepAdminNames += ', ';
 									});

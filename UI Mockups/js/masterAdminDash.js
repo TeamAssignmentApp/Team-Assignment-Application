@@ -462,7 +462,7 @@ function submitProjectEdit(idToEdit) {
 	}
 }
 
-function deleteProject(id) {
+function deleteProject(idToDelete) {
 	if(confirm("Are you sure you would like to delete this project?")) {
 		$.ajax({
 			url: "api/project.php",

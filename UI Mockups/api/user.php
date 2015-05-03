@@ -48,11 +48,11 @@
 		}
 		$user = null;		
 		
-		$sql = 'SELECT u.userID, email, fname, lname, submissionTime, wantsToLead, isMaster FROM User u WHERE u.userID = ?';
+		$sql = 'SELECT u.userID, email, fname, lname, submissionTime, isMaster FROM User u WHERE u.userID = ?';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
-			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['wantsToLead'], $user['isMaster']);
+			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['isMaster']);
 			while($stmt->fetch()){}		
 		}
 		
@@ -60,7 +60,7 @@
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("i", $id);
 			$stmt->execute();
-			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['wantsToLead'], $user['isMaster']);
+			$stmt->bind_result($user['userID'], $user['email'], $user['fname'], $user['lname'], $user['submissionTime'], $user['isMaster']);
 			while($stmt->fetch()){}		
 		}
 		
@@ -273,16 +273,6 @@
 				return;
 			} else {
 				updateLastUpdateTime($userId);
-			}
-		}
-		
-		$wantsToLead = $put["wantsToLead"];
-		if($wantsToLead != null && $wantsToLead) {
-			$sql = "UPDATE User set wantsToLead = 1 where userID = ?";
-			if($stmt = $conn->prepare($sql)) {
-				$stmt->bind_param("i", $userId);
-				$stmt->execute();
-				while($stmt->fetch());
 			}
 		}
 		

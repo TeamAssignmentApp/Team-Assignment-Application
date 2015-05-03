@@ -140,4 +140,5 @@ foreach ($classIDs AS $value){
 	}
 }
 mysql_close($connection);
+header("location: selectClass.php");
 ?>

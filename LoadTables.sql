@@ -26,7 +26,6 @@ CREATE TABLE User(
   lname varchar(30),
   password varchar(64),
   isMaster tinyint(1) DEFAULT 0,
-  wantsToLead tinyint(1) DEFAULT 0,
   submissionTime DATETIME
 );
 CREATE TABLE Class(
@@ -66,6 +65,7 @@ CREATE TABLE AdminOf(
 CREATE TABLE InClass(
     userID int,
     classID int,
+    wantsToLead tinyint(1) DEFAULT 0,
     PRIMARY KEY (classID, userID), 
     FOREIGN KEY (classID) REFERENCES Class(classID)
     ON DELETE CASCADE
@@ -133,6 +133,7 @@ CREATE TABLE HasProject(
 CREATE TABLE InProject(
   userID int,
   projectID int,
+  isLeader tinyint(1) DEFAULT 0,
   foreign key(userID) references User(userID)
   ON DELETE CASCADE
     ON UPDATE CASCADE,

@@ -275,11 +275,10 @@ function addClass() {
 		var startDate = $("#newClassStartDate").val();
 		var endDate = $("#newClassEndDate").val();
 		$.post("api/class.php", {
-			id: classid, 
 			token:'9164fe76dd046345905767c3bc2ef54',
 			className: name,
-			numProjectPrefs: numprojPrefs,
-			numTeammatePrefs: numTeamPrefs,
+			projPrefs: numProjPrefs,
+			teamPrefs: numTeamPrefs,
 			startTime: startDate,
 			endTime: endDate
 		});

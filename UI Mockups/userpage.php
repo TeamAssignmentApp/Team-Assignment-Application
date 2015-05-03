@@ -24,7 +24,13 @@
 			}
 		}
 	}
+	$userID = $_SESSION['login_user'];
 ?>
+<script language="javascript" type="text/javascript">
+
+    var userid = "<?php echo $userID; ?>";
+
+</script>
 
 
 
@@ -54,14 +60,24 @@
 
 			var userNames = [];
 
+			var curIndex = 0;
 			for(var i = 0; i < users.length; i++) {
-				userNames[i] = users[i].fname + " " + users[i].lname;
+				//if (users[i].id == userid){
+					userNames[curIndex] = users[i].fname + " " + users[i].lname;
+					if (users[i].id == userid){
+						//userNames[curIndex] = '';
+						userNames.splice(curIndex,1);
+					}
+					else{
+						curIndex++;
+					}
+				//}
 			}
 
 			for(var i = 0; i < numProjPrefs; i++) {
 				var newProjPref = "<div class='input-group'>" +
 									"<span class='input-group-addon'>Project " + (i+1) + "</span>" +
-									"<select class='form-control projectSelect'>" +
+									"<select class='form-control projectSelect' name = 'ProjectPreference" + (i+1) + "'>" +
 										"<option value=''>--Please Select--</option>" +
 									"</select>" +
 								"</div>" +
@@ -72,7 +88,7 @@
 			for(var i = 0; i < numTeamPrefs; i++) {
 				var newTeamPref = "<div class='input-group'>" +
 									"<span class='input-group-addon'>Team Member Request " + (i+1) + "</span>" +
-									"<input type='text' placeholder='Start typing name...'' class='form-control teamReqInput' />" +
+									"<input type='text' placeholder='Start typing name...'' class='form-control teamReqInput' name = 'TeammatePreference" + (i+1) + "'/>" +
 									"</div>" +
 									"<br/>";
 				$("#teamReqs").append(newTeamPref);
@@ -115,66 +131,69 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="col-md-12" id="header" style="text-align:center">
-				<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
-				<a href="logout.php" class="btn btn-danger" style="display:inline-block; float:right; margin-top:20px">Logout</a>
-			</div>
-
-			<!-- <a href="logout.php" class="btn btn-danger" style="display:inline-block">Logout</a> -->
-
-			<div class="col-md-6">
-				<div class="well" style="padding-top:0px;" id="projReqs">
-					<h4 style="display:inline-block">Prioritize your project requests.</h4>
-					<a class="btn btn-primary btn-sm" style="display:inline-block; float:right" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')">List of Projects</a>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="well" style="padding-top:0px" id="teamReqs">
-					<h4>Prioritize your team member requests.</h4>
-				</div>
-			</div>
-
-			<!--<a class="btn btn-primary" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')">List of Projects</a>-->
-			<div class="col-md-12" id="skillSet">
-				<div class="well" style="padding-top:0px">
-					<h4>What skills do you have?</h4>
-				<div class="input-group">
-					<span class="input-group-addon">Skill</span>
-					<select class="form-control skillSelect">
-						<option value="">--Please Select--</option>
-					</select>
-				</div>
-				<br/>
-				<div class="input-group">
-					<span class="input-group-addon">Skill</span>
-					<select class="form-control skillSelect">
-						<option value="">--Please Select--</option>
-					</select>
-				</div>
-				<br/>
-				<div class="input-group">
-					<span class="input-group-addon">Skill</span>
-					<select class="form-control skillSelect">
-						<option value="">--Please Select--</option>
-					</select>
-				</div>
+			<form action="completedForm.php" method="post">
+				<div class="col-md-12" id="header" style="text-align:center">
+					<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
+					<a href="logout.php" class="btn btn-danger" style="display:inline-block; float:right; margin-top:20px">Logout</a>
 				</div>
 
-			</div>
-			<div class="col-md-12">
-				<div class="well">
-					<div class="input-group">
-						<label>Would you like to be the leader of your group?</label>
-						&nbsp;<input type="checkbox" />
+				<!-- <a href="logout.php" class="btn btn-danger" style="display:inline-block">Logout</a> -->
+
+				<div class="col-md-6">
+					<div class="well" style="padding-top:0px;" id="projReqs">
+						<h4 style="display:inline-block">Prioritize your project requests.</h4>
+						<a class="btn btn-primary btn-sm" style="display:inline-block; float:right" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')">List of Projects</a>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="well">
-					<a class="btn btn-primary">Save Changes</a>
-					<p>All saved changes will be submitted automatically on the deadline.</p>
+				<div class="col-md-6">
+					<div class="well" style="padding-top:0px" id="teamReqs">
+						<h4>Prioritize your team member requests.</h4>
+					</div>
 				</div>
-			</div>
+
+				<!--<a class="btn btn-primary" id="projectButton" onclick="window.open('http://ec2-52-11-229-124.us-west-2.compute.amazonaws.com/viewprojects.php')">List of Projects</a>-->
+				<div class="col-md-12" id="skillSet">
+					<div class="well" style="padding-top:0px">
+						<h4>What skills do you have?</h4>
+					<div class="input-group">
+						<span class="input-group-addon">Skill</span>
+						<select class="form-control skillSelect" name = "Skill1">
+							<option value="">--Please Select--</option>
+						</select>
+					</div>
+					<br/>
+					<div class="input-group">
+						<span class="input-group-addon">Skill</span>
+						<select class="form-control skillSelect" name = "Skill2">
+							<option value="">--Please Select--</option>
+						</select>
+					</div>
+					<br/>
+					<div class="input-group">
+						<span class="input-group-addon">Skill</span>
+						<select class="form-control skillSelect" name = "Skill3">
+							<option value="">--Please Select--</option>
+						</select>
+					</div>
+					</div>
+
+				</div>
+				<div class="col-md-12">
+					<div class="well">
+						<div class="input-group">
+							<label>Would you like to be the leader of your group?</label>
+							&nbsp;<input type="checkbox" name="LeaderBox" />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="well">
+						<input type="hidden" name="classID" value="<?php echo $_GET['id']; ?>">
+						<input type = "submit" class="btn btn-primary" value="Save Changes"/>
+						<p>All saved changes will be submitted automatically on the deadline.</p>
+					</div>
+				</div>
+			</form>
 		</div>
 	</body>
 </html>

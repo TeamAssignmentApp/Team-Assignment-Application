@@ -58,25 +58,23 @@ else{
 		while ($row = mysql_fetch_array($classQuery)){
 			array_push($classIDs, $row[0]);
 		}
-		echo "oops";
 	}
 	else{
 		header("location: selectClass.php");
 	}
 
-}/*
+}
 
 //STEP 1: GET CLASS ID OF CLASS(es) RUNNING ASSIGNMENT
 
 //FOREACH CLASSID IN $classID
 foreach ($classIDs AS $value){
 	$classID = $value;
-	echo "classID: " . $value;
 	//STEP 1: GET CLASS ID OF CLASS THAT IS RUNNING ASSIGNMENT
 
 	//Before Assigning, clear previous assignment data
-	$clearQuery = "DELETE FROM InProject WHERE ProjectID IN (SELECT ProjectID from HasProject WHERE classID = '$classID')";
-	mysql_query($clearQuery);
+	/*$clearQuery = "DELETE FROM InProject WHERE ProjectID IN (SELECT ProjectID from HasProject WHERE classID = '$classID')";
+	mysql_query($clearQuery);*/
 	$scoreArray = array();
 
 	$prefCountQuery = mysql_query("SELECT projectPreferences FROM Class WHERE classID = '$classID'", $connection);
@@ -84,7 +82,7 @@ foreach ($classIDs AS $value){
 	$numPrefs = $countRow[0];
 
 	// STEP 2: Obtain the list of Users for the class
-	$query = mysql_query("SELECT User.userID FROM User JOIN InClass ON User.userID = InClass.userID WHERE InClass.classID = '$classID'", $connection);
+	$query = mysql_query("SELECT User.userID FROM User JOIN InClass ON User.userID = InClass.userID WHERE InClass.classID = '$classID' AND User.userID NOT IN (SELECT InProject.userID FROM InProject JOIN InClass ON InProject.userID = InClass.userID WHERE InClass.classID = '$classID')", $connection);
 	while ($row = mysql_fetch_assoc($query)) {
 		$userValues = array();
 		$userID = $row['userID'];
@@ -110,6 +108,7 @@ foreach ($classIDs AS $value){
 		}
 		$scoreArray[$row['userID']] = $userValues;
 	}
+	echo print_r($scoreArray);
 	$numAssigned=0;
 	$numUsers = mysql_num_rows($query);
 	while ($numAssigned < $numUsers){
@@ -141,4 +140,4 @@ foreach ($classIDs AS $value){
 	}
 }
 mysql_close($connection);
-*/?>
+?>

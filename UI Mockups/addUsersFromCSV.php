@@ -60,7 +60,15 @@
     	$password = substr( str_shuffle( $chars ), 0, $passLength);
     	$password = password_hash($password, PASSWORD_BCRYPT);
     	mysqli_query($conn,"INSERT INTO User (fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$password')");
-    	$userID = mysqli_insert_id($conn);
+    	$success = mysqli_affected_rows($conn);
+    	if ($success = 0){
+    		$result = mysqli_query($conn,"SELECT userID FROM User WHERE email = '$email'");
+    		$row = mysqli_fetch_assoc($result);
+    		$userID = $row['userID'];
+    	}
+    	else{
+	    	$userID = mysqli_insert_id($conn);
+	    }
 		mysqli_query($conn,"INSERT INTO IsMajor (userID, majorID) VALUES ('$userID', '$majorID')");
 		mysqli_query($conn,"INSERT INTO InClass (userID, classID) VALUES ('$userID', '$classID')");
 		//$splitName = explode(',', $fullName);

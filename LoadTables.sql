@@ -131,7 +131,7 @@ CREATE TABLE HasProject(
   primary key(classID, projectID)
 )ENGINE = InnoDB;
 CREATE TABLE InProject(
-  userID int UNIQUE,
+  userID int,
   projectID int,
   foreign key(userID) references User(userID)
   ON DELETE CASCADE

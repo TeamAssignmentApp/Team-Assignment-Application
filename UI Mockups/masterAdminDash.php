@@ -324,7 +324,7 @@
 							<span id="majorForEachStudent">
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
-									<select class="form-control newProjectInput newStudentMajorSelection">
+									<select class="form-control newProjectInput studentMajorSelection addProjectMajorSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>

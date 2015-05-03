@@ -525,7 +525,7 @@ function editRequestPage() {
 			data: {
 				token: '9164fe76dd046345905767c3bc2ef54',
 				id: reqPageSelect,
-				numProjectPrefs:, numProjectReqs,
+				numProjectPrefs: numProjectReqs,
 				numTeammatePrefs: numTeamReqs
 			},
 			success: function(){

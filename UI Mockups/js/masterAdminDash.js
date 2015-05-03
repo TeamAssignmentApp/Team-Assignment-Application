@@ -207,8 +207,10 @@ $(document).ready(function(){
 	});
 
 	//initialize datepickers for class start dates and end dates
-	$("#newClassStartDate").datepicker();
-	$("#newClassEndDate").datepicker();
+	$("#newClassStartDate").datepicker("option", "dateFormat", "yy-mm-dd");
+	$("#newClassEndDate").datepicker("option", "dateFormat", "yy-mm-dd");
+	$("#editClassStartDate").datepicker("option", "dateFormat", "yy-mm-dd");
+	$("#editClassEndDate").datepicker("option", "dateFormat", "yy-mm-dd");
 
 	//userTable.columns(3).search(-1).draw();
 	projectTable.columns(5).search(-1).draw();
@@ -290,12 +292,71 @@ function addClass() {
 }
 
 function editClass(classid) {
-	console.log('will edit class ' + classid);
-	
+	$.get('api/class.php', {id: classid, token: '9164fe76dd046345905767c3bc2ef54'}, function(classdata) {
+		$("#editProjectModal").modal('show');
+		var parsedClassEditData = JSON.parse(classdata);
+		var cName = parsedClassEditData["name"];
+		var cProjReqs = parsedClassEditData["numProjPrefs"];
+		var cTeamReqs = parsedClassEditData["numTeamPrefs"];
+		var cStart = parsedClassEditData["startTime"];
+		var cEnd = parsedClassEditData["endTime"];
+
+		$("#editClassName").val(cName);
+		$("#editClassNumProjPrefs").val(cProjReqs);
+		$("#editClassNumTeammatePrefs").val(cTeamReqs);
+		$("#editClassStartDate").val(cStart);
+		$("#editClassEndDate").val(cEnd);
+	})
 }
 
-function deleteClass(id){
-	console.log('will delete class ' + id);
+function submitClassEdit(classid) {
+//console.log("creating new class");
+	var error = false;
+	$(".editClassInput").each(function(i, field) {
+		if($(this).val() == "")
+			error = true;
+	});
+	if(!error) {
+		$("#editClassError").hide();
+		var name = $("#editClassName").val();
+		var numProjPrefs = $("#editClassNumProjPrefs").val();
+		var numTeamPrefs = $("#editClassNumTeammatePrefs").val();
+		var startDate = $("#editClassStartDate").val();
+		var endDate = $("#editClassEndDate").val();
+		$.ajax({
+			url: "api/class.php", 
+			type: 'PUT', 
+			data: {
+				id: classid, 
+				token:'9164fe76dd046345905767c3bc2ef54',
+				className: name,
+				numProjectPrefs: numprojPrefs,
+				numTeammatePrefs: numTeamPrefs,
+				startTime: startDate,
+				endTime: endDate
+			},
+			success: function() {
+				location.reload();
+			}
+		});
+	}
+
+	else {
+		$("#newClassError").show();
+	}	
+}
+
+function deleteClass(idToDelete){
+	if(confirm("Are you sure you would like to delete this class?")) {
+		$.ajax({
+			url: "api/class.php",
+			type: 'DELETE',
+			data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
+			success: function(result) {
+				location.reload();
+			}
+		});
+	}
 }
 
 //USER FUNCTIONS

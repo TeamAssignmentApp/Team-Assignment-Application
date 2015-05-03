@@ -248,8 +248,8 @@
 								<span class="input-group-addon">End Date</span>
 								<input class="form-control editClassInput" type="text" id="editClassEndDate" />
 							</div>
-							<p id="newClassError" style="display:none; text-color:red">All fields are required.</p>
-							<button class="btn btn-success" style="display:inline-block">Create Class</button>
+							<p id="editClassError" style="display:none; text-color:red">All fields are required.</p>
+							<button class="btn btn-success" style="display:inline-block">Save Changes</button>
 						</div>
 					</div>
 				</div>

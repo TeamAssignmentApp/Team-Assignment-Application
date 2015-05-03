@@ -6,21 +6,21 @@
 	if ($_SESSION['isAdmin'] == 0){
 		header("location: selectClass.php");
 	}
-	else if (!isset($_GET['classID'])){
+	else if (!isset($_POST['classID'])){
 		header("location: AdminDash.php");
 	}
 	$target_dir = "csv/";
 	$target_file = $target_dir . basename($_FILES["csvFile"]["name"]);
 	$uploadOk = 1;
 	//if(isset($_POST["submit"])) {
-	if (isset($_GET['classID'])){
+	if (isset($_POST['classID'])){
 	    $file = fopen($_FILES["csvFile"]["tmp_name"]);
 	}
 
 	//REMOVE FILENAME LATER
 	//$csvFile = $_GET['fileName'];
-	$classID = $_GET['classID'];
-	$majorID = $_GET['majorID'];
+	$classID = $_POST['classID'];
+	$majorID = $_POST['majorID'];
 /*
 	if (!isset($_SESSION['isMaster'])){
 		$connection = mysql_connect("localhost", "root", "321Testing");

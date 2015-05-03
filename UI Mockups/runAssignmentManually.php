@@ -26,8 +26,8 @@ $classIDs = array();
 $connection = mysql_connect("localhost", "root", "321Testing");
 $db = mysql_select_db("TeamAssignmentApp", $connection);
 //Check if being called manually or through cron job
-if (isset($_GET['classID'])){
-	$thisClass = $_GET['classID'];
+if (isset($_POST['classID'])){
+	$thisClass = $_POST['classID'];
 	session_start();
 	if(!isset($_SESSION['login_user'])){
 		mysql_close($connection);
@@ -46,7 +46,7 @@ if (isset($_GET['classID'])){
 			header("location: AdminDash.php");
 		}
 	}
-	array_push($classIDs, $_GET['classID']);
+	array_push($classIDs, $_POST['classID']);
 }
 else{
 	//cron job, get classIDs with current date.

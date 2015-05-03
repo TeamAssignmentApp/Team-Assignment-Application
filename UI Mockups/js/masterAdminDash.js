@@ -233,7 +233,7 @@ $(document).ready(function(){
 		userTable.column(3).search(searchReg,true,false).draw();
 	});
 	$("#projectClassDropdown").change(function() {
-		var searchReg = new RegExp("^" + $(this).val() + "$");
+		var searchReg = "^" + $(this).val() + "$";
 		console.log('searchReg ' + searchReg);
 		projectTable.column(4).search(searchReg,true,false).draw();
 	});

@@ -114,7 +114,7 @@ $(document).ready(function(){
 					});
 				}
 				$(thisClassProjects).each(function(index,proj){
-					var editProjectButton = '<a class="btn btn-info btn-sm editProjectBtn" onclick="editProject(' + proj["id"] + ')">Edit</a>';
+					var editProjectButton = '<a class="btn btn-info btn-sm editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>';
 					var deleteProjectButton = '<a class="btn btn-danger btn-sm" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
 					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
 					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID, projectActionButtons]).draw();
@@ -386,6 +386,7 @@ function addProject() {
 }
 
 function editProject(idToEdit) {
+	$("#editProjectModal").modal('show');
 	//get the project's info first so that we can pre-populate the modal
 	$.get("api/project.php",{id:idToEdit, token: '9164fe76dd046345905767c3bc2ef54'}, function(dataToEdit) {
 		var parsedDataToEdit = JSON.parse(dataToEdit);

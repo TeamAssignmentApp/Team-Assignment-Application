@@ -39,7 +39,7 @@ $(document).ready(function(){
 
 					//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
 					$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
-					
+
 					var actionButtons = '<a class="btn-primary btn-sm btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
 										'<a class="btn-danger btn-sm btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
 
@@ -325,7 +325,7 @@ function deleteUser(idToDelete) {
 //PROJECT FUNCTIONS
 function addProject() {
 	var error = false;
-	$(".newProjectInput").each(function(i, input) {
+	$(".newProjectInput:visible").each(function(i, input) {
 		if($(this).val() == "")
 			error = true;
 	});
@@ -376,7 +376,7 @@ function editProject(idToEdit) {
 
 function submitProjectEdit(idToEdit) {
 	var error = false;
-	$(".editProjectInput").each(function(i, input) {
+	$(".editProjectInput:visible").each(function(i, input) {
 		if($(this).val() == "")
 			error = true;
 	});

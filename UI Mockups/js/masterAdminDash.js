@@ -336,7 +336,7 @@ function deleteUser(idToDelete) {
 //PROJECT FUNCTIONS
 function addProject() {
 	var error = false;
-	$(".newProjectInput").each(function(i, input) {
+	$(".newProjectInput:visible").each(function(i, input) {
 		if($(this).val() == "")
 			error = true;
 	});
@@ -406,7 +406,7 @@ function editProject(idToEdit) {
 
 function submitProjectEdit(idToEdit) {
 	var error = false;
-	$(".editProjectInput").each(function(i, input) {
+	$(".editProjectInput:visible").each(function(i, input) {
 		if($(this).val() == "")
 			error = true;
 	});

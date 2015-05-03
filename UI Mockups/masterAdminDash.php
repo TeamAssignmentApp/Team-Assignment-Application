@@ -52,6 +52,9 @@
 						<a href="#administrators" aria-controls="administrators" role="tab" data-toggle="tab">Administrators</a>
 					</li>
 					<li role="presentation">
+						<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a>
+					</li>
+					<li role="presentation">
 						<a href="#requestpage" aria-controls="requestpage" role="tab" data-toggle="tab">Request Page</a>
 					</li>
 				</ul>

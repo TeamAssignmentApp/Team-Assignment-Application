@@ -233,7 +233,8 @@ $(document).ready(function(){
 		userTable.columns(3).search(searchReg,true,false).draw();
 	});
 	$("#projectClassDropdown").change(function() {
-		var searchReg = new RegExp("^" + $(this).val() + "$", "g")
+		var searchReg = new RegExp("^" + $(this).val() + "$");
+		console.log('searchReg ' + searchReg);
 		projectTable.columns(4).search(searchReg,true,false).draw();
 	});
 	$("#skillClassDropdown").change(function() {

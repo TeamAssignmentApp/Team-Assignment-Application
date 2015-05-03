@@ -69,7 +69,8 @@
 									<th>Actions</th>
 								</tr>
 							</thead>
-							<tbody></tbody>
+							<tbody>
+							</tbody>
 						</table>
 					</div>
     				<div role="tabpanel" class="tab-pane" id="users">
@@ -130,7 +131,7 @@
 						</table>
     				</div>
     				<div role="tabpanel" class="tab-pane" id="administrators">
-    					<h3 style="margin-top:0">Managing Administrators</h3>
+    					<h3 style="margin-top:0; display:inline-block">Managing Administrators</h3>
     					<button class="btn btn-success btn-sm" id="addAdminBtn" style="display:inline-block" data-toggle="modal" data-target="#addAdminModal"><span class="glyphicon glyphicon-plus"></span>Add Administrator</button>
     					<table id="displayAdmins" class="display">
 							<thead>

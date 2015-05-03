@@ -102,15 +102,11 @@ $(document).ready(function(){
 										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
 										if(ind < (numAdmins - 1))
 											commaSepAdminNames += ', ';
-										console.log('commaSepAdminNames in get callback');
-										console.log(commaSepAdminNames);
+										else
+											classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
 									});
-									console.log('commaSepAdminNames in each loop');
-									console.log(commaSepAdminNames);
 								});
-								console.log('adding row with commaSepAdminNames');
-								console.log(commaSepAdminNames);
-								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
+								
 							}
 							$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
 							numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};

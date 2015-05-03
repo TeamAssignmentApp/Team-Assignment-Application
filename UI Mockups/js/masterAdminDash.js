@@ -122,7 +122,7 @@ $(document).ready(function(){
 				});
 
 				$(thisClassSkills).each(function(index,skl){
-					var deleteSkillButton = '<a class="btn-danger btn-sm" onclick="deleteSkill(' + skl["id"] + ')">Delete</a>';
+					var deleteSkillButton = '<a class="btn btn-danger btn-sm" onclick="deleteSkill(' + skl["id"] + ')">Delete</a>';
 					skillTable.row.add([skl["name"], classID, deleteSkillButton]);
 				});
 			});
@@ -508,6 +508,27 @@ function deleteSkill(idToDelete) {
 			type: 'DELETE',
 			data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
 			success: function(result) {
+				location.reload();
+			}
+		});
+	}
+}
+
+function editRequestPage() {
+	var reqPageSelect = $("#reqPageSelect").val();
+	var numTeamReqs = $("#numTeammateReqs").val();
+	var numProjectReqs = $("#numProjects").val();
+	if(reqPageSelect != "" && numTeamReqs != "" && numProjectReqs != "") {
+		$.ajax({
+			url: "api/class.php",
+			type: 'PUT',
+			data: {
+				token: '9164fe76dd046345905767c3bc2ef54',
+				id: reqPageSelect,
+				numProjectPrefs:, numProjectReqs,
+				numTeammatePrefs: numTeamReqs
+			},
+			success: function(){
 				location.reload();
 			}
 		});

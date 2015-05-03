@@ -118,7 +118,7 @@ $(document).ready(function(){
 				});
 
 				$(thisClassSkills).each(function(index,skl){
-					var deleteSkillButton = '<a class="btn-danger btn-sm" onclick="deleteSkill(' + skl["id"] + ')">Delete</a>';
+					var deleteSkillButton = '<a class="btn btn-danger btn-sm" onclick="deleteSkill(' + skl["id"] + ')">Delete</a>';
 					skillTable.row.add([skl["name"], classID, deleteSkillButton]);
 				});
 			});

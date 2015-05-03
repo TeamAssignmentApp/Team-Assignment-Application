@@ -1,13 +1,13 @@
 <?php
 	session_start();
 	if(!isset($_SESSION['login_user'])){
-		header("location: login.php");
+		header("Location: login.php");
 	}
 	else if (!isset($_SESSION['isMaster']) && $_SESSION['isAdmin'] == 0){
-		header("userpage.php");
+		header("Location: userpage.php");
 	}
 	else if (!isset($_SESSION['isMaster'])){
-		header("AdminDash.php");
+		header("Location: AdminDash.php");
 	}
 ?>
 

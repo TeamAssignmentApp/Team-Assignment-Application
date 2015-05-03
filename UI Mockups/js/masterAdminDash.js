@@ -35,8 +35,6 @@ $(document).ready(function(){
 				if(allUsersAllProjects.length == 0) {
 					console.log('going to insert to the class table');
 					classArr.push(parsedClassData["name"]);
-					console.log("user");
-					console.log(user);
 					var convertedStartDate = convertDate(parsedClassData["startTime"]);
 					var convertedEndDate = convertDate(parsedClassData["endTime"]);
 					var prettyStartDate = dateToString(convertedStartDate);

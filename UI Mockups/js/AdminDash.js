@@ -82,34 +82,41 @@ $(document).ready(function(){
 					$(allUsersAllProjects).each(function(index,user){
 						//prevent adding duplicate classes
 						if(classArr.indexOf(user["name"]) == -1) {
-								classArr.push(user["name"]);
-								console.log("user");
-								console.log(user);
-								var convertedStartDate = convertDate(parsedClassData["startTime"]);
-								var convertedEndDate = convertDate(parsedClassData["endTime"]);
-								var prettyStartDate = dateToString(convertedStartDate);
-								var prettyEndDate = dateToString(convertedEndDate);
+							classArr.push(user["name"]);
+							console.log("user");
+							console.log(user);
+							var convertedStartDate = convertDate(parsedClassData["startTime"]);
+							var convertedEndDate = convertDate(parsedClassData["endTime"]);
+							var prettyStartDate = dateToString(convertedStartDate);
+							var prettyEndDate = dateToString(convertedEndDate);
 
-								//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
-								$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
+							//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
+							$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
-								var actionButtons = '<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
-										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;';
-								if(parsedClassData["adminIds"].length == 0) {
+							var actionButtons = '<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
+									'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;';
+							if(parsedClassData["adminIds"].length == 0) {
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 							}
 							else {
-								var commaSepAdminNames = '';
+								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, '<span id="adminNames-' + classID + '"></span>', actionButtons]).draw();
 								var numAdmins = parsedClassData["adminIds"].length;
 								$(parsedClassData["adminIds"]).each(function(ind, adminId) {
-									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin: 1}, function(adminData) {
+									console.log('getting admin ' + adminId);
+									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 										var parsedAdminData = JSON.parse(adminData);
-										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
-										if(ind < (numAdmins - 1))
-											commaSepAdminNames += ', ';
+										$("#adminNames-" + classID).append(parsedAdminData["fname"] + ' ' + parsedAdminData["lname"] + ', ');
+										if(ind == (numAdmins - 1)) {
+											//trim off the last comma-space
+											setTimeout(function(){
+												var namesFromTable = $("#adminNames-" + classID).text();
+												$("#adminNames-" + classID).text(namesFromTable.substring(0, namesFromTable.length - 2));		
+											}, 3000);
+																				
+										}											
 									});
 								});
-								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
+								
 							}
 							$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
 							numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};

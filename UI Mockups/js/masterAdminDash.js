@@ -32,26 +32,21 @@ $(document).ready(function(){
 				var thisClassProjects = parsedClassData["projects"];
 				console.log('allUsersAllProjects');
 				console.log(allUsersAllProjects);
-				$(allUsersAllProjects).each(function(index,user){
-					console.log('classArr');
-					console.log(classArr);
-					//prevent adding duplicate classes
-					if(classArr.indexOf(parsedClassData["name"]) == -1) {
-						console.log('going to insert to the class table');
-						classArr.push(parsedClassData["name"]);
-						console.log("user");
-						console.log(user);
-						var convertedStartDate = convertDate(parsedClassData["startTime"]);
-						var convertedEndDate = convertDate(parsedClassData["endTime"]);
-						var prettyStartDate = dateToString(convertedStartDate);
-						var prettyEndDate = dateToString(convertedEndDate);
+				if(allUsersAllProjects.length == 0) {
+					console.log('going to insert to the class table');
+					classArr.push(parsedClassData["name"]);
+					console.log("user");
+					console.log(user);
+					var convertedStartDate = convertDate(parsedClassData["startTime"]);
+					var convertedEndDate = convertDate(parsedClassData["endTime"]);
+					var prettyStartDate = dateToString(convertedStartDate);
+					var prettyEndDate = dateToString(convertedEndDate);
 
 						//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
-						$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
+					var actionButtons = '<a class="btn-primary btn-sm btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
+										'<a class="btn-danger btn-sm btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
 
-						var actionButtons = '<a class="btn-primary btn-sm btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
-											'<a class="btn-danger btn-sm btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
-						if(parsedClassData["adminIds"].length == 0) {
+					if(parsedClassData["adminIds"].length == 0) {
 							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 						}
 						else {
@@ -69,15 +64,55 @@ $(document).ready(function(){
 						}
 						$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
 						numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
-					}	
-					$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
-						var parsedUserData = JSON.parse(userData);
-						console.log('parsedUserData');
-						console.log(parsedUserData);
-						var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
-						userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, deleteUserButton]).draw();
+				}
+				else {
+					$(allUsersAllProjects).each(function(index,user){
+						console.log('classArr');
+						console.log(classArr);
+						//prevent adding duplicate classes
+						if(classArr.indexOf(parsedClassData["name"]) == -1) {
+							console.log('going to insert to the class table');
+							classArr.push(parsedClassData["name"]);
+							console.log("user");
+							console.log(user);
+							var convertedStartDate = convertDate(parsedClassData["startTime"]);
+							var convertedEndDate = convertDate(parsedClassData["endTime"]);
+							var prettyStartDate = dateToString(convertedStartDate);
+							var prettyEndDate = dateToString(convertedEndDate);
+
+							//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
+							$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
+
+							var actionButtons = '<a class="btn-primary btn-sm btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
+												'<a class="btn-danger btn-sm btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+							if(parsedClassData["adminIds"].length == 0) {
+								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
+							}
+							else {
+								var commaSepAdminNames = '';
+								var numAdmins = parsedClassData["adminIds"].length;
+								$(parsedClassData["adminIds"]).each(function(ind, adminId) {
+									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
+										var parsedAdminData = JSON.parse(adminData);
+										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
+										if(ind < (numAdmins - 1))
+											commaSepAdminNames += ', ';
+									});
+								});
+								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
+							}
+							$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
+							numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
+						}	
+						$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
+							var parsedUserData = JSON.parse(userData);
+							console.log('parsedUserData');
+							console.log(parsedUserData);
+							var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
+							userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, deleteUserButton]).draw();
+						});
 					});
-				});
+				}
 				$(thisClassProjects).each(function(index,proj){
 					var editProjectButton = '<a class="btn-info btn-sm editProjectBtn" onclick="editProject(' + proj["id"] + ')">Edit</a>';
 					var deleteProjectButton = '<a class="btn-danger btn-sm" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';

@@ -288,6 +288,8 @@ function addClass() {
 			teamPrefs: numTeamPrefs,
 			startTime: startDate,
 			endTime: endDate
+		},function(){
+			location.reload();
 		});
 	}
 

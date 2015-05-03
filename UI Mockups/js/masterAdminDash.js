@@ -488,7 +488,7 @@ function addSkill() {
 		var newSkillClassSelect = $("#newSkillClassSelect").val();
 		var newSkillName = $("#newSkillName").val();
 
-		$.post("api/project.php", {
+		$.post("api/skill.php", {
 			token: '9164fe76dd046345905767c3bc2ef54',
 			isUserCreated: 0,
 			name: newSkillName,

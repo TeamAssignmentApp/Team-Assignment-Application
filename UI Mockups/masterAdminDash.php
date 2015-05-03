@@ -107,7 +107,6 @@
 									<tr>
 										<th>Name</th>
 										<th>Description</th>
-										<th># Students</th>
 										<th>File Link</th>
 										<th>Required Majors</th>
 										<th>Class ID</th>

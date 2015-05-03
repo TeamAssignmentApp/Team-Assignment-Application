@@ -204,6 +204,10 @@ $(document).ready(function(){
 	$("#skillClassDropdown").change(function() {
 		skillTable.columns(1).search($(this).val()).draw();
 	});
+
+	$("#saveProjReqPageChanges").click(function(){
+		editRequestPage();
+	});
 });
 ////////////////////////////
 //END DOCUMENT READY
@@ -501,6 +505,27 @@ function deleteSkill(idToDelete) {
 			type: 'DELETE',
 			data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
 			success: function(result) {
+				location.reload();
+			}
+		});
+	}
+}
+
+function editRequestPage() {
+	var reqPageSelect = $("#reqPageSelect").val();
+	var numTeamReqs = $("#numTeammateReqs").val();
+	var numProjectReqs = $("#numProjects").val();
+	if(reqPageSelect != "" && numTeamReqs != "" && numProjectReqs != "") {
+		$.ajax({
+			url: "api/class.php",
+			type: 'PUT',
+			data: {
+				token: '9164fe76dd046345905767c3bc2ef54',
+				id: reqPageSelect,
+				numProjectPrefs: numProjectReqs,
+				numTeammatePrefs: numTeamReqs
+			},
+			success: function(){
 				location.reload();
 			}
 		});

@@ -311,7 +311,8 @@ function editClass(classid) {
 		$("#editClassNumTeammatePrefs").val(cTeamReqs);
 		$("#editClassStartDate").val(cStart);
 		$("#editClassEndDate").val(cEnd);
-	})
+	});
+	$("#submitClassEditBtn").click(function(){submitClassEdit(classid)});
 }
 
 function submitClassEdit(classid) {

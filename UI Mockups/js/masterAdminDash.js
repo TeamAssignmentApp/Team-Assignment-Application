@@ -100,10 +100,16 @@ $(document).ready(function(){
 										console.log('parsedAdminData');
 										console.log(parsedAdminData);
 										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
-										if(ind < (numAdmins - 1))
+										if(ind < (numAdmins - 1)) {
+											console.log("we're adding a comma");
 											commaSepAdminNames += ', ';
-										else
+										}
+										else {
+											console.log('ind ' + ind);
+											console.log('commaSepAdminNames is ' + commaSepAdminNames);
 											classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
+										}
+											
 									});
 								});
 								

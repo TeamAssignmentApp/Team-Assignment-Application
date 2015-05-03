@@ -89,7 +89,7 @@
 										<th>Name</th>
 										<th>Major</th>
 										<th>Email</th>
-										<th>Classes</th>
+										<th>Class ID</th>
 										<th>Actions</th>
 									</tr>
 								</thead>

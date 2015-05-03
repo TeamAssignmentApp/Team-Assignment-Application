@@ -366,8 +366,8 @@ function addProject() {
 			}
 		});
 
-		console.log('majorsAndNumbers');
-		console.log(majorsAndNumbers);
+		console.log('descrip');
+		console.log(newProjectDescription);
 
 		$.post("api/project.php", {
 			token: '9164fe76dd046345905767c3bc2ef54',

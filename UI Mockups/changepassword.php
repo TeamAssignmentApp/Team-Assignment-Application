@@ -36,6 +36,12 @@
 					<h3 style="margin-top:0px">Change your password.</h3>
 					<div class="input-group" style="margin-bottom:10px">
 						<span class="input-group-addon">
+							Email
+						</span>
+						<input class="form-control" type="text" name = "email"/>
+					</div>
+					<div class="input-group" style="margin-bottom:10px">
+						<span class="input-group-addon">
 							New Password
 						</span>
 						<input class="form-control" type="password" id="password"/>

@@ -131,8 +131,8 @@ $(document).ready(function(){
 							majorReqStr += ', ';
 						}
 					});
-					var editProjectButton = '<a class="btn btn-info btn-sm editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>';
-					var deleteProjectButton = '<a class="btn btn-danger btn-sm" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
+					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>';
+					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
 					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
 					projectTable.row.add([proj["name"], proj["description"],proj["fileLink"],majorReqStr, classID, projectActionButtons]).draw();
 				});

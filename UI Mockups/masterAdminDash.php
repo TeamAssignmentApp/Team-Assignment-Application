@@ -447,7 +447,7 @@
 								<input type="file" name="csvFile" id="csvFile">Upload File...</button>
 								<br/>
 								<p id="uploadCSVError" style="display:none; color:red">All fields are required.</p>
-								<input type="submit" class="btn btn-success" style="display:inline-block">Submit</button>
+								<input type="submit" class="btn btn-success" style="display:inline-block">Submit</input>
 							</form>
 						</div>
 					</div><!-- /.modal-content -->

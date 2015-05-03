@@ -111,10 +111,19 @@ $(document).ready(function(){
 					});
 				}
 				$(thisClassProjects).each(function(index,proj){
-					var editProjectButton = '<a class="btn-info btn-sm editProjectBtn" onclick="editProject(' + proj["id"] + ')">Edit</a>';
-					var deleteProjectButton = '<a class="btn-danger btn-sm" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
+					var thisProjectMajors = proj["majors"];
+					var thisProjectNumMajors = thisProjectMajors.length;
+					var majorReqStr = "";
+					$(thisProjectMajors).each(function(majorInd,major){
+						majorReqStr += major["name"] + ": " + major["number"];
+						if(majorInd < (thisProjectNumMajors - 1)) {
+							majorReqStr += ', ';
+						}
+					});
+					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>';
+					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
 					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
-					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID, projectActionButtons]).draw();
+					projectTable.row.add([proj["name"], proj["description"],proj["fileLink"],majorReqStr, classID, projectActionButtons]).draw();
 				});
 
 				$(thisClassSkills).each(function(index,skl){
@@ -190,19 +199,19 @@ $(document).ready(function(){
 	$("#newClassStartDate").datepicker();
 	$("#newClassEndDate").datepicker();
 
-	userTable.columns(3).search(-1).draw();
-	projectTable.columns(5).search(-1).draw();
-	skillTable.columns(1).search(-1).draw();
+	uuserTable.columns(3).search(-1,true,false).draw();
+	projectTable.columns(4).search(-1,true,false).draw();
+	skillTable.columns(1).search(-1,true,false).draw();
 
 	//make it so that the class dropdowns will filter the user and project tables
 	$("#userClassDropdown").change(function() {
-		userTable.columns(3).search($(this).val()).draw();
+		userTable.columns(3).search($(this).val(),true,false).draw();
 	});
 	$("#projectClassDropdown").change(function() {
-		projectTable.columns(5).search($(this).val()).draw();
+		projectTable.columns(4).search($(this).val(),true,false).draw();
 	});
 	$("#skillClassDropdown").change(function() {
-		skillTable.columns(1).search($(this).val()).draw();
+		skillTable.columns(1).search($(this).val(),true,false).draw();
 	});
 
 	$("#saveProjReqPageChanges").click(function(){

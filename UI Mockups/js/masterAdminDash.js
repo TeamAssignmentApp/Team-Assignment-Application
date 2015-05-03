@@ -223,19 +223,19 @@ $(document).ready(function(){
 	$("#editClassStartDate").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#editClassEndDate").datepicker("option", "dateFormat", "yy-mm-dd");
 
-	userTable.columns(3).search(-1).draw();
-	projectTable.columns(4).search(-1).draw();
-	skillTable.columns(1).search(-1).draw();
+	userTable.columns(3).search(-1,true,false).draw();
+	projectTable.columns(4).search(-1,true,false).draw();
+	skillTable.columns(1).search(-1,true,false).draw();
 
 	//make it so that the class dropdowns will filter the user and project tables
 	$("#userClassDropdown").change(function() {
-		userTable.columns(3).search($(this).val()).draw();
+		userTable.columns(3).search($(this).val(),true,false).draw();
 	});
 	$("#projectClassDropdown").change(function() {
-		projectTable.columns(4).search($(this).val()).draw();
+		projectTable.columns(4).search($(this).val(),true,false).draw();
 	});
 	$("#skillClassDropdown").change(function() {
-		skillTable.columns(1).search($(this).val()).draw();
+		skillTable.columns(1).search($(this).val(),true,false).draw();
 	});
 
 	$("#saveProjReqPageChanges").click(function(){

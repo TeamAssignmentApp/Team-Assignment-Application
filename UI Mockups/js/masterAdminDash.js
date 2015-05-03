@@ -391,7 +391,7 @@ function editProject(idToEdit) {
 	$.get("api/project.php",{id:idToEdit, token: '9164fe76dd046345905767c3bc2ef54'}, function(dataToEdit) {
 		var parsedDataToEdit = JSON.parse(dataToEdit);
 		var classIdToEdit = parsedDataToEdit['classId']; //this doesn't work
-		var projectNameToEdit = parsedDataToEdit['name'];
+		var projectNameToEdit = parsedDataToEdit['projectName'];
 		var allMajorsToEdit = parsedDataToEdit['majors'];
 		var descriptionToEdit = parsedDataToEdit['projectDesc'];
 		var totalNumStudents = 0;

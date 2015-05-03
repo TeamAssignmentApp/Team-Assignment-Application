@@ -98,7 +98,7 @@ $(document).ready(function(){
 									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 										var parsedAdminData = JSON.parse(adminData);
 										console.log('parsedAdminData');
-										console.log('parsedAdminData');
+										console.log(parsedAdminData);
 										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
 										if(ind < (numAdmins - 1))
 											commaSepAdminNames += ', ';

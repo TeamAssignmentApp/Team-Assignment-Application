@@ -36,9 +36,9 @@ $(document).ready(function(){
 					console.log('classArr');
 					console.log(classArr);
 					//prevent adding duplicate classes
-					if(classArr.indexOf(user["name"]) == -1) {
+					if(classArr.indexOf(parsedClassData["name"]) == -1) {
 						console.log('going to insert to the class table');
-						classArr.push(user["name"]);
+						classArr.push(parsedClassData["name"]);
 						console.log("user");
 						console.log(user);
 						var convertedStartDate = convertDate(parsedClassData["startTime"]);

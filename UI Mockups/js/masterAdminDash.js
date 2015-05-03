@@ -104,7 +104,7 @@ $(document).ready(function(){
 											//trim off the last comma-space
 											setTimeout(function(){
 												var namesFromTable = $("#adminNames-" + classID).text();
-												("#adminNames-" + classID).text(namesFromTable.substring(0, namesFromTable.length - 2));		
+												$("#adminNames-" + classID).text(namesFromTable.substring(0, namesFromTable.length - 2));		
 											}, 3000);
 																				
 										}											

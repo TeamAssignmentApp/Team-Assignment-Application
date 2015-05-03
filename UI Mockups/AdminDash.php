@@ -302,13 +302,13 @@
 							<span id="majorForEachStudent">
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
-									<select class="form-control newProjectInput studentMajorSelection">
+									<select class="form-control newProjectInput studentMajorSelection addProjectMajorSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
-									<select class="form-control newProjectInput studentMajorSelection">
+									<select class="form-control newProjectInput studentMajorSelection addProjectMajorSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>
@@ -319,10 +319,10 @@
 							<button class="btn btn-success" style="display:inline-block" onclick="addProject()">Submit</button>
 							&nbsp;&nbsp;
 							<button class="btn btn-danger" style="display:inline-block" onclick='$(".newProjectInput:not(#newProjectNumStudents)").val(""); $("#newProjectDescription").empty()'>Reset Form</button>
-							<div id="addStudentMajorTemplate" style="display:none">
+							<div id="newStudentMajorTemplate" style="display:none">
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
-									<select class="form-control studentMajorSelection">
+									<select class="form-control newProjectInput studentMajorSelection addProjectMajorSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>
@@ -366,7 +366,7 @@
 							<div id="editStudentMajorTemplate" style="display:none">
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
-									<select class="form-control studentMajorSelection">
+									<select class="form-control editProjectInput studentMajorSelection editProjectMajorSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>

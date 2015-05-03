@@ -28,6 +28,7 @@ $(document).ready(function(){
 				console.log(parsedClassData);
 				var allUsersAllProjects = parsedClassData["users"];
 				var thisClassProjects = parsedClassData["projects"];
+				var thisClassSkills = parsedClassData["skills"];
 				console.log(allUsersAllProjects);
 				if(allUsersAllProjects.length == 0) {
 					console.log('going to insert to the class table');
@@ -111,12 +112,10 @@ $(document).ready(function(){
 					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
 					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID, projectActionButtons]).draw();
 				});
-			});
-			$.get('api/skill.php', {id: classID, token: '9164fe76dd046345905767c3bc2ef54'}, function(skillData) {
-				var parsedSkillData = JSON.parse(skillData);
-				$(parsedSkillData).each(function(skillIndex,theSkill) {
-					var deleteSkillButton = '<a class="btn-danger btn-sm" onclick="deleteSkill(' + theSkill["id"] + ')">Delete</a>';
-					skillTable.row.add([parsedSkillData["name"], classID, deleteSkillButton]);
+
+				$(thisClassSkills).each(function(index,skl){
+					var deleteSkillButton = '<a class="btn-danger btn-sm" onclick="deleteSkill(' + skl["id"] + ')">Delete</a>';
+					skillTable.row.add([skl["name"], classID, deleteSkillButton]);
 				});
 			});
 		});
@@ -179,7 +178,7 @@ $(document).ready(function(){
 	$("#newProjectNumStudents").change(function(){
 		$("#majorForEachStudent").empty();
 		for(var i = 0; i < $("#newProjectNumStudents").val(); i++){
-			$("#majorForEachStudent").append($("#studentMajorTemplate").html());
+			$("#majorForEachStudent").append($("#newStudentMajorTemplate").html());
 		}
 	});
 
@@ -333,16 +332,38 @@ function addProject() {
 		$("#newProjectError").hide();
 		var newProjectClassSelect = $("#newProjectClassSelect").val();
 		var newProjectName = $("#newProjectName").val();
-		var newProjectDescription = $("#newProjectDescription").text();
+		var newProjectDescription = $("#newProjectDescription").val();
 		//var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var newProjectFileLink = 'N/A';
+		var majorsAndNumbers = [];
+
+		$(".addProjectMajorSelect:visible").each(function(ind,majorSelec) {
+			var thisSelec = $(majorSelec).val();
+			var indexOfThisMajor = -1;
+			$.each(majorsAndNumbers, function(j, obj) {
+				if (obj["majorId"] == thisSelec) {
+					indexOfThisMajor = j;
+				}
+			});
+
+			if(indexOfThisMajor == -1) {
+				majorsAndNumbers.push({"majorId":thisSelec, "amount":1});
+			}
+			else {
+				majorsAndNumbers[indexOfThisMajor]["amount"]++;
+			}
+		});
+
+		console.log('descrip');
+		console.log(newProjectDescription);
 
 		$.post("api/project.php", {
 			token: '9164fe76dd046345905767c3bc2ef54',
 			name: newProjectName,
 			descrip: newProjectDescription,
 			file: newProjectFileLink,
-			classId: newProjectClassSelect
+			classId: newProjectClassSelect,
+			majors: JSON.stringify(majorsAndNumbers)
 		}, function(){
 			location.reload();
 		});
@@ -353,11 +374,12 @@ function addProject() {
 }
 
 function editProject(idToEdit) {
+	$("#editProjectModal").modal('show');
 	//get the project's info first so that we can pre-populate the modal
 	$.get("api/project.php",{id:idToEdit, token: '9164fe76dd046345905767c3bc2ef54'}, function(dataToEdit) {
 		var parsedDataToEdit = JSON.parse(dataToEdit);
 		var classIdToEdit = parsedDataToEdit['classId']; //this doesn't work
-		var projectNameToEdit = parsedDataToEdit['name'];
+		var projectNameToEdit = parsedDataToEdit['projectName'];
 		var allMajorsToEdit = parsedDataToEdit['majors'];
 		var descriptionToEdit = parsedDataToEdit['projectDesc'];
 		var totalNumStudents = 0;
@@ -369,7 +391,7 @@ function editProject(idToEdit) {
 		$("#editProjectName").val(projectNameToEdit);
 		$("#editProjectNumStudents").val(totalNumStudents);
 		$("#editProjectClassSelect").val(classIdToEdit);
-		$("#editProjectDescription").text(descriptionToEdit);
+		$("#editProjectDescription").val(descriptionToEdit);
 	});
 	$("#submitProjectEditBtn").click(function(){submitProjectEdit(idToEdit)});
 }
@@ -384,19 +406,39 @@ function submitProjectEdit(idToEdit) {
 		$("#editProjectError").hide();
 		var editProjectClassSelect = $("#editProjectClassSelect").val();
 		var editProjectName = $("#editProjectName").val();
-		var editProjectDescription = $("#editProjectDescription").text();
-		var newProjectNumStudents = $("#newProjectNumStudents").val();
+		var editProjectDescription = $("#editProjectDescription").val();
+		//var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var editProjectFileLink = 'N/A';
+		var majorsAndNumbers = [];
+
+		$(".editProjectMajorSelection").each(function(ind,majorSelec) {
+			var thisSelec = $(majorSelec).val();
+			var indexOfThisMajor = -1;
+			$.each(majorsAndNumbers, function(j, obj) {
+				if (obj["majorId"] == thisSelec) {
+					indexOfThisMajor = j;
+				}
+			});
+
+			if(indexOfThisMajor == -1) {
+				majorsAndNumbers.push({"majorId":thisSelec, "amount":1});
+			}
+			else {
+				majorsAndNumbers[indexOfThisMajor]["amount"]++;
+			}
+		});
 
 		$.ajax({
 			url: 'api/project.php', 
 			type: 'PUT',
 			data: {
 				token: '9164fe76dd046345905767c3bc2ef54',
+				id: idToEdit,
 				name: editProjectName,
 				descrip: editProjectDescription,
 				file: editProjectFileLink,
-				classId: editProjectClassSelect
+				classId: editProjectClassSelect,
+				majors: JSON.stringify(majorsAndNumbers)
 			}, 
 			success: function(){
 				location.reload();
@@ -408,7 +450,7 @@ function submitProjectEdit(idToEdit) {
 	}
 }
 
-function deleteProject(id) {
+function deleteProject(idToDelete) {
 	if(confirm("Are you sure you would like to delete this project?")) {
 		$.ajax({
 			url: "api/project.php",
@@ -434,7 +476,7 @@ function addSkill() {
 		var newSkillClassSelect = $("#newSkillClassSelect").val();
 		var newSkillName = $("#newSkillName").val();
 
-		$.post("api/project.php", {
+		$.post("api/skill.php", {
 			token: '9164fe76dd046345905767c3bc2ef54',
 			isUserCreated: 0,
 			name: newSkillName,

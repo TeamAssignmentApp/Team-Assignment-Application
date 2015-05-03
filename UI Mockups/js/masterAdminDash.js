@@ -103,6 +103,8 @@ $(document).ready(function(){
 										if(ind < (numAdmins - 1))
 											commaSepAdminNames += ', ';
 									});
+									console.log('commaSepAdminNames in each loop');
+									console.log(commaSepAdminNames);
 								});
 								console.log('adding row with commaSepAdminNames');
 								console.log(commaSepAdminNames);

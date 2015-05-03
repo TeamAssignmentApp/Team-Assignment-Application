@@ -161,14 +161,14 @@ $(document).ready(function(){
 	$("#newClassEndDate").datepicker();
 
 	userTable.columns(3).search(-1).draw();
-	classTable.columns(5).search(-1).draw();
+	projectTable.columns(5).search(-1).draw();
 
 	//make it so that the class dropdowns will filter the user and project tables
 	$("#userClassDropdown").change(function() {
 		userTable.columns(3).search($(this).val()).draw();
 	});
 	$("#projectClassDropdown").change(function() {
-		classTable.columns(5).search($(this).val()).draw();
+		projectTable.columns(5).search($(this).val()).draw();
 	});
 	$("#skillClassDropdown").change(function() {
 		skillTable.columns(1).search($(this).val()).draw();

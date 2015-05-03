@@ -421,6 +421,7 @@ function submitProjectEdit(idToEdit) {
 		var editProjectDescription = $("#editProjectDescription").val();
 		//var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var editProjectFileLink = 'N/A';
+		var majorsAndNumbers = [];
 
 		$(".editProjectMajorSelection").each(function(ind,majorSelec) {
 			var thisSelec = $(majorSelec).val();

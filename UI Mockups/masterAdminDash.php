@@ -7,7 +7,7 @@
 		header("userpage.php");
 	}
 	else if (!isset($_SESSION['isMaster'])){
-		header("adminDash.php");
+		header("AdminDash.php");
 	}
 ?>
 

@@ -103,7 +103,7 @@ $(document).ready(function(){
 										if(ind == (numAdmins - 1)) {
 											//trim off the last comma-space
 											var namesFromTable = $("#adminNames-" + classID).text();
-											$("#adminNames-" + classID).text(namesFromTable.substring(0, str.length - 2));											
+											$("#adminNames-" + classID).text(namesFromTable.substring(0, namesFromTable.length - 2));											
 										}											
 									});
 								});

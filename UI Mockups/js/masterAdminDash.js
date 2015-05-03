@@ -49,8 +49,8 @@ $(document).ready(function(){
 						//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
 						$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
-						var actionButtons = '<a class="btn-primary btn-sm" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
-											'<a class="btn-danger btn-sm" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+						var actionButtons = '<a class="btn-primary btn-sm btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
+											'<a class="btn-danger btn-sm btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
 						if(parsedClassData["adminIds"].length == 0) {
 							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 						}

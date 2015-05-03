@@ -207,6 +207,11 @@ $(document).ready(function(){
 	});
 
 	//initialize datepickers for class start dates and end dates
+	$("#newClassStartDate").datepicker();
+	$("#newClassEndDate").datepicker();
+	$("#editClassStartDate").datepicker();
+	$("#editClassEndDate").datepicker();
+
 	$("#newClassStartDate").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#newClassEndDate").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#editClassStartDate").datepicker("option", "dateFormat", "yy-mm-dd");

@@ -19,6 +19,10 @@ $(document).ready(function(){
 		console.log(parsedData)
 		var classes = parsedData["classIds"];
 		var classArr = [];
+		var allMajors = parsedData["allMajors"];
+		$(allMajors).each(function(i,major){
+			$(".studentMajorSelection").append('<option value="' + major["majorID"] + '">' + major["majorName"] + '</option>');
+		});
 		$(classes).each(function(index,classID){
 			$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
 				console.log('classData');

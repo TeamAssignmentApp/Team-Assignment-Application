@@ -125,7 +125,7 @@ $(document).ready(function(){
 					var thisProjectMajors = proj["majors"];
 					var thisProjectNumMajors = thisProjectMajors.length;
 					var majorReqStr = "";
-					$(thisProejctMajors).each(function(majorInd,major){
+					$(thisProjectMajors).each(function(majorInd,major){
 						majorReqStr += major["name"] + ": " + major["number"];
 						if(majorInd < (thisProjectNumMajors - 1)) {
 							majorReqStr += ', ';

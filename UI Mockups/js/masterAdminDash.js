@@ -90,7 +90,7 @@ $(document).ready(function(){
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 							}
 							else {
-								var commaSepAdminNames = '';
+								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, '<span id="adminNames-' + classID + '"></span>', actionButtons]).draw();
 								var numAdmins = parsedClassData["adminIds"].length;
 								console.log('we have admins');
 								$(parsedClassData["adminIds"]).each(function(ind, adminId) {
@@ -99,17 +99,11 @@ $(document).ready(function(){
 										var parsedAdminData = JSON.parse(adminData);
 										console.log('parsedAdminData');
 										console.log(parsedAdminData);
-										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
+										$("#adminNames-" + classID).append(parsedAdminData["fname"] + ' ' + parsedAdminData["lname"]);
 										if(ind < (numAdmins - 1)) {
 											console.log("we're adding a comma");
-											commaSepAdminNames += ', ';
-										}
-										else {
-											console.log('ind ' + ind);
-											console.log('commaSepAdminNames is ' + commaSepAdminNames);
-											classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
-										}
-											
+											$("#adminNames-" + classID).append(', ');
+										}											
 									});
 								});
 								

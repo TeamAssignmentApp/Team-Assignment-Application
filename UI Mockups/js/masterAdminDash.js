@@ -504,8 +504,10 @@ function editProject(idToEdit) {
 		var totalNumStudents = 0;
 		$(allMajorsToEdit).each(function(i, major) {
 			totalNumStudents += major["number"];
-			$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
-			$("#editProjMajorForEachStudent .studentMajorSelection").last().val(major["id"]);
+			for(var i = 0; i < major["number"]; i++) {
+				$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
+				$("#editProjMajorForEachStudent .studentMajorSelection").last().val(major["id"]);
+			}
 		});
 		$("#editProjectName").val(projectNameToEdit);
 		$("#editProjectNumStudents").val(totalNumStudents);

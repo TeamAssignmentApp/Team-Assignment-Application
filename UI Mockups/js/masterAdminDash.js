@@ -30,6 +30,7 @@ $(document).ready(function(){
 				console.log(parsedClassData);
 				var allUsersAllProjects = parsedClassData["users"];
 				var thisClassProjects = parsedClassData["projects"];
+				var thisClassSkills = parsedClassData["skills"];
 				//console.log('allUsersAllProjects');
 				//console.log(allUsersAllProjects);
 				if(allUsersAllProjects.length == 0) {
@@ -119,12 +120,10 @@ $(document).ready(function(){
 					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
 					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID, projectActionButtons]).draw();
 				});
-			});
-			$.get('api/skill.php', {id: classID, token: '9164fe76dd046345905767c3bc2ef54'}, function(skillData) {
-				var parsedSkillData = JSON.parse(skillData);
-				$(parsedSkillData).each(function(skillIndex,theSkill) {
-					var deleteSkillButton = '<a class="btn-danger btn-sm" onclick="deleteSkill(' + theSkill["id"] + ')">Delete</a>';
-					skillTable.row.add([parsedSkillData["name"], classID, deleteSkillButton]);
+
+				$(thisClassSkills).each(function(index,skl){
+					var deleteSkillButton = '<a class="btn-danger btn-sm" onclick="deleteSkill(' + skl["id"] + ')">Delete</a>';
+					skillTable.row.add([skl["name"], classID, deleteSkillButton]);
 				});
 			});
 		});

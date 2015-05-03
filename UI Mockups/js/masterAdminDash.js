@@ -349,7 +349,7 @@ function addProject() {
 		var newProjectFileLink = 'N/A';
 		var majorsAndNumbers = [];
 
-		$(".newStudentMajorSelection").each(function(ind,majorSelec) {
+		$(".addProjectMajorSelect:visible").each(function(ind,majorSelec) {
 			var thisSelec = $(majorSelec).val();
 			var indexOfThisMajor = -1;
 			$.each(majorsAndNumbers, function(j, obj) {
@@ -421,7 +421,7 @@ function submitProjectEdit(idToEdit) {
 		//var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var editProjectFileLink = 'N/A';
 
-		$(".editStudentMajorSelection").each(function(ind,majorSelec) {
+		$(".editProjectMajorSelection").each(function(ind,majorSelec) {
 			var thisSelec = $(majorSelec).val();
 			var indexOfThisMajor = -1;
 			$.each(majorsAndNumbers, function(j, obj) {

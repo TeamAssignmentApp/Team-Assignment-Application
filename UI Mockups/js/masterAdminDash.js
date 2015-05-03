@@ -344,7 +344,7 @@ function addProject() {
 		$("#newProjectError").hide();
 		var newProjectClassSelect = $("#newProjectClassSelect").val();
 		var newProjectName = $("#newProjectName").val();
-		var newProjectDescription = $("#newProjectDescription").text();
+		var newProjectDescription = $("#newProjectDescription").val();
 		//var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var newProjectFileLink = 'N/A';
 		var majorsAndNumbers = [];
@@ -402,7 +402,7 @@ function editProject(idToEdit) {
 		$("#editProjectName").val(projectNameToEdit);
 		$("#editProjectNumStudents").val(totalNumStudents);
 		$("#editProjectClassSelect").val(classIdToEdit);
-		$("#editProjectDescription").text(descriptionToEdit);
+		$("#editProjectDescription").val(descriptionToEdit);
 	});
 	$("#submitProjectEditBtn").click(function(){submitProjectEdit(idToEdit)});
 }
@@ -417,7 +417,7 @@ function submitProjectEdit(idToEdit) {
 		$("#editProjectError").hide();
 		var editProjectClassSelect = $("#editProjectClassSelect").val();
 		var editProjectName = $("#editProjectName").val();
-		var editProjectDescription = $("#editProjectDescription").text();
+		var editProjectDescription = $("#editProjectDescription").val();
 		//var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var editProjectFileLink = 'N/A';
 

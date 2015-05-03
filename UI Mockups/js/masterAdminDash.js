@@ -293,7 +293,7 @@ function addClass() {
 
 function editClass(classid) {
 	$.get('api/class.php', {id: classid, token: '9164fe76dd046345905767c3bc2ef54'}, function(classdata) {
-		$("#editProjectModal").modal('show');
+		$("#editClassModal").modal('show');
 		var parsedClassEditData = JSON.parse(classdata);
 		var cName = parsedClassEditData["name"];
 		var cProjReqs = parsedClassEditData["numProjPrefs"];

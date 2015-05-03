@@ -421,7 +421,7 @@ function editProject(idToEdit) {
 		var totalNumStudents = 0;
 		$(allMajorsToEdit).each(function(i, major) {
 			totalNumStudents += major["number"];
-			for(var i = 0; i < major["number"]; i++) {
+			for(var j = 0; j < major["number"]; j++) {
 				$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
 				$("#editProjMajorForEachStudent .studentMajorSelection").last().val(major["id"]);
 			}

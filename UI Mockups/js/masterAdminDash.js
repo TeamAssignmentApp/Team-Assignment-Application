@@ -92,9 +92,13 @@ $(document).ready(function(){
 							else {
 								var commaSepAdminNames = '';
 								var numAdmins = parsedClassData["adminIds"].length;
+								console.log('we have admins');
 								$(parsedClassData["adminIds"]).each(function(ind, adminId) {
+									console.log('getting admin ' + adminId);
 									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 										var parsedAdminData = JSON.parse(adminData);
+										console.log('parsedAdminData');
+										console.log('parsedAdminData');
 										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
 										if(ind < (numAdmins - 1))
 											commaSepAdminNames += ', ';
@@ -200,13 +204,14 @@ $(document).ready(function(){
 	$("#newClassStartDate").datepicker();
 	$("#newClassEndDate").datepicker();
 
-	userTable.columns(3).search(-1).draw();
+	//userTable.columns(3).search(-1).draw();
 	projectTable.columns(5).search(-1).draw();
+	skillTable.columns(1).search(-1).draw();
 
 	//make it so that the class dropdowns will filter the user and project tables
-	$("#userClassDropdown").change(function() {
+	/*$("#userClassDropdown").change(function() {
 		userTable.columns(3).search($(this).val()).draw();
-	});
+	});*/
 	$("#projectClassDropdown").change(function() {
 		projectTable.columns(5).search($(this).val()).draw();
 	});
@@ -518,6 +523,88 @@ function deleteSkill(idToDelete) {
 	}
 }
 
+//ADMIN FUNCTIONS
+function addAdmin() {
+	var error = false;
+	$(".newAdminInput").each(function(i, input) {
+		if($(this).val() == "")
+			error = true;
+	});
+
+	if(!error) {
+		$("#newAdminError").hide();
+		var newAdminClassSelect = $("#newAdminClassSelect").val();
+		var newAdminFirstName = $("#newAdminFirstName").val();
+		var newAdminLastName = $("#newAdminLastName").val();
+		var newAdminEmail = $("#newUserEmail").val();
+		$.post("api/user.php", {
+			token:'9164fe76dd046345905767c3bc2ef54',
+			email: newAdminEmail,
+			fname: newAdminFirstName,
+			lname: newAdminLastName,
+			password: 'password', //temporary. on first login user has to change it
+			classId: newAdminClassSelect,
+			//majorId: newUserMajor,
+			isAdmin: 1
+		}, function(){
+			location.reload();
+		});
+	}
+
+	else {
+		$("#newAdminError").show();
+	}
+}
+
+function editAdmin(idToEdit) {
+	var error = false;
+	$(".editAdminInput").each(function(i, input) {
+		if($(this).val() == "")
+			error = true;
+	});
+
+	if(!error) {
+		$("#editAdminError").hide();
+		var editAdminClassSelect = $("#editAdminClassSelect").val();
+		var editAdminFirstName = $("#editAdminFirstName").val();
+		var editAdminLastName = $("#editAdminLastName").val();
+		var editAdminEmail = $("#editUserEmail").val();
+		$.ajax({
+			url: "api/user.php", 
+			type: 'PUT',
+			data: {
+				token:'9164fe76dd046345905767c3bc2ef54',
+				email: editAdminEmail,
+				fname: editAdminFirstName,
+				lname: editAdminLastName,
+				id: idToEdit,
+				classId: newAdminClassSelect,
+			},
+			success:  function(){
+				location.reload();
+			}
+		});
+	}
+
+	else {
+		$("#newAdminError").show();
+	}
+}
+
+function deleteAdmin(idToDelete) {
+	if(confirm('Are you sure you would like to delete this administrator?')) {
+		$.ajax({
+			url: "api/user.php",
+			type: 'DELETE',
+			data: {id: idToDelete, token: '9164fe76dd046345905767c3bc2ef54'},
+			success: function(result) {
+				location.reload();
+			}
+		});
+	}
+}
+
+//REQUEST PAGE FUNCTION
 function editRequestPage() {
 	var reqPageSelect = $("#reqPageSelect").val();
 	var numTeamReqs = $("#numTeammateReqs").val();

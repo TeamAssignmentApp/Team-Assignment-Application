@@ -80,17 +80,17 @@
 	    				<div role="tabpanel" class="tab-pane" id="users">
 	    					<h3 style="margin-top:0; display:inline-block">Managing Users</h3>
 	    					<button class="btn btn-success btn-sm" id="addUserBtn" style="display:inline-block" data-toggle="modal" data-target="#addUserModal"><span class="glyphicon glyphicon-plus"></span>Add User</button>
-	    					<select class="classDropdown" id="userClassDropdown" style="display:inline-block">
+	    					<!--<select class="classDropdown" id="userClassDropdown" style="display:inline-block">
 	    						<option value="-1">--Please Select a Class To View--</option>
-	    					</select>
+	    					</select>-->
 	    					<table id="displayUsers" class="display">
 								<thead>
 									<tr>
 										<th>Name</th>
 										<th>Major</th>
 										<th>Email</th>
-										<th>Class ID</th>
-										<th>Delete</th>
+										<th>Classes</th>
+										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody></tbody>
@@ -141,7 +141,10 @@
 								<thead>
 									<tr>
 										<th>Name</th>
+										<th>Major</th>
+										<th>Email</th>
 										<th>Classes</th>
+										<th>Delete</th>
 									</tr>
 								</thead>
 								<tbody>

@@ -114,8 +114,8 @@ $(document).ready(function(){
 					});
 				}
 				$(thisClassProjects).each(function(index,proj){
-					var editProjectButton = '<a class="btn-info btn-sm editProjectBtn" onclick="editProject(' + proj["id"] + ')">Edit</a>';
-					var deleteProjectButton = '<a class="btn-danger btn-sm" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
+					var editProjectButton = '<a class="btn btn-info btn-sm editProjectBtn" onclick="editProject(' + proj["id"] + ')">Edit</a>';
+					var deleteProjectButton = '<a class="btn btn-danger btn-sm" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
 					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
 					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID, projectActionButtons]).draw();
 				});
@@ -193,7 +193,7 @@ $(document).ready(function(){
 	$("#newProjectNumStudents").change(function(){
 		$("#majorForEachStudent").empty();
 		for(var i = 0; i < $("#newProjectNumStudents").val(); i++){
-			$("#majorForEachStudent").append($("#studentMajorTemplate").html());
+			$("#majorForEachStudent").append($("#newStudentMajorTemplate").html());
 		}
 	});
 
@@ -347,13 +347,32 @@ function addProject() {
 		var newProjectDescription = $("#newProjectDescription").text();
 		//var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var newProjectFileLink = 'N/A';
+		var majorsAndNumbers = [];
+
+		$(".newStudentMajorSelection").each(function(ind,majorSelec) {
+			var thisSelec = $(majorSelec).val();
+			var indexOfThisMajor = -1;
+			$.each(majorsAndNumbers, function(j, obj) {
+				if (obj["majorId"] == thisSelec) {
+					indexOfThisMajor = j;
+				}
+			});
+
+			if(indexOfThisMajor == -1) {
+				majorsAndNumbers.push({"majorId":thisSelec, "amount":1});
+			}
+			else {
+				majorsAndNumbers[indexOfThisMajor]["amount"]++;
+			}
+		});
 
 		$.post("api/project.php", {
 			token: '9164fe76dd046345905767c3bc2ef54',
 			name: newProjectName,
 			descrip: newProjectDescription,
 			file: newProjectFileLink,
-			classId: newProjectClassSelect
+			classId: newProjectClassSelect,
+			majors: JSON.stringify(majorsAndNumbers)
 		}, function(){
 			location.reload();
 		});
@@ -396,8 +415,25 @@ function submitProjectEdit(idToEdit) {
 		var editProjectClassSelect = $("#editProjectClassSelect").val();
 		var editProjectName = $("#editProjectName").val();
 		var editProjectDescription = $("#editProjectDescription").text();
-		var newProjectNumStudents = $("#newProjectNumStudents").val();
+		//var newProjectNumStudents = $("#newProjectNumStudents").val();
 		var editProjectFileLink = 'N/A';
+
+		$(".editStudentMajorSelection").each(function(ind,majorSelec) {
+			var thisSelec = $(majorSelec).val();
+			var indexOfThisMajor = -1;
+			$.each(majorsAndNumbers, function(j, obj) {
+				if (obj["majorId"] == thisSelec) {
+					indexOfThisMajor = j;
+				}
+			});
+
+			if(indexOfThisMajor == -1) {
+				majorsAndNumbers.push({"majorId":thisSelec, "amount":1});
+			}
+			else {
+				majorsAndNumbers[indexOfThisMajor]["amount"]++;
+			}
+		});
 
 		$.ajax({
 			url: 'api/project.php', 
@@ -407,7 +443,8 @@ function submitProjectEdit(idToEdit) {
 				name: editProjectName,
 				descrip: editProjectDescription,
 				file: editProjectFileLink,
-				classId: editProjectClassSelect
+				classId: editProjectClassSelect,
+				majors: JSON.stringify(majorsAndNumbers)
 			}, 
 			success: function(){
 				location.reload();

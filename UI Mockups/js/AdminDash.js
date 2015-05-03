@@ -57,9 +57,8 @@ $(document).ready(function(){
 					//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
 					$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
-					var actionButtons = '<a class="btn-primary btn-sm btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
-										'<a class="btn-danger btn-sm btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
-
+					var actionButtons = '<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
+										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>'
 					if(parsedClassData["adminIds"].length == 0) {
 							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 						}
@@ -94,8 +93,8 @@ $(document).ready(function(){
 								//add this class to the dropdown for letting the admin select which class to manipulate (users, projects, skills)
 								$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
-								var actionButtons = '<a class="btn-primary btn-sm" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
-													'<a class="btn-danger btn-sm" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+								var actionButtons = '<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
+										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;' +
 								if(parsedClassData["adminIds"].length == 0) {
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 							}
@@ -560,4 +559,15 @@ function editRequestPage() {
 			}
 		});
 	}
+}
+
+//UPLOAD CSV FUNCTION
+function addUsersFromCSV(classid) {
+	$("#uploadCSVModal").modal('show');
+	$("#classID").val(classid);
+}
+
+//TEAM ASSIGNMENT FUNCTION
+function runTeamAssignment(classid) {
+
 }

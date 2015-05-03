@@ -76,7 +76,7 @@
 										<th>Start Date</th>
 										<th>End Date</th>
 										<th>Administrators</th>
-										<!--<th>Actions</th>-->
+										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody></tbody>

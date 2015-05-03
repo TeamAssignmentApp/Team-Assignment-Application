@@ -100,12 +100,12 @@ $(document).ready(function(){
 										console.log('parsedAdminData');
 										console.log(parsedAdminData);
 										commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
-										console.log('commaSepAdminNames');
-										console.log(commaSepAdminNames);
 										if(ind < (numAdmins - 1))
 											commaSepAdminNames += ', ';
 									});
 								});
+								console.log('adding row with commaSepAdminNames');
+								console.log(commaSepAdminNames);
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
 							}
 							$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');

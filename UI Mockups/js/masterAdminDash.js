@@ -99,10 +99,11 @@ $(document).ready(function(){
 										var parsedAdminData = JSON.parse(adminData);
 										console.log('parsedAdminData');
 										console.log(parsedAdminData);
-										$("#adminNames-" + classID).append(parsedAdminData["fname"] + ' ' + parsedAdminData["lname"]);
-										if(ind < (numAdmins - 1)) {
-											console.log("we're adding a comma");
-											$("#adminNames-" + classID).append(', ');
+										$("#adminNames-" + classID).append(parsedAdminData["fname"] + ' ' + parsedAdminData["lname"] + ', ');
+										if(ind == (numAdmins - 1)) {
+											//trim off the last comma-space
+											var namesFromTable = $("#adminNames-" + classID).text();
+											$("#adminNames-" + classID).text(namesFromTable.substring(0, str.length - 2));											
 										}											
 									});
 								});

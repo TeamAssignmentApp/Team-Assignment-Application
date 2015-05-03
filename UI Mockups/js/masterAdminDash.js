@@ -213,6 +213,10 @@ $(document).ready(function(){
 	$("#skillClassDropdown").change(function() {
 		skillTable.columns(1).search($(this).val()).draw();
 	});
+
+	$("#saveProjReqPageChanges").click(function(){
+		editProjectRequestPage();
+	});
 });
 ////////////////////////////
 //END DOCUMENT READY

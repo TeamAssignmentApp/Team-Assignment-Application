@@ -249,7 +249,7 @@
 								<input class="form-control editClassInput" type="text" id="editClassEndDate" />
 							</div>
 							<p id="editClassError" style="display:none; text-color:red">All fields are required.</p>
-							<button class="btn btn-success" style="display:inline-block">Save Changes</button>
+							<button class="btn btn-success" style="display:inline-block" id="submitClassEditBtn">Save Changes</button>
 						</div>
 					</div>
 				</div>

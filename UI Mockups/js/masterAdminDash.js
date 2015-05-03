@@ -26,15 +26,15 @@ $(document).ready(function(){
 		$(classes).each(function(index,classID){
 			$.get("api/class.php", {id: classID, token:'9164fe76dd046345905767c3bc2ef54'}, function(classData){
 				var parsedClassData = JSON.parse(classData);
-				console.log("parsedClassData");
-				console.log(parsedClassData);
+				//console.log("parsedClassData");
+				//console.log(parsedClassData);
 				var allUsersAllProjects = parsedClassData["users"];
 				var thisClassProjects = parsedClassData["projects"];
-				console.log('allUsersAllProjects');
-				console.log(allUsersAllProjects);
+				//console.log('allUsersAllProjects');
+				//console.log(allUsersAllProjects);
 				if(allUsersAllProjects.length == 0) {
-					console.log('going to insert to the class table');
-					classArr.push(parsedClassData["name"]);
+					//console.log('going to insert to the class table');
+					//classArr.push(parsedClassData["name"]);
 					var convertedStartDate = convertDate(parsedClassData["startTime"]);
 					var convertedEndDate = convertDate(parsedClassData["endTime"]);
 					var prettyStartDate = dateToString(convertedStartDate);
@@ -67,14 +67,14 @@ $(document).ready(function(){
 				}
 				else {
 					$(allUsersAllProjects).each(function(index,user){
-						console.log('classArr');
-						console.log(classArr);
+						//console.log('classArr');
+						//console.log(classArr);
 						//prevent adding duplicate classes
 						if(classArr.indexOf(parsedClassData["name"]) == -1) {
-							console.log('going to insert to the class table');
+							//console.log('going to insert to the class table');
 							classArr.push(parsedClassData["name"]);
-							console.log("user");
-							console.log(user);
+							//console.log("user");
+							//console.log(user);
 							var convertedStartDate = convertDate(parsedClassData["startTime"]);
 							var convertedEndDate = convertDate(parsedClassData["endTime"]);
 							var prettyStartDate = dateToString(convertedStartDate);
@@ -106,8 +106,8 @@ $(document).ready(function(){
 						}	
 						$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
 							var parsedUserData = JSON.parse(userData);
-							console.log('parsedUserData');
-							console.log(parsedUserData);
+							//console.log('parsedUserData');
+							//console.log(parsedUserData);
 							var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
 							userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, deleteUserButton]).draw();
 						});
@@ -181,7 +181,7 @@ $(document).ready(function(){
 		else {
 			$(".requestPageInput").removeAttr("disabled");
 			var selectedClassID = $(this).val();
-			console.log(numPrefs);
+			//console.log(numPrefs);
 			var prefsObj = numPrefs[$("#reqPageSelect option:selected").text()];
 			$("#numTeammateReqs").val(prefsObj["numTeamPrefs"]);
 			$("#numProjects").val(prefsObj["numProjPrefs"]);
@@ -247,7 +247,7 @@ function dateToString(date) {
 //CLASS FUNCTIONS
 //save these for master admindash
 function addClass() {
-	console.log("creating new class");
+	//console.log("creating new class");
 	var error = false;
 	$(".newClassField").each(function(i, field) {
 		if($(this).val() == "")
@@ -365,6 +365,9 @@ function addProject() {
 				majorsAndNumbers[indexOfThisMajor]["amount"]++;
 			}
 		});
+
+		console.log('majorsAndNumbers');
+		console.log(majorsAndNumbers);
 
 		$.post("api/project.php", {
 			token: '9164fe76dd046345905767c3bc2ef54',

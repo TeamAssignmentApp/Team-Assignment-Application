@@ -274,7 +274,7 @@ function addUser() {
 			password: 'password', //temporary. on first login user has to change it
 			classId: newUserClassSelect,
 			majorId: newUserMajor,
-			isAdmin: false
+			isAdmin: 0
 		}, function(){
 			location.reload();
 		});

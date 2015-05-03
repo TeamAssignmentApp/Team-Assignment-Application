@@ -92,13 +92,10 @@ $(document).ready(function(){
 							else {
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, '<span id="adminNames-' + classID + '"></span>', actionButtons]).draw();
 								var numAdmins = parsedClassData["adminIds"].length;
-								console.log('we have admins');
 								$(parsedClassData["adminIds"]).each(function(ind, adminId) {
 									console.log('getting admin ' + adminId);
 									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 										var parsedAdminData = JSON.parse(adminData);
-										console.log('parsedAdminData');
-										console.log(parsedAdminData);
 										$("#adminNames-" + classID).append(parsedAdminData["fname"] + ' ' + parsedAdminData["lname"] + ', ');
 										if(ind == (numAdmins - 1)) {
 											//trim off the last comma-space
@@ -125,10 +122,19 @@ $(document).ready(function(){
 					});
 				}
 				$(thisClassProjects).each(function(index,proj){
+					var thisProjectMajors = proj["majors"];
+					var thisProjectNumMajors = thisProjectMajors.length;
+					var majorReqStr = "";
+					$(thisProejctMajors).each(function(majorInd,major){
+						majorReqStr += major["name"] + ": " + major["number"];
+						if(majorInd < (thisProjectNumMajors - 1)) {
+							majorReqStr += ', ';
+						}
+					});
 					var editProjectButton = '<a class="btn btn-info btn-sm editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>';
 					var deleteProjectButton = '<a class="btn btn-danger btn-sm" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
 					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
-					projectTable.row.add([proj["name"], proj["description"],"",proj["fileLink"],"", classID, projectActionButtons]).draw();
+					projectTable.row.add([proj["name"], proj["description"],proj["fileLink"],majorReqStr, classID, projectActionButtons]).draw();
 				});
 
 				$(thisClassSkills).each(function(index,skl){
@@ -217,14 +223,14 @@ $(document).ready(function(){
 	$("#editClassStartDate").datepicker("option", "dateFormat", "yy-mm-dd");
 	$("#editClassEndDate").datepicker("option", "dateFormat", "yy-mm-dd");
 
-	//userTable.columns(3).search(-1).draw();
+	userTable.columns(3).search(-1).draw();
 	projectTable.columns(5).search(-1).draw();
 	skillTable.columns(1).search(-1).draw();
 
 	//make it so that the class dropdowns will filter the user and project tables
-	/*$("#userClassDropdown").change(function() {
+	$("#userClassDropdown").change(function() {
 		userTable.columns(3).search($(this).val()).draw();
-	});*/
+	});
 	$("#projectClassDropdown").change(function() {
 		projectTable.columns(5).search($(this).val()).draw();
 	});

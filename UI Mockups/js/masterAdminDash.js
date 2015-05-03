@@ -4,10 +4,22 @@ var numPrefs = [];
 $(document).ready(function(){
 	//load the tables first
 	var classTable = $("#displayClasses").DataTable();
-	var userTable = $("#displayUsers").DataTable();
-	var projectTable = $("#displayProjects").DataTable();
+	var userTable = $("#displayUsers").DataTable({
+		"language" : {
+			"zeroRecords": "Please select a class from the dropdown above."
+		}
+	});
+	var projectTable = $("#displayProjects").DataTable({
+		"language" : {
+			"zeroRecords": "Please select a class from the dropdown above."
+		}
+	});
 	var adminTable = $("#displayAdmins").DataTable();
-	var skillTable = $("#displaySkills").DataTable();
+	var skillTable = $("#displaySkills").DataTable({
+		"language" : {
+			"zeroRecords": "Please select a class from the dropdown above."
+		}
+	});
 	$('#adminTabs a').click(function (e) {
 		e.preventDefault()
 		$(this).tab('show')

@@ -6,8 +6,6 @@
 ?>
 
 
-
-
 <!doctype html>
 <html>
 	<head>
@@ -15,6 +13,22 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/styles.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <script>
+        	// $(document).ready(function(){
+
+
+
+
+
+
+
+
+
+
+
+        	});
+        </script>
 	</head>
 	<body>
 		<div class="container">
@@ -32,15 +46,15 @@
 						<span class="input-group-addon">
 							New Password
 						</span>
-						<input class="form-control" type="password" name = "password"/>
+						<input class="form-control" type="password" id="password"/>
 					</div>
 					<div class="input-group" style="margin-bottom:10px">
 						<span class="input-group-addon">
 							Confirm Password
 						</span>
-						<input class="form-control" type="password" name = "password"/>
+						<input class="form-control" type="password" id="confirmPassword"/>
 					</div>
-					<button class="btn btn-primary" style="margin-bottom:10px" name="submit" type="submit">Submit New Password</button>
+					<a href="logout.php" class="btn btn-primary btn-sm" style="margin-bottom:10px" name="submit" type="submit">Submit New Password</button>
 				</div>
 			</form>
 			<div class="col-md-3"></div>

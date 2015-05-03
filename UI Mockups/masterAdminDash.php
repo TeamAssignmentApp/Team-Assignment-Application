@@ -436,7 +436,7 @@
 							<h4 class="modal-title" id="uploadCSVTitle">Uploading CSV File...</h4>
 						</div>
 						<div class="modal-body" id="uploadCSVBody">
-							<form action="../addUsersFromCSV.php" method="post" enctype="multipart/form-data">
+							<form action="addUsersFromCSV.php" method="post" enctype="multipart/form-data">
 								<input type="text" name="classID" id="classID" style="display:none" />
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Class</span>

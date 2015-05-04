@@ -551,7 +551,7 @@ function submitProjectEdit(idToEdit) {
 		var editProjectFileLink = 'N/A';
 		var majorsAndNumbers = [];
 
-		$(".editProjectMajorSelect").each(function(ind,majorSelec) {
+		$(".editProjectMajorSelect:visible").each(function(ind,majorSelec) {
 			var thisSelec = $(majorSelec).val();
 			var indexOfThisMajor = -1;
 			$.each(majorsAndNumbers, function(j, obj) {

@@ -257,7 +257,7 @@ $(document).ready(function(){
 		editRequestPage();
 	});
 
-	$("a[data-toggle='tab']").on('shown.bs.tab', function() {
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function() {
 		console.log('resizing');
 		classTable.columns.adjust();
 		userTable.columns.adjust();

@@ -367,7 +367,11 @@ function editUser(idToEdit) {
 		$("#editUserFirstname").val(thisUserFName);
 		$("#editUserLastName").val(thisUserLName);
 		$("#editUserEmail").val(thisUserEmail);
-		$("#editUserMajor").val(thisUserMajor);
+		
+		$("#editUserMajor option").each(function(i, opt{
+			if($(this).text() == thisUserMajor)
+				$(this).attr("selected","selected");
+		});
 	});
 	$("#editUserSubmit").click(function(){submitUserEdit(idToEdit)});
 }

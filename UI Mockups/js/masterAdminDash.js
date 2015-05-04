@@ -441,7 +441,7 @@ function editUser(idToEdit) {
 		var thisUserClasses = parsedUserData['classIds'];
 		var thisUserFName = parsedUserData['fname'];
 		var thisUserLName = parsedUserData['lname'];
-		var thisUserMajor = parsedUserData['major']['id'];
+		var thisUserMajor = parsedUserData['major'];
 		var thisUserEmail = parsedUserData['email'];
 
 		$(thisUserClasses).each(function(classInd, classId) {
@@ -450,7 +450,11 @@ function editUser(idToEdit) {
 		$("#editUserFirstname").val(thisUserFName);
 		$("#editUserLastName").val(thisUserLName);
 		$("#editUserEmail").val(thisUserEmail);
-		$("#editUserMajor").val(thisUserMajor);
+		
+		$("#editUserMajor option").each(function(i, opt{
+			if($(this).text() == thisUserMajor)
+				$(this).attr("selected","selected");
+		});
 	});
 	$("#editUserSubmit").click(function(){submitUserEdit(idToEdit)});
 }

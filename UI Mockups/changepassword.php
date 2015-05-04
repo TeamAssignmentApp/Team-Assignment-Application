@@ -26,4 +26,4 @@
 
 	    $query = mysqli_query($connection,"UPDATE User SET password = '$hashedPass' WHERE email = '$email'");
 	    mysqli_close($connection);*/
-?>
+	    ?>

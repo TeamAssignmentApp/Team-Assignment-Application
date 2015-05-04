@@ -1,19 +1,22 @@
 var numPrefs = [];
-
+var classTable;
+var userTable;
+var projectTable;
+var skillTable;
 
 $(document).ready(function(){
 	//load the tables first
-	var classTable = $("#displayClasses").DataTable({
+	classTable = $("#displayClasses").DataTable({
 		"scrollY":        "320px",
         "scrollCollapse": true,
         "paging":         false
 	});
-	var userTable = $("#displayUsers").DataTable({
+	userTable = $("#displayUsers").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		}
 	});
-	var projectTable = $("#displayProjects").DataTable({
+	projectTable = $("#displayProjects").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		},
@@ -21,8 +24,7 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false
 	});
-	//var adminTable = $("#displayAdmins").DataTable();
-	var skillTable = $("#displaySkills").DataTable({
+	skillTable = $("#displaySkills").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		},
@@ -133,7 +135,7 @@ $(document).ready(function(){
 						}	
 						$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
 							var parsedUserData = JSON.parse(userData);
-							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="editUser(' + user["id"] + ')">Edit</a>' +
+							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="editUser(' + user["id"] + ')">Edit</a>&nbsp;' +
 													'<a class="btn btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
 							userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, userActionBtns]).draw();
 						});
@@ -149,9 +151,11 @@ $(document).ready(function(){
 							majorReqStr += ', ';
 						}
 					});
-					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>';
-					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
-					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
+					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>&nbsp;';
+					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>&nbsp;';
+					var projAddUserButton = '<a class="btn btn-success btn-xs" onclick="addUserToProj(' + proj["id"] + ', ' + classID +')">Add User</a>&nbsp;';
+					var projDeleteUserButton = '<a class="btn btn-success btn-xs" onclick="removeUserFromProj(' + proj["id"] + ', ' + classID +')">Remove User</a>&nbsp;';
+					var projectActionButtons = editProjectButton + deleteProjectButton + projAddUserButton + projDeleteUserButton;
 					projectTable.row.add([proj["name"], proj["description"],proj["fileLink"],majorReqStr, classID, projectActionButtons]).draw();
 				});
 
@@ -206,6 +210,14 @@ $(document).ready(function(){
 		$("#editProjMajorForEachStudent").empty();
 	});
 
+	$("#projAddUserModal").on("hidden.bs.modal", function() {
+		$("#projAddUserSelect").empty();
+	});
+
+	$("#projRemoveUserModal").on("hidden.bs.modal", function() {
+		$("#projRemoveUserSelect").empty();
+	});
+
 	$("#reqPageSelect").change(function() {
 		if($(this).val() == "")
 			$(".requestPageInput").attr("disabled","disabled");
@@ -228,11 +240,18 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#editProjectNumStudents").change(function(){
+		$("#editProjMajorForEachStudent").empty();
+		for(var i = 0; i < $("#editProjectNumStudents").val(); i++){
+			$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
+		}
+	});
+
 	//initialize datepickers for class start dates and end dates
 	$("#newClassStartDate").datepicker();
 	$("#newClassEndDate").datepicker();
 
-	uuserTable.columns(3).search(-1,true,false).draw();
+	userTable.columns(3).search(-1,true,false).draw();
 	projectTable.columns(4).search(-1,true,false).draw();
 	skillTable.columns(1).search(-1,true,false).draw();
 
@@ -254,7 +273,8 @@ $(document).ready(function(){
 		editRequestPage();
 	});
 
-	$("a[data-toggle='tab']").on('shown.bs.tab', function() {
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function() {
+		console.log('resizing');
 		classTable.columns.adjust();
 		userTable.columns.adjust();
 		projectTable.columns.adjust();
@@ -353,6 +373,7 @@ function addUser() {
 		var newUserMajor = $("#newUserMajor").val();
 		var newUserEmail = $("#newUserEmail").val();
 		var newUserMajor = $("#newUserMajor").val();
+		console.log('newUserClassSelect ' + newUserClassSelect);
 		$.post("api/user.php", {
 			token:'9164fe76dd046345905767c3bc2ef54',
 			email: newUserEmail,
@@ -385,7 +406,7 @@ function editUser(idToEdit) {
 		$(thisUserClasses).each(function(classInd, classId) {
 			$("#editUserClassSelect option[value='" + classId + "']").prop("selected",true);
 		});
-		$("#editUserFirstname").val(thisUserFName);
+		$("#editUserFirstName").val(thisUserFName);
 		$("#editUserLastName").val(thisUserLName);
 		$("#editUserEmail").val(thisUserEmail);
 		
@@ -427,7 +448,7 @@ function submitUserEdit(idToEdit) {
 			},
 			success:function(){
 				location.reload();
-			});
+			}
 		});
 	}
 
@@ -541,7 +562,7 @@ function submitProjectEdit(idToEdit) {
 		var editProjectFileLink = 'N/A';
 		var majorsAndNumbers = [];
 
-		$(".editProjectMajorSelection").each(function(ind,majorSelec) {
+		/*$(".editProjectMajorSelect:visible").each(function(ind,majorSelec) {
 			var thisSelec = $(majorSelec).val();
 			var indexOfThisMajor = -1;
 			$.each(majorsAndNumbers, function(j, obj) {
@@ -556,7 +577,7 @@ function submitProjectEdit(idToEdit) {
 			else {
 				majorsAndNumbers[indexOfThisMajor]["amount"]++;
 			}
-		});
+		});*/
 
 		$.ajax({
 			url: 'api/project.php', 
@@ -567,8 +588,7 @@ function submitProjectEdit(idToEdit) {
 				name: editProjectName,
 				descrip: editProjectDescription,
 				file: editProjectFileLink,
-				classId: editProjectClassSelect,
-				majors: JSON.stringify(majorsAndNumbers)
+				classId: editProjectClassSelect
 			}, 
 			success: function(){
 				location.reload();
@@ -668,4 +688,36 @@ function runTeamAssignment(classid) {
 			location.reload();
 		});
 	}
+}
+
+function addUserToProj(projID, classID) {
+	$("#projAddUserModal").modal('show');
+	$.get("api/class.php", {token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
+		var parsedClassData = JSON.parse(classData);
+		var thisClassUsers = parsedClassData["users"];
+		$(thisClassUsers).each(function(i,usr) {
+			$("#projAddUserSelect").append('<option value="' + usr["id"] + '"">' + usr["fname"] + ' ' + usr["lname"] + '</option>');
+		});
+		$("#submitProjAddUser").click(function(){
+			$.post("addUserToProject.php", {projectID: projID, userID: $("#projAddUserSelect").val()}, function() {
+				location.reload();
+			});
+		});
+	});
+}
+
+function removeUserFromProj(projID, classID) {
+	$("#projRemoveUserModal").modal('show');
+	$.get("api/class.php", {token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
+		var parsedClassData = JSON.parse(classData);
+		var thisClassUsers = parsedClassData["users"];
+		$(thisClassUsers).each(function(i,usr) {
+			$("#projRemoveUserSelect").append('<option value="' + usr["id"] + '"">' + usr["fname"] + ' ' + usr["lname"] + '</option>');
+		});
+		$("#submitProjRemoveUser").click(function(){
+			$.post("removeUserFromProject.php", {projectID: projID, userID: $("#projRemoveUserSelect").val()}, function() {
+				location.reload();
+			});
+		});
+	});
 }

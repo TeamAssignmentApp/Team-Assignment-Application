@@ -53,7 +53,7 @@ else{
 	//cron job, get classIDs with current date.
 	if(!isset($_SERVER['SERVER_NAME']))
 	{
-	     $curDate = date("Y-m-d");
+	    $curDate = date("Y-m-d");
 		echo "date: " . $curDate;
 		$classQuery = mysql_query("SELECT classID FROM Class WHERE endTime = '$curDate'", $connection);
 		while ($row = mysql_fetch_array($classQuery)){
@@ -149,7 +149,7 @@ foreach ($classIDs AS $value){
 				unset($scoreArray[$userID]);
 				$numAssigned++;
 			}
-			else{ 
+			else{
 				//Project is full, set the score to maximum project preferences + 2 to prevent choosing this option in the next iteration.
 				$scoreArray[$userID][$projID] = $numPrefs + 2;
 			}

@@ -245,19 +245,6 @@
 								<span class="input-group-addon">Major</span>
 								<select class="form-control newUserInput studentMajorSelection" id="newUserMajor">
 									<option value="">--Please Select--</option>
-									<?php
-										$connection = mysql_connect("localhost", "root", "321Testing");
-										$db = mysql_select_db("TeamAssignmentApp", $connection);
-										$query = mysql_query("select Major.majorID, Major.majorName from Major", $connection);
-										while ($row = mysql_fetch_row($query)) {
-											$majorName = $row[1];
-											$majorID = $row[0];
-											?>
-											<option value = "<?php echo $majorID?>"><?php echo $majorName;?></option>
-											<?php
-										}
-										mysql_close($connection);
-									?>
 								</select>
 							</div>
 							<div class="input-group" style="margin-bottom:10px">
@@ -393,24 +380,24 @@
 							</div>
 							<label>Project Description</label><br/>
 							<textarea class="form-control" id="editProjectDescription" style="margin-bottom:9px"></textarea>
-							<div class="input-group" style="margin-bottom:10px">
+							<!--<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Number of Students</span>
 								<input type="number" min="2" max="10" value="2" id="editProjectNumStudents" class="form-control editProjectInput" />
 							</div>
-							<span id="editProjMajorForEachStudent"></span>
+							<span id="editProjMajorForEachStudent"></span>-->
 							<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
 							<br/>
 							<p id="editProjectError" style="display:none; color:red">All fields are required.</p>
 							<button class="btn btn-success" style="display:inline-block" id="submitProjectEditBtn">Submit</button>
 							&nbsp;&nbsp;
-							<div id="editStudentMajorTemplate" style="display:none">
+							<!--<div id="editStudentMajorTemplate" style="display:none">
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
 									<select class="form-control editProjectInput studentMajorSelection editProjectMajorSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>
-							</div>
+							</div>-->
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
@@ -465,6 +452,44 @@
 								<p id="uploadCSVError" style="display:none; color:red">All fields are required.</p>
 								<input type="submit" class="btn btn-success" style="display:inline-block">Submit</input>
 							</form>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+			<div class="modal fade" id="projAddUserModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="uploadCSVTitle">Adding User To Project...</h4>
+						</div>
+						<div class="modal-body" id="projAddUserBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student</span>
+								<select class="form-control" id="projAddUserSelect"></select>
+							</div>
+							<br/>
+							<a class="btn btn-success" style="display:inline-block" id="submitProjAddUser">Add</a>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+			<div class="modal fade" id="projRemoveUserModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="uploadCSVTitle">Removing User From Project...</h4>
+						</div>
+						<div class="modal-body" id="projRemoveUserBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student</span>
+								<select class="form-control" id="projRemoveUserSelect"></select>
+							</div>
+							<br/>
+							<a class="btn btn-danger" style="display:inline-block" id="submitProjRemoveUser">Remove</a>
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->

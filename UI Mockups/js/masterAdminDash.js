@@ -90,7 +90,7 @@ $(document).ready(function(){
 							$(parsedClassData["adminIds"]).each(function(ind, adminId) {
 								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 									var parsedAdminData = JSON.parse(adminData);
-									var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + adminId + ')">Edit</a>' +
+									var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + adminId + ')">Edit</a>&nbsp;' +
 															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + adminId + ')">Delete</a>';
 									console.log('going to add a row to admin table');
 									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
@@ -136,7 +136,7 @@ $(document).ready(function(){
 									console.log('getting admin ' + adminId);
 									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 										var parsedAdminData = JSON.parse(adminData);
-										var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + adminId + ')">Edit</a>' +
+										var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + adminId + ')">Edit</a>&nbsp;' +
 															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + adminId + ')">Delete</a>';
 									console.log('going to add a row to admin table');
 									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
@@ -158,7 +158,7 @@ $(document).ready(function(){
 						}	
 						$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
 							var parsedUserData = JSON.parse(userData);
-							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="editUser(' + user["userID"] + ')">Edit</a>' +
+							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="editUser(' + user["userID"] + ')">Edit</a>&nbsp;' +
 													'<a class="btn btn-danger btn-sm" onclick="deleteUser(' + user["userID"] + ')">Delete</a>';
 							userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, userActionBtns]).draw();
 						});
@@ -174,9 +174,11 @@ $(document).ready(function(){
 							majorReqStr += ', ';
 						}
 					});
-					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>';
-					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
-					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
+					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>&nbsp;';
+					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>&nbsp;';
+					var projAddUserButton = '<a class="btn btn-success btn-xs" onclick="addUserToProj(' + proj["id"] + ', ' + classID +')">Add User</a>&nbsp;';
+					var projDeleteUserButton = '<a class="btn btn-success btn-xs" onclick="removeUserFromProj(' + proj["id"] + ', ' + classID +')">Remove User</a>&nbsp;';
+					var projectActionButtons = editProjectButton + deleteProjectButton + projAddUserButton + projDeleteUserButton;
 					projectTable.row.add([proj["name"], proj["description"],proj["fileLink"],majorReqStr, classID, projectActionButtons]).draw();
 				});
 
@@ -237,6 +239,14 @@ $(document).ready(function(){
 		$("#editProjMajorForEachStudent").empty();
 	});
 
+	$("#projAddUserModal").on("hidden.bs.modal", function() {
+		$("#projAddUserSelect").empty();
+	});
+
+	$("#projRemoveUserModal").on("hidden.bs.modal", function() {
+		$("#projRemoveUserSelect").empty();
+	});
+
 	$("#reqPageSelect").change(function() {
 		if($(this).val() == "")
 			$(".requestPageInput").attr("disabled","disabled");
@@ -256,6 +266,12 @@ $(document).ready(function(){
 		$("#majorForEachStudent").empty();
 		for(var i = 0; i < $("#newProjectNumStudents").val(); i++){
 			$("#majorForEachStudent").append($("#newStudentMajorTemplate").html());
+		}
+	});
+	$("#editProjectNumStudents").change(function(){
+		$("#editProjMajorForEachStudent").empty();
+		for(var i = 0; i < $("#editProjectNumStudents").val(); i++){
+			$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
 		}
 	});
 
@@ -484,7 +500,7 @@ function editUser(idToEdit) {
 		$(thisUserClasses).each(function(classInd, classId) {
 			$("#editUserClassSelect option[value='" + classId + "']").prop("selected",true);
 		});
-		$("#editUserFirstname").val(thisUserFName);
+		$("#editUserFirstName").val(thisUserFName);
 		$("#editUserLastName").val(thisUserLName);
 		$("#editUserEmail").val(thisUserEmail);
 		
@@ -641,22 +657,28 @@ function submitProjectEdit(idToEdit) {
 		var editProjectFileLink = 'N/A';
 		var majorsAndNumbers = [];
 
-		$(".editProjectMajorSelection").each(function(ind,majorSelec) {
+		/*
+		$(".editProjectMajorSelect:visible").each(function(ind,majorSelec) {
 			var thisSelec = $(majorSelec).val();
+			console.log('majorSelec val ' + thisSelec);
 			var indexOfThisMajor = -1;
 			$.each(majorsAndNumbers, function(j, obj) {
 				if (obj["majorId"] == thisSelec) {
 					indexOfThisMajor = j;
 				}
 			});
+			console.log('found in majorsandnumbers at ' + indexOfThisMajor);
 
 			if(indexOfThisMajor == -1) {
 				majorsAndNumbers.push({"majorId":thisSelec, "amount":1});
+				console.log('pushing to array with id ' + thisSelec);
 			}
 			else {
 				majorsAndNumbers[indexOfThisMajor]["amount"]++;
+				console.log('incrementing found major');
 			}
 		});
+*/
 
 		$.ajax({
 			url: 'api/project.php', 
@@ -667,8 +689,7 @@ function submitProjectEdit(idToEdit) {
 				name: editProjectName,
 				descrip: editProjectDescription,
 				file: editProjectFileLink,
-				classId: editProjectClassSelect,
-				majors: JSON.stringify(majorsAndNumbers)
+				classId: editProjectClassSelect
 			}, 
 			success: function(){
 				location.reload();
@@ -871,4 +892,36 @@ function runTeamAssignment(classid) {
 			location.reload();
 		});
 	}
+}
+
+function addUserToProj(projID, classID) {
+	$("#projAddUserModal").modal('show');
+	$.get("api/class.php", {token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
+		var parsedClassData = JSON.parse(classData);
+		var thisClassUsers = parsedClassData["users"];
+		$(thisClassUsers).each(function(i,usr) {
+			$("#projAddUserSelect").append('<option value="' + usr["id"] + '"">' + usr["fname"] + ' ' + usr["lname"] + '</option>');
+		});
+		$("#submitProjAddUser").click(function(){
+			$.post("addUserToProject.php", {projectID: projID, userID: $("#projAddUserSelect").val()}, function() {
+				location.reload();
+			});
+		});
+	});
+}
+
+function removeUserFromProj(projID, classID) {
+	$("#projRemoveUserModal").modal('show');
+	$.get("api/class.php", {token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
+		var parsedClassData = JSON.parse(classData);
+		var thisClassUsers = parsedClassData["users"];
+		$(thisClassUsers).each(function(i,usr) {
+			$("#projRemoveUserSelect").append('<option value="' + usr["id"] + '"">' + usr["fname"] + ' ' + usr["lname"] + '</option>');
+		});
+		$("#submitProjRemoveUser").click(function(){
+			$.post("removeUserFromProject.php", {projectID: projID, userID: $("#projRemoveUserSelect").val()}, function() {
+				location.reload();
+			});
+		});
+	});
 }

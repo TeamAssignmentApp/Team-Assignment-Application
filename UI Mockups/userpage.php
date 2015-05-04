@@ -22,6 +22,14 @@
 			if (mysql_num_rows($query) < 1){
 				header("location: selectClass.php");
 			}
+			$datequery = mysql_query("SELECT endTime FROM Class WHERE classID = '$class'", $connection);
+			$row = mysql_fetch_row($dateQuery);
+			$endtime = $row[0];
+			$curDate = date("Y-m-d");
+			if ($curDate > $endtime){
+				header("location: ViewResults.php");
+			}
+			mysql_close($connection);
 		}
 	}
 	$userID = $_SESSION['login_user'];

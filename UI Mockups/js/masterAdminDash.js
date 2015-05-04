@@ -74,8 +74,8 @@ $(document).ready(function(){
 							$(parsedClassData["adminIds"]).each(function(ind, adminId) {
 								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 									var parsedAdminData = JSON.parse(adminData);
-									var adminActionButtons = '<a class="btn btn-primary" onclick="editAdmin(' + parsedAdminData["id"] + ')">Edit</a>'
-															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + parsedAdminData["id"] + ')">Delete</a>';
+									var adminActionButtons = '<a class="btn btn-primary" onclick="editAdmin(' + parsedAdminData["userID"] + ')">Edit</a>'
+															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + parsedAdminData["userID"] + ')">Delete</a>';
 									console.log('going to add a row to admin table');
 									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
 									commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
@@ -142,8 +142,8 @@ $(document).ready(function(){
 						}	
 						$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
 							var parsedUserData = JSON.parse(userData);
-							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="editUser(' + user["id"] + ')">Edit</a>' +
-													'<a class="btn btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
+							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="editUser(' + user["userID"] + ')">Edit</a>' +
+													'<a class="btn btn-danger btn-sm" onclick="deleteUser(' + user["userID"] + ')">Delete</a>';
 							userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, userActionBtns]).draw();
 						});
 					});

@@ -776,7 +776,7 @@ function addAdmin() {
 			lname: newAdminLastName,
 			password: 'password', //temporary. on first login user has to change it
 			classId: newAdminClassSelect,
-			majorId: 1,
+			majorId: 0,
 			isAdmin: 1
 		}, function(){
 			location.reload();

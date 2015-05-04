@@ -13,8 +13,15 @@
 		<link rel="stylesheet" href="css/styles.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script>
+			function getParameterByName(name) {
+			    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			        results = regex.exec(location.search);
+			    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+
 			$(document).ready(function(){
-				$.get("api/class.php", {id:1, token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
+				$.get("api/class.php", {id:getParameterByName('classID'), token:'9164fe76dd046345905767c3bc2ef54'}, function(data){
 					console.log(data);
 					var parsed = JSON.parse(data);
 					var projects = parsed["projects"];

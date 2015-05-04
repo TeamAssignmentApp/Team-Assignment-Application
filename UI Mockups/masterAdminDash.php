@@ -44,7 +44,7 @@
 							<a href="#classes" aria-controls="classes" role="tab" data-toggle="tab">Classes</a>
 						</li>
 						<li role="presentation">
-							<a href="#users" aria-controls="users" role="tab" data-toggle="tab" onclick="userTable.fnAdjustColumnSizing()">Users</a>
+							<a href="#users" aria-controls="users" role="tab" data-toggle="tab" onclick="userTable.columns.adjust()">Users</a>
 						</li>
 						<li role="presentation">
 							<a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">Projects</a>

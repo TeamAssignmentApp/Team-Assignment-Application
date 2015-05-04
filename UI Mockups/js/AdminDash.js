@@ -24,7 +24,6 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false
 	});
-	//var adminTable = $("#displayAdmins").DataTable();
 	skillTable = $("#displaySkills").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
@@ -235,7 +234,7 @@ $(document).ready(function(){
 	$("#newClassStartDate").datepicker();
 	$("#newClassEndDate").datepicker();
 
-	uuserTable.columns(3).search(-1,true,false).draw();
+	userTable.columns(3).search(-1,true,false).draw();
 	projectTable.columns(4).search(-1,true,false).draw();
 	skillTable.columns(1).search(-1,true,false).draw();
 

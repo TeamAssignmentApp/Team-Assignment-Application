@@ -487,12 +487,13 @@ function submitUserEdit(idToEdit) {
 			type: 'PUT', 
 			data: {
 				token:'9164fe76dd046345905767c3bc2ef54',
-				email: editUserEmail,
+				/*email: editUserEmail,
 				fname: editUserFirstName,
 				lname: editUserLastName,
 				classes: editUserClassSelect,
-				majorId: editUserMajor,
-				id: idToEdit
+				majorId: editUserMajor,*/
+				id: idToEdit,
+				isAdmin:0
 			},
 			success:function(){
 				console.log('got to the success function');
@@ -773,11 +774,12 @@ function submitAdminEdit(idToEdit) {
 			type: 'PUT',
 			data: {
 				token:'9164fe76dd046345905767c3bc2ef54',
-				email: editAdminEmail,
+				/*email: editAdminEmail,
 				fname: editAdminFirstName,
-				lname: editAdminLastName,
+				lname: editAdminLastName,*/
 				id: idToEdit,
-				classes: editAdminClassSelect
+				classes: editAdminClassSelect,
+				isAdmin: 1
 			},
 			success:  function(){
 				location.reload();

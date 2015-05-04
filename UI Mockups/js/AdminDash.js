@@ -401,7 +401,8 @@ function submitUserEdit(idToEdit) {
 				fname: editUserFirstName,
 				lname: editUserLastName,
 				majorId: editUserMajor,*/
-				id: idToEdit
+				id: idToEdit,
+				isAdmin:0
 			},
 			success:function(){
 				location.reload();

@@ -258,6 +258,12 @@ $(document).ready(function(){
 			$("#majorForEachStudent").append($("#newStudentMajorTemplate").html());
 		}
 	});
+	$("#editProjectNumStudents").change(function(){
+		$("#majorForEachStudent").empty();
+		for(var i = 0; i < $("#newProjectNumStudents").val(); i++){
+			$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
+		}
+	});
 
 	//initialize datepickers for class start dates and end dates
 	$("#newClassStartDate").datepicker();

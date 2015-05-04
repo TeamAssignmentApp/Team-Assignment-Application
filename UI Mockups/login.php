@@ -41,7 +41,7 @@
 					<!-- <a href="logout.php" class="btn btn-primary btn-sm" style="margin-bottom:10px" name="submit" type="submit">Forgot your</a> -->
 
 
-					<a href="changepassword.php">Forgot your password?</a>
+					<a href="changepasswordUI.php">Forgot your password?</a>
 				</div>
 			</form>
 			<div class="col-md-3"></div>

@@ -469,7 +469,6 @@ function submitUserEdit(idToEdit) {
 		var editUserLastName = $("#editUserLastName").val();
 		var editUserMajor = $("#editUserMajor").val();
 		var editUserEmail = $("#editUserEmail").val();
-		console.log('got all values');
 		$.ajax({
 			url: "api/user.php",
 			type: 'PUT', 
@@ -478,12 +477,12 @@ function submitUserEdit(idToEdit) {
 				email: newUserEmail,
 				fname: newUserFirstName,
 				lname: newUserLastName,
-				password: 'password', //temporary. on first login user has to change it
 				classes: editUserClassSelect,
 				majorId: newUserMajor,
 				id: idToEdit
 			},
 			success:function(){
+				console.log('got to the success function');
 				location.reload();
 			}
 		});

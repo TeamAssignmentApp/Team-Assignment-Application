@@ -649,18 +649,22 @@ function submitProjectEdit(idToEdit) {
 
 		$(".editProjectMajorSelect").each(function(ind,majorSelec) {
 			var thisSelec = $(majorSelec).val();
+			console.log('majorSelec val ' + thisSelec);
 			var indexOfThisMajor = -1;
 			$.each(majorsAndNumbers, function(j, obj) {
 				if (obj["majorId"] == thisSelec) {
 					indexOfThisMajor = j;
 				}
 			});
+			console.log('found in majorsandnumbers at ' + indexOfThisMajor);
 
 			if(indexOfThisMajor == -1) {
 				majorsAndNumbers.push({"majorId":thisSelec, "amount":1});
+				console.log('pushing to array with id ' + thisSelec);
 			}
 			else {
 				majorsAndNumbers[indexOfThisMajor]["amount"]++;
+				console.log('incrementing found major');
 			}
 		});
 

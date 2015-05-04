@@ -769,6 +769,8 @@ function submitAdminEdit(idToEdit) {
 		var editAdminFirstName = $("#editAdminFirstName").val();
 		var editAdminLastName = $("#editAdminLastName").val();
 		var editAdminEmail = $("#editAdminEmail").val();
+
+		console.log('class ids: ' + editAdminClassSelect);
 		$.ajax({
 			url: "api/user.php", 
 			type: 'PUT',

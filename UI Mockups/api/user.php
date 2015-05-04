@@ -234,6 +234,10 @@
 			throwError(401, "API Token is not valid.");
 			return;
 		}
+		$isAdmin = $put['isAdmin'];
+		if($isAdmin == null) {
+			throwError(500, "isAdmin field is missing");
+		}
 		
 		$userId = $put["id"];
 		if($userId == null) {
@@ -279,10 +283,18 @@
 		$classIdArrayStr = $put["classes"];
 		if($classIdArrayStr != null) {
 			$classIdArr = explode(',', $classIdArrayStr);
-			if(!updateUserClasses($userId, $classIdArr)) {
-				return;
+			if($isAdmin == 0) {
+				if(!updateUserClasses($userId, $classIdArr)) {
+					return;
+				} else {
+					updateLastUpdateTime($userId);
+				}
 			} else {
-				updateLastUpdateTime($userId);
+				if(!updateAdminClasses($userId, $classIdArr)) {
+					return;
+				} else {
+					updateLastUpdateTime($userId);
+				}
 			}
 		}
 	}
@@ -430,6 +442,35 @@
 		return true;
 	}
 	
+	function updateAdminClasses($userId, $classIdArr) {
+		global $conn;
+		$sql = "DELETE from AdminOf where userID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $userId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+
+		$sql = "INSERT into AdminOf VALUES ";
+		$paramStr = "";
+		$args = array();
+		for($i = 0; $i < sizeof($classIdArr); $i++) {
+			$sql .= "(?,?),";
+			$args[] = intval($userId);
+			$args[] = intval($classIdArr[$i]);
+			$paramStr .= "ii";
+		}
+		$sql = substr($sql, 0, -1);
+		if($stmt = $conn->prepare($sql)) {		
+			$stmt->bind_param($paramStr, ...$args);
+			$stmt->execute();
+			if($stmt->affected_rows == 0) {
+				throwError(500, "The admin class preferences could not be altered");
+				return false;
+			}
+		}
+		return true;
+	}
 	function handleDelete($delete) {
 		global $conn, $API_TOKEN;
 		$token = '' . $delete["token"];

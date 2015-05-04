@@ -441,7 +441,7 @@ function editUser(idToEdit) {
 		var thisUserClasses = parsedUserData['classIds'];
 		var thisUserFName = parsedUserData['fname'];
 		var thisUserLName = parsedUserData['lname'];
-		var thisUserMajor = parsedUserData['major'];
+		var thisUserMajor = parsedUserData['major']['name'];
 		var thisUserEmail = parsedUserData['email'];
 
 		$(thisUserClasses).each(function(classInd, classId) {
@@ -462,9 +462,12 @@ function submitUserEdit(idToEdit) {
 			error = true;
 	});
 
+	console.log('done error checking');
+
 	if(!error) {
 		$("#editUserError").hide();
 		var editUserClassSelect = $("#editUserClassSelect").val();
+		console.log('class select val is ' + editUserClassSelect);
 		var commaSepUserClasses = '';
 		$(editUserClassSelect).each(function(i,selectVal) {
 			commaSepUserClasses += selectVal + ',';

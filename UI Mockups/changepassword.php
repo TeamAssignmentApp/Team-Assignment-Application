@@ -1,15 +1,19 @@
 <?php
-	if(!isset($_POST['email'])){
+	/*if(!isset($_POST['email'])){
 		header("location: login.php");
-	}
+	}*/
 		$DBServer = 'localhost';
 	    $DBUser   = 'root';
 	    $DBPass   = '321Testing';
 	    $DBName   = 'TeamAssignmentApp';
 
-	    $email = $_POST['email'];
+	    /*$email = $_POST['email'];
 	    $password = $_POST['password'];
-	    $checkPassword = $_POST['checkPassword'];
+	    $checkPassword = $_POST['checkPassword'];*/
+
+	    $email = 'jsmith@smu.edu';
+	    $password = 'newpass';
+	    $checkPassword = 'newpass';
 
 	    $connection = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 

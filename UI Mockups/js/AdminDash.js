@@ -1,19 +1,22 @@
 var numPrefs = [];
-
+var classTable;
+var userTable;
+var projectTable;
+var skillTable;
 
 $(document).ready(function(){
 	//load the tables first
-	var classTable = $("#displayClasses").DataTable({
+	classTable = $("#displayClasses").DataTable({
 		"scrollY":        "320px",
         "scrollCollapse": true,
         "paging":         false
 	});
-	var userTable = $("#displayUsers").DataTable({
+	userTable = $("#displayUsers").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		}
 	});
-	var projectTable = $("#displayProjects").DataTable({
+	projectTable = $("#displayProjects").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		},
@@ -22,7 +25,7 @@ $(document).ready(function(){
         "paging":         false
 	});
 	//var adminTable = $("#displayAdmins").DataTable();
-	var skillTable = $("#displaySkills").DataTable({
+	skillTable = $("#displaySkills").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		},

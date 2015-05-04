@@ -350,6 +350,69 @@ function addUser() {
 	}
 }
 
+function editUser(idToEdit) {
+	$.get('api/user.php', {token: '9164fe76dd046345905767c3bc2ef54', id: idToEdit}, function(userData) {
+		var parsedUserData = JSON.parse(userData);
+		var thisUserClasses = parsedUserData['classIds'];
+		var thisUserFName = parsedUserData['fname'];
+		var thisUserLName = parsedUserData['lname'];
+		var thisUserMajor = parsedUserData['major'];
+		var thisUserEmail = parsedUserData['email'];
+
+		$(thisUserClasses).each(function(classInd, classId) {
+			$("#editUserClassSelect option[value='" + classId + "']").prop("selected",true);
+		});
+		$("#editUserFirstname").val(thisUserFName);
+		$("#editUserLastName").val(thisUserLName);
+		$("#editUserEmail").val(thisUserEmail);
+		$("#editUserMajor").val(thisUserMajor);
+	});
+	$("#editUserSubmit").click(function(){submitUserEdit(idToEdit)});
+}
+
+function submitUserEdit(idToEdit) {
+	var error = false;
+	$(".editUserInput").each(function(i, input) {
+		if($(this).val() == "")
+			error = true;
+	});
+
+	if(!error) {
+		$("#editUserError").hide();
+		var editUserClassSelect = $("#editUserClassSelect").val();
+		var commaSepUserClasses = '';
+		$(editUserClassSelect).each(function(i,selectVal) {
+			commaSepUserClasses += selectVal + ',';
+		});
+		var editUserFirstName = $("#editUserFirstName").val();
+		var editUserLastName = $("#editUserLastName").val();
+		var editUserMajor = $("#editUserMajor").val();
+		var editUserEmail = $("#editUserEmail").val();
+		var editUserMajor = $("#editUserMajor").val();
+		$.ajax({
+			url: "api/user.php",
+			type: 'PUT', 
+			data: {
+				token:'9164fe76dd046345905767c3bc2ef54',
+				email: newUserEmail,
+				fname: newUserFirstName,
+				lname: newUserLastName,
+				password: 'password', //temporary. on first login user has to change it
+				classes: commaSepUserClasses,
+				majorId: newUserMajor,
+				id: idToEdit
+			},
+			success:function(){
+				location.reload();
+			});
+		});
+	}
+
+	else {
+		$("#editUserError").show();
+	}
+}
+
 function deleteUser(idToDelete) {
 	if(confirm('Are you sure you would like to delete this user?')) {
 		$.ajax({
@@ -547,6 +610,7 @@ function deleteSkill(idToDelete) {
 	}
 }
 
+//REQUEST PAGE FUNCTION
 function editRequestPage() {
 	var reqPageSelect = $("#reqPageSelect").val();
 	var numTeamReqs = $("#numTeammateReqs").val();
@@ -576,5 +640,9 @@ function addUsersFromCSV(classid) {
 
 //TEAM ASSIGNMENT FUNCTION
 function runTeamAssignment(classid) {
-
+	if(confirm("Are you sure you would like to run team assignment on this class?")) {
+		$.post('runAssignmentManually.php', {classID: classid}, function() {
+			location.reload();
+		});
+	}
 }

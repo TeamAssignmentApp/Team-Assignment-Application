@@ -298,6 +298,48 @@
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
 
+			<!--modal display for editing users-->
+			<div class="modal fade" id="editUserModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="editUserTitle">Editing User...</h4>
+						</div>
+						<div class="modal-body" id="editUserBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Class</span>
+								<select class="form-control editUserInput classDropdown" multiple id="editUserClassSelect">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">First Name</span>
+								<input class="form-control editUserInput" id="editUserFirstName" type="text" />
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Last Name</span>
+								<input class="form-control editUserInput" id="editUserLastName" type="text" />
+							</div>
+
+
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Major</span>
+								<select class="form-control editUserInput studentMajorSelection" id="editUserMajor">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Email Address</span>
+								<input class="form-control editUserInput" id="editUserEmail" type="text" />
+							</div>
+							<p id="newUserError" style="display:none; color:red">All fields are required.</p>
+							<button class="btn btn-success" style="display:inline-block" id="editUserSubmit">Save Changes</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
 			<!--modal display for projects-->
 			<div class="modal fade" id="addProjectModal">
 				<div class="modal-dialog">
@@ -395,6 +437,75 @@
 									</select>
 								</div>
 							</div>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+			<!--modal display for adding users-->
+			<div class="modal fade" id="addAdminModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="addAdminTitle">Adding Admin...</h4>
+						</div>
+						<div class="modal-body" id="addAdminBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Class</span>
+								<select class="form-control newAdminInput classDropdown" id="newAdminClassSelect">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">First Name</span>
+								<input class="form-control newAdminInput" id="newAdminFirstName" type="text" />
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Last Name</span>
+								<input class="form-control newAdminInput" id="newAdminLastName" type="text" />
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Email Address</span>
+								<input class="form-control newAdminInput" id="newAdminEmail" type="text" />
+							</div>
+							<p id="newAdminError" style="display:none; color:red">All fields are required.</p>
+							<button class="btn btn-success" style="display:inline-block" id="newAdminSubmit" onclick="addAdmin()">Create Administrator</button>
+							&nbsp;&nbsp;
+							<button class="btn btn-danger" style="display:inline-block" id="newAdminReset" onclick="$('.newAdminInput').val('')">Reset Form</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+			<div class="modal fade" id="editAdminModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="editAdminTitle">Adding Admin...</h4>
+						</div>
+						<div class="modal-body" id="editAdminBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Class</span>
+								<select class="form-control editAdminInput classDropdown" multiple id="editAdminClassSelect">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">First Name</span>
+								<input class="form-control editAdminInput" id="editAdminFirstName" type="text" />
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Last Name</span>
+								<input class="form-control editAdminInput" id="editAdminLastName" type="text" />
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Email Address</span>
+								<input class="form-control editAdminInput" id="editAdminEmail" type="text" />
+							</div>
+							<p id="editAdminError" style="display:none; color:red">All fields are required.</p>
+							<button class="btn btn-success" style="display:inline-block" id="editAdminSubmit">Save Changes</button>
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->

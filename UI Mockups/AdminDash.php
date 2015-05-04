@@ -273,6 +273,48 @@
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
 
+			<!--modal display for editing users-->
+			<div class="modal fade" id="editUserModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="editUserTitle">Editing User...</h4>
+						</div>
+						<div class="modal-body" id="editUserBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Class</span>
+								<select class="form-control editUserInput classDropdown" multiple id="editUserClassSelect">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">First Name</span>
+								<input class="form-control editUserInput" id="editUserFirstName" type="text" />
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Last Name</span>
+								<input class="form-control editUserInput" id="editUserLastName" type="text" />
+							</div>
+
+
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Major</span>
+								<select class="form-control editUserInput studentMajorSelection" id="editUserMajor">
+									<option value="">--Please Select--</option>
+								</select>
+							</div>
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Email Address</span>
+								<input class="form-control editUserInput" id="editUserEmail" type="text" />
+							</div>
+							<p id="newUserError" style="display:none; color:red">All fields are required.</p>
+							<button class="btn btn-success" style="display:inline-block" id="editUserSubmit">Save Changes</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
 			<!--modal display for projects-->
 			<div class="modal fade" id="addProjectModal">
 				<div class="modal-dialog">

@@ -261,7 +261,9 @@ $(document).ready(function(){
 		skillTable.columns.adjust();
 	});
 
-	classTable.columns.adjust();
+	setTimeout(function(){
+		classTable.columns.adjust();
+	},2000);
 });
 ////////////////////////////
 //END DOCUMENT READY

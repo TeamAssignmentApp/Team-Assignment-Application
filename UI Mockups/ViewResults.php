@@ -36,6 +36,18 @@
 									'<p>' + value["description"] + '</p>' +
 									'<h3>Team Members</h3>' +
 									'<ul class="list-group">';
+							$.get('api/project.php', {id: value["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(projData) {
+								var parsedProjData = JSON.parse(projData);
+								var projStudents = parsedProjData["users"];
+								if(parsedProjData.length == 0) {
+									strToAdd += '<li class="list-group-item">None</li>';
+								}
+								else {
+									$(projStudents).each(function(i,projStudent) {
+										strToAdd += '<li class="list-group-item">' + projStudent["fname"] + ' ' + projStudent["lname"] + ' (' + projStudent["email"] + ')</li>';
+									});
+								}
+							});
 							/*$(value["majors"]).each(function(index,value){
 								strToAdd += '<li class="list-group-item">' + value["number"] + ' ' + value["name"] + '</li>';
 							});*/

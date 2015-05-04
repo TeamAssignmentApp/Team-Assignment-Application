@@ -74,6 +74,9 @@ $(document).ready(function(){
 							$(parsedClassData["adminIds"]).each(function(ind, adminId) {
 								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 									var parsedAdminData = JSON.parse(adminData);
+									var adminActionButtons = '<a class="btn btn-primary" onclick="editAdmin(' + parsedAdminData["id"] + ')">Edit</a>'
+															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + parsedAdminData["id"] + ')">Delete</a>';
+									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
 									commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
 									if(ind < (numAdmins - 1))
 										commaSepAdminNames += ', ';

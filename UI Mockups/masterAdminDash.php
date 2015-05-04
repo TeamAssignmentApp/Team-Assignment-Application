@@ -140,9 +140,8 @@
 								<thead>
 									<tr>
 										<th>Name</th>
-										<th>Major</th>
 										<th>Email</th>
-										<th>Classes</th>
+										<th>Class</th>
 										<th>Delete</th>
 									</tr>
 								</thead>

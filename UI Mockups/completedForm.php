@@ -12,7 +12,6 @@
 	else if (!isset($_POST['classID'])){
 		header("location: selectClass.php");
 	}
-	$userInfo = fgetcsv($file);
 
 	$DBServer = 'localhost';
 	$DBUser   = 'root';
@@ -31,6 +30,14 @@
 
 	// Set leadership preference
 	//SUBJET TO CHANGE WITH DB
+
+	//Clear previous entries
+	mysqli_query($conn,"DELETE FROM WantsProject WHERE userID = '$userID'");
+	mysqli_query($conn,"DELETE FROM WantsTeammate WHERE userID = '$userID'");
+	mysqli_query($conn,"DELETE FROM HasSkill WHERE userID = '$userID'");
+	$date = date('Y-m-d H:i:s');
+	mysqli_query($conn,"UPDATE User SET submissionTime = '$date' WHERE userID = '$userID'");
+
 	if (isset($_POST['isLeader'])){
 		mysqli_query($conn,"UPDATE InClass SET wantsToLead = 1 WHERE userID = '$userID' AND classID = '$classID'");
 	}
@@ -39,18 +46,16 @@
 	}
 	for ($i = 1; $i < $projPrefs; $i++){
 		$projID = $_POST["ProjectPreference".$i];
-		mysqli_query($conn,"INSERT INTO WantsProject (userID, projectID, rank) VALUES ('$userID', '$projID', '$i')");
+		if (!empty($skillID)){
+			mysqli_query($conn,"INSERT INTO WantsProject (userID, projectID, rank) VALUES ('$userID', '$projID', '$i')");
+		}
 
 	}
 	for ($i = 1; $i < $teamPrefs; $i++){
 		$teammateID = $_POST["TeammatePreference".$i];
-		mysqli_query($conn,"INSERT INTO WantsTeammate (userID, teammateID, rank) VALUES ('$userID', '$teammateID', '$i')");
-
-	}
-	for ($i = 1; $i < $teamPrefs; $i++){
-		$teammateID = $_POST["TeammatePreference".$i];
-		mysqli_query($conn,"INSERT INTO WantsTeammate (userID, teammateID, rank) VALUES ('$userID', '$teammateID', '$i')");
-
+		if (!empty($teammateID)){
+			mysqli_query($conn,"INSERT INTO WantsTeammate (userID, teammateID, rank) VALUES ('$userID', '$teammateID', '$i')");
+		}
 	}
 	$i = 0;
 	while (isset($_POST["Skill".$i])){

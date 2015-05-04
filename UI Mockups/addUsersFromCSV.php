@@ -9,12 +9,15 @@
 	else if (!isset($_POST['classID'])){
 		header("location: AdminDash.php");
 	}
-	//if(isset($_POST["submit"])) {
-    $file = fopen($_FILES["csvFile"]["name"], "r");
-
-	//REMOVE FILENAME LATER
-	//$csvFile = $_GET['fileName'];
-	
+    $allowed =  array('csv');
+	$filename = $_FILES['csvFile']['name'];
+	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+	if(!in_array($ext,$allowed) ) {
+	    echo 'error';
+	    header("location: selectClass.php");
+	}
+	$filePath = $_FILES["csvFile"]["tmp_name"];
+	$file = fopen($filePath, "r");
 	$classID = $_POST['classID'];
 	$majorID = $_POST['majorID'];
 
@@ -29,6 +32,7 @@
 
 	while(! feof($file))
 	{
+		//Parse CSV file
 		$userInfo = fgetcsv($file);
 		$fullName = $userInfo[0];
 		$email = $userInfo[1];
@@ -36,23 +40,23 @@
 		$lname = $splitName[0];
 		$fname = explode(' ', $splitName[1]);
 		$fname = $fname[0];
+		if (!empty($email)){
 	
-		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		$passLength = 8;
-    	$password = substr( str_shuffle( $chars ), 0, $passLength);
-    	$password = password_hash($password, PASSWORD_BCRYPT);
-    	mysqli_query($conn,"INSERT INTO User (fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$password')");
-    	$success = mysqli_affected_rows($conn);
-    	if ($success < 1){
-    		$result = mysqli_query($conn,"SELECT userID FROM User WHERE email = '$email'");
-    		$row = mysqli_fetch_assoc($result);
-    		$userID = $row['userID'];
-    	}
-    	else{
-	    	$userID = mysqli_insert_id($conn);
-	    }
-		mysqli_query($conn,"INSERT INTO IsMajor (userID, majorID) VALUES ('$userID', '$majorID')");
-		mysqli_query($conn,"INSERT INTO InClass (userID, classID) VALUES ('$userID', '$classID')");
+			$origPassword = strtolower($fname . substr($lname, 0, 1));
+	    	$password = password_hash($origPassword, PASSWORD_BCRYPT);
+			mysqli_query($conn,"INSERT INTO User (fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$password')");
+	    	$success = mysqli_affected_rows($conn);
+	    	if ($success < 1){
+	    		$result = mysqli_query($conn,"SELECT userID FROM User WHERE email = '$email'");
+	    		$row = mysqli_fetch_assoc($result);
+	    		$userID = $row['userID'];
+	    	}
+	    	else{
+		    	$userID = mysqli_insert_id($conn);
+		    }
+			mysqli_query($conn,"INSERT INTO IsMajor (userID, majorID) VALUES ('$userID', '$majorID')");
+			mysqli_query($conn,"INSERT INTO InClass (userID, classID) VALUES ('$userID', '$classID')");
+		}
 	}
 	fclose($file);
 	header("location: AdminDash.php");

@@ -413,7 +413,7 @@
 		$paramStr = "";
 		$args = array();
 		for($i = 0; $i < sizeof($classIdArr); $i++) {
-			$sql .= "(?,?),";
+			$sql .= "(?,?,0),";
 			$args[] = intval($userId);
 			$args[] = intval($classIdArr[$i]);
 			$paramStr .= "ii";

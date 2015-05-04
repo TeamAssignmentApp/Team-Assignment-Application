@@ -19,6 +19,7 @@ function getLowestScore($arr, $maxPrefs)
    	$array = array();
    	$array[0] = $minProjId;
    	$array[1] = $minUserId;
+   	$array[2] = $minVal;
 
    return $array;
 }
@@ -60,6 +61,7 @@ else{
 		}
 	}
 	else{
+		mysql_close($connection);
 		header("location: selectClass.php");
 	}
 
@@ -68,13 +70,12 @@ else{
 //STEP 1: GET CLASS ID OF CLASS(es) RUNNING ASSIGNMENT
 
 //FOREACH CLASSID IN $classID
+
 foreach ($classIDs AS $value){
 	$classID = $value;
 	//STEP 1: GET CLASS ID OF CLASS THAT IS RUNNING ASSIGNMENT
 
 	//Before Assigning, clear previous assignment data
-	/*$clearQuery = "DELETE FROM InProject WHERE ProjectID IN (SELECT ProjectID from HasProject WHERE classID = '$classID')";
-	mysql_query($clearQuery);*/
 	$scoreArray = array();
 
 	$prefCountQuery = mysql_query("SELECT projectPreferences FROM Class WHERE classID = '$classID'", $connection);
@@ -115,28 +116,30 @@ foreach ($classIDs AS $value){
 		$checkThis = getLowestScore($scoreArray, $numPrefs);
 		$projID = $checkThis[0];
 		$userID = $checkThis[1];
-		//Get number of students assigned to that project of that user's major, make sure that is less than the number of students required by that project.
-		$allowedQuery = mysql_query("SELECT number FROM RequiresMajor JOIN IsMajor ON IsMajor.majorID = RequiresMajor.majorID WHERE RequiresMajor.projectID = '$projID' AND IsMajor.UserID = '$userID'", $connection);
-		$takenQuery = mysql_query("SELECT count(*) AS count FROM InProject JOIN IsMajor ON IsMajor.userID = InProject.userID WHERE IsMajor.majorID IN (SELECT majorID FROM IsMajor WHERE IsMajor.userID='$userID') AND InProject.projectID = '$projID'", $connection);
-		$row = mysql_fetch_array($allowedQuery);
-		$numberAllowed = $row[0];
-		$row2 = mysql_fetch_array($takenQuery);
-		$numberTaken = $row2[0];
-		if ($numberTaken < $numberAllowed){
-			// ADD USER TO PROJECT, REMOVE ROW FROM TABLE
-			echo 'user ' . $userID . ' can be added to project ' . $projID;
-			$sql = "INSERT INTO InProject (userID, projectID) VALUES ('$userID', '$projID')";
+		//if the Min Value found = $numPrefs+2, all projects are too full for the remaining students
+		if ( $checkThis[2] != $numPrefs+2){
+			//Get number of students assigned to that project of that user's major, make sure that is less than the number of students required by that project.
+			$allowedQuery = mysql_query("SELECT number FROM RequiresMajor JOIN IsMajor ON IsMajor.majorID = RequiresMajor.majorID WHERE RequiresMajor.projectID = '$projID' AND IsMajor.UserID = '$userID'", $connection);
+			$takenQuery = mysql_query("SELECT count(*) AS count FROM InProject JOIN IsMajor ON IsMajor.userID = InProject.userID WHERE IsMajor.majorID IN (SELECT majorID FROM IsMajor WHERE IsMajor.userID='$userID') AND InProject.projectID = '$projID'", $connection);
+			$row = mysql_fetch_array($allowedQuery);
+			$numberAllowed = $row[0];
+			$row2 = mysql_fetch_array($takenQuery);
+			$numberTaken = $row2[0];
+			if ($numberTaken < $numberAllowed){
+				// ADD USER TO PROJECT, REMOVE ROW FROM TABLE
+				echo 'user ' . $userID . ' can be added to project ' . $projID;
+				$sql = "INSERT INTO InProject (userID, projectID) VALUES ('$userID', '$projID')";
 
-			mysql_query($sql);
+				mysql_query($sql);
 
-			unset($scoreArray[$userID]);
-			$numAssigned++;
+				unset($scoreArray[$userID]);
+				$numAssigned++;
+			}
+			else{
+				//Project is full, set the score to maximum project preferences + 2 to prevent choosing this option in the next iteration.
+				$scoreArray[$userID][$projID] = $numPrefs + 2;
+			}
 		}
-		else{
-			//Project is full, set the score to maximum project preferences + 2 to prevent choosing this option in the next iteration.
-			$scoreArray[$userID][$projID] = $numPrefs + 2;
-		}
-
 	}
 }
 mysql_close($connection);

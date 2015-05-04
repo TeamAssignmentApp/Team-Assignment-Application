@@ -74,8 +74,8 @@ $(document).ready(function(){
 							$(parsedClassData["adminIds"]).each(function(ind, adminId) {
 								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 									var parsedAdminData = JSON.parse(adminData);
-									var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + parsedAdminData["userID"] + ')">Edit</a>' +
-															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + parsedAdminData["userID"] + ')">Delete</a>';
+									var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + adminId + ')">Edit</a>' +
+															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + adminId + ')">Delete</a>';
 									console.log('going to add a row to admin table');
 									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
 									commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
@@ -120,8 +120,8 @@ $(document).ready(function(){
 									console.log('getting admin ' + adminId);
 									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 										var parsedAdminData = JSON.parse(adminData);
-										var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + parsedAdminData["id"] + ')">Edit</a>' +
-															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + parsedAdminData["id"] + ')">Delete</a>';
+										var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + adminId + ')">Edit</a>' +
+															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + adminId + ')">Delete</a>';
 									console.log('going to add a row to admin table');
 									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
 										$("#adminNames-" + classID).append(parsedAdminData["fname"] + ' ' + parsedAdminData["lname"] + ', ');

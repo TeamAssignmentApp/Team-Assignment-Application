@@ -1,21 +1,25 @@
 var numPrefs = [];
-
+var classTable;
+var userTable;
+var projectTable;
+var adminTable;
+var skillTable;
 
 $(document).ready(function(){
 	//load the tables first
-	var classTable = $("#displayClasses").DataTable();
-	var userTable = $("#displayUsers").DataTable({
+	classTable = $("#displayClasses").DataTable();
+	userTable = $("#displayUsers").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		}
 	});
-	var projectTable = $("#displayProjects").DataTable({
+	projectTable = $("#displayProjects").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		}
 	});
-	var adminTable = $("#displayAdmins").DataTable();
-	var skillTable = $("#displaySkills").DataTable({
+	adminTable = $("#displayAdmins").DataTable();
+	skillTable = $("#displaySkills").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		}

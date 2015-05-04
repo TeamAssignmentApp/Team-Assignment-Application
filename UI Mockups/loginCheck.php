@@ -3,6 +3,7 @@
 	if (isset($_POST['submit'])) {
 		if (empty($_POST['email']) || empty($_POST['password'])) {
 			$error = "Email or Password is invalid";
+			header("location: login.php");
 		}
 		else
 		{
@@ -48,6 +49,7 @@
 			else {
 				$error = "No such user";
 				echo $error;
+				header("location: login.php");
 			}
 			mysql_close($connection); // Closing Connection
 		}

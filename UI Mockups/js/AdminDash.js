@@ -123,8 +123,9 @@ $(document).ready(function(){
 						}	
 						$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
 							var parsedUserData = JSON.parse(userData);
-							var deleteUserButton = '<a class="btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
-							userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, deleteUserButton]).draw();
+							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="edituser(' + user["id"] + ')">Edit</a>' +
+													'<a class="btn btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
+							userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, userActionBtns]).draw();
 						});
 					});
 				}
@@ -351,6 +352,7 @@ function addUser() {
 }
 
 function editUser(idToEdit) {
+	$("#editUserModal").modal('show');
 	$.get('api/user.php', {token: '9164fe76dd046345905767c3bc2ef54', id: idToEdit}, function(userData) {
 		var parsedUserData = JSON.parse(userData);
 		var thisUserClasses = parsedUserData['classIds'];

@@ -551,7 +551,7 @@ function submitProjectEdit(idToEdit) {
 		var editProjectFileLink = 'N/A';
 		var majorsAndNumbers = [];
 
-		$(".editProjectMajorSelect:visible").each(function(ind,majorSelec) {
+		/*$(".editProjectMajorSelect:visible").each(function(ind,majorSelec) {
 			var thisSelec = $(majorSelec).val();
 			var indexOfThisMajor = -1;
 			$.each(majorsAndNumbers, function(j, obj) {
@@ -566,7 +566,7 @@ function submitProjectEdit(idToEdit) {
 			else {
 				majorsAndNumbers[indexOfThisMajor]["amount"]++;
 			}
-		});
+		});*/
 
 		$.ajax({
 			url: 'api/project.php', 
@@ -577,8 +577,7 @@ function submitProjectEdit(idToEdit) {
 				name: editProjectName,
 				descrip: editProjectDescription,
 				file: editProjectFileLink,
-				classId: editProjectClassSelect,
-				majors: JSON.stringify(majorsAndNumbers)
+				classId: editProjectClassSelect
 			}, 
 			success: function(){
 				location.reload();

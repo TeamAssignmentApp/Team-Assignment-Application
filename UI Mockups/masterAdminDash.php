@@ -421,20 +421,20 @@
 								<span class="input-group-addon">Number of Students</span>
 								<input type="number" min="2" max="10" value="2" id="editProjectNumStudents" class="form-control editProjectInput" />
 							</div>
-							<span id="editProjMajorForEachStudent"></span>
+							<!--<span id="editProjMajorForEachStudent"></span>-->
 							<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
 							<br/>
 							<p id="editProjectError" style="display:none; color:red">All fields are required.</p>
 							<button class="btn btn-success" style="display:inline-block" id="submitProjectEditBtn">Submit</button>
 							&nbsp;&nbsp;
-							<div id="editStudentMajorTemplate" style="display:none">
+							<!--<div id="editStudentMajorTemplate" style="display:none">
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
 									<select class="form-control editProjectInput studentMajorSelection editProjectMajorSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>
-							</div>
+							</div>-->
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->

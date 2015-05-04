@@ -108,7 +108,7 @@ CREATE TABLE ProjectRequiresSkill(
   primary key(skillID, projectID)
 )ENGINE = InnoDB;
 CREATE TABLE ClassHasSkill(
-  skillID int,
+  skillID int UNIQUE,
   classID int,
   foreign key(skillID) references Skill(skillID)
   ON DELETE CASCADE

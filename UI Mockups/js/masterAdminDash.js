@@ -252,7 +252,6 @@ $(document).ready(function(){
 	//make it so that the class dropdowns will filter the user and project tables
 	$("#userClassDropdown").change(function() {
 		var searchReg = "^" + $(this).val() + "$";
-		console.log('searching userTable for ' + searchReg);
 		userTable.column(3).search(searchReg,true,false).draw();
 	});
 	$("#projectClassDropdown").change(function() {

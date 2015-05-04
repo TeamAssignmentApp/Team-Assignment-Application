@@ -29,7 +29,7 @@
 					
 					$(projects).each(function(index,value){
 						if(index % 3 == 0)
-							strToAdd += "<div class='row'";
+							strToAdd += "<div class='row'>";
 						strToAdd += ''+
 							'<div class="col-md-4">' +
 								'<div class="well">' +

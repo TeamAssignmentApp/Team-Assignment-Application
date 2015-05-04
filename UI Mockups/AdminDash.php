@@ -40,7 +40,7 @@
 			<div class="col-md-12" id="header" style="text-align:center">
 				<img src="css/LyleLogo.png" alt="LyleLogo" height="100" width="800">
 				<a href="logout.php" class="btn btn-danger" style="display:inline-block; float:right; margin-top:20px">Logout</a>
-				<a href="changepassword.php" class="btn btn-primary btn-sm" style="display:inline-block; float:right; margin-top:20px; margin-right:10px">Change Password</a>
+				<a href="changepasswordUI.php" class="btn btn-primary btn-sm" style="display:inline-block; float:right; margin-top:20px; margin-right:10px">Change Password</a>
 			</div>
 
 			<div class="container well" style="width:90%; height:600px; margin-top:120px">

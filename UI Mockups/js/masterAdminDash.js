@@ -462,11 +462,11 @@ function submitUserEdit(idToEdit) {
 			error = true;
 	});
 
-	console.log('done error checking');
-
 	if(!error) {
 		$("#editUserError").hide();
+		console.log('going to get class select val');
 		var editUserClassSelect = $("#editUserClassSelect").val();
+		console.log('got the class select val. it is ' + editUserClassSelect);
 		var editUserFirstName = $("#editUserFirstName").val();
 		var editUserLastName = $("#editUserLastName").val();
 		var editUserMajor = $("#editUserMajor").val();

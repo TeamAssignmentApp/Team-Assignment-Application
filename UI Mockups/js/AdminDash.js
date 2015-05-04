@@ -405,7 +405,7 @@ function editUser(idToEdit) {
 		$(thisUserClasses).each(function(classInd, classId) {
 			$("#editUserClassSelect option[value='" + classId + "']").prop("selected",true);
 		});
-		$("#editUserFirstname").val(thisUserFName);
+		$("#editUserFirstName").val(thisUserFName);
 		$("#editUserLastName").val(thisUserLName);
 		$("#editUserEmail").val(thisUserEmail);
 		

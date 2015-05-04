@@ -474,11 +474,11 @@ function submitUserEdit(idToEdit) {
 			type: 'PUT', 
 			data: {
 				token:'9164fe76dd046345905767c3bc2ef54',
-				email: newUserEmail,
-				fname: newUserFirstName,
-				lname: newUserLastName,
+				email: editUserEmail,
+				fname: editUserFirstName,
+				lname: editUserLastName,
 				classes: editUserClassSelect,
-				majorId: newUserMajor,
+				majorId: editUserMajor,
 				id: idToEdit
 			},
 			success:function(){

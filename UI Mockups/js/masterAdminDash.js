@@ -120,6 +120,10 @@ $(document).ready(function(){
 									console.log('getting admin ' + adminId);
 									$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
 										var parsedAdminData = JSON.parse(adminData);
+										var adminActionButtons = '<a class="btn btn-primary" onclick="editAdmin(' + parsedAdminData["id"] + ')">Edit</a>'
+															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + parsedAdminData["id"] + ')">Delete</a>';
+									console.log('going to add a row to admin table');
+									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
 										$("#adminNames-" + classID).append(parsedAdminData["fname"] + ' ' + parsedAdminData["lname"] + ', ');
 										if(ind == (numAdmins - 1)) {
 											//trim off the last comma-space

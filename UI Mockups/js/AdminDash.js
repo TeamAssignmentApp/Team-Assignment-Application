@@ -373,6 +373,7 @@ function addUser() {
 		var newUserMajor = $("#newUserMajor").val();
 		var newUserEmail = $("#newUserEmail").val();
 		var newUserMajor = $("#newUserMajor").val();
+		console.log('newUserClassSelect ' + newUserClassSelect);
 		$.post("api/user.php", {
 			token:'9164fe76dd046345905767c3bc2ef54',
 			email: newUserEmail,

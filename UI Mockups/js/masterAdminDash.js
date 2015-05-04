@@ -441,7 +441,7 @@ function editUser(idToEdit) {
 		var thisUserClasses = parsedUserData['classIds'];
 		var thisUserFName = parsedUserData['fname'];
 		var thisUserLName = parsedUserData['lname'];
-		var thisUserMajor = parsedUserData['major']['name'];
+		var thisUserMajor = parsedUserData['major']['id'];
 		var thisUserEmail = parsedUserData['email'];
 
 		$(thisUserClasses).each(function(classInd, classId) {

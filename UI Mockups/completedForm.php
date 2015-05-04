@@ -35,18 +35,22 @@
 	mysqli_query($conn,"DELETE FROM WantsProject WHERE userID = '$userID'");
 	mysqli_query($conn,"DELETE FROM WantsTeammate WHERE userID = '$userID'");
 	mysqli_query($conn,"DELETE FROM HasSkill WHERE userID = '$userID'");
+	date_default_timezone_set('US/Central');
 	$date = date('Y-m-d H:i:s');
+	echo print_r($_POST);
 	mysqli_query($conn,"UPDATE User SET submissionTime = '$date' WHERE userID = '$userID'");
 
-	if (isset($_POST['isLeader'])){
+	if (isset($_POST['LeaderBox'])){
 		mysqli_query($conn,"UPDATE InClass SET wantsToLead = 1 WHERE userID = '$userID' AND classID = '$classID'");
+		echo "made a leader";
 	}
 	else{
 		mysqli_query($conn,"UPDATE InClass SET wantsToLead = 0 WHERE userID = '$userID' AND classID = '$classID'");
+		echo "made a leader";
 	}
 	for ($i = 1; $i < $projPrefs; $i++){
 		$projID = $_POST["ProjectPreference".$i];
-		if (!empty($skillID)){
+		if (!empty($projID)){
 			mysqli_query($conn,"INSERT INTO WantsProject (userID, projectID, rank) VALUES ('$userID', '$projID', '$i')");
 		}
 
@@ -64,5 +68,7 @@
 			mysqli_query($conn,"INSERT INTO HasSkill (userID, skillID) VALUES ('$userID', '$skillID')");
 		}
 		$i++;
-	} 
+	}
+	mysqli_close($conn);
+	header("location: selectClass.php");
 ?>

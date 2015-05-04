@@ -149,7 +149,7 @@ foreach ($classIDs AS $value){
 				unset($scoreArray[$userID]);
 				$numAssigned++;
 			}
-			else{ 
+			else{
 				//Project is full, set the score to maximum project preferences + 2 to prevent choosing this option in the next iteration.
 				$scoreArray[$userID][$projID] = $numPrefs + 2;
 			}

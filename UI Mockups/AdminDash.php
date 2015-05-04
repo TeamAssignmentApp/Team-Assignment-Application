@@ -442,7 +442,7 @@
 							<form action="addUsersFromCSV.php" method="post" enctype="multipart/form-data">
 								<input type="text" name="classID" id="classID" style="display:none" />
 								<div class="input-group" style="margin-bottom:10px">
-									<span class="input-group-addon">Class</span>
+									<span class="input-group-addon">Major</span>
 									<select class="form-control uploadCSVInput studentMajorSelection" id="majorID" name="majorID">
 										<option value="">--Please Select--</option>
 									</select>
@@ -450,7 +450,7 @@
 								<input type="file" name="csvFile" id="csvFile">Upload File...</button>
 								<br/>
 								<p id="uploadCSVError" style="display:none; color:red">All fields are required.</p>
-								<input type="submit" class="btn btn-success" style="display:inline-block">Submit</input>
+								<input type="submit" class="btn btn-success" style="display:inline-block" />
 							</form>
 						</div>
 					</div><!-- /.modal-content -->

@@ -469,6 +469,44 @@
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
+
+			<div class="modal fade" id="projAddUserModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="uploadCSVTitle">Adding User To Project...</h4>
+						</div>
+						<div class="modal-body" id="projAddUserBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student</span>
+								<select class="form-control" id="projAddUserSelect"></select>
+							</div>
+							<br/>
+							<a class="btn btn-success" style="display:inline-block" id="submitProjAddUser">Add</input>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+			<div class="modal fade" id="projRemoveUserModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="uploadCSVTitle">Removing User From Project...</h4>
+						</div>
+						<div class="modal-body" id="projRemoveUserBody">
+							<div class="input-group" style="margin-bottom:10px">
+								<span class="input-group-addon">Student</span>
+								<select class="form-control" id="projRemoveUserSelect"></select>
+							</div>
+							<br/>
+							<a class="btn btn-danger" style="display:inline-block" id="submitProjRemoveUser">Remove</input>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
 		</div>
 	</body>
 </html>

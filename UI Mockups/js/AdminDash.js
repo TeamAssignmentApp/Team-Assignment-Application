@@ -152,8 +152,10 @@ $(document).ready(function(){
 						}
 					});
 					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>&nbsp;';
-					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
-					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
+					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>&nbp;';
+					var projAddUserButton = '<a class="btn btn-success btn-xs" onclick="addUserToProj(' + proj["id"] + ', ' + classID +')">Add User</a>&nbsp;';
+					var projDeleteUserButton = '<a class="btn btn-success btn-xs" onclick="removeUserFromProj(' + proj["id"] + ', ' + classID +')">Remove User</a>&nbsp;';
+					var projectActionButtons = editProjectButton + deleteProjectButton + projAddUserButton + projDeleteUserButton;
 					projectTable.row.add([proj["name"], proj["description"],proj["fileLink"],majorReqStr, classID, projectActionButtons]).draw();
 				});
 
@@ -675,6 +677,36 @@ function runTeamAssignment(classid) {
 	if(confirm("Are you sure you would like to run team assignment on this class?")) {
 		$.post('runAssignmentManually.php', {classID: classid}, function() {
 			location.reload();
+		});
+	}
+}
+
+function addUserToProj(projID, classID) {
+	$.get("api/class.php", data:{token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
+		var parsedClassData = JSON.parse(classData);
+		var thisClassUsers = parsedClassData["users"];
+		$(thisClassUsers).each(function(i,usr) {
+			$("#projAddUserSelect").append('<option value="' + usr["id"] + '"">' + usr["fname"] + ' ' + usr["lname"] + '</option>');
+		});
+		$("#submitProjAddUser").click(function(){
+			$.post("addUserToProject.php", {projectID: projID, userID: $("#projAddUserSelect").val()}, function() {
+				location.reload();
+			});
+		});
+	}
+}
+
+function removeUserFromProj(projID, classID) {
+	$.get("api/class.php", data:{token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
+		var parsedClassData = JSON.parse(classData);
+		var thisClassUsers = parsedClassData["users"];
+		$(thisClassUsers).each(function(i,usr) {
+			$("#projRemoveUserSelect").append('<option value="' + usr["id"] + '"">' + usr["fname"] + ' ' + usr["lname"] + '</option>');
+		});
+		$("#submitProjRemoveUser").click(function(){
+			$.post("removeUserFromProject.php", {projectID: projID, userID: $("#projRemoveUserSelect").val()}, function() {
+				location.reload();
+			});
 		});
 	}
 }

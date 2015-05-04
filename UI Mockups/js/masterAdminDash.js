@@ -10,8 +10,7 @@ $(document).ready(function(){
 	classTable = $("#displayClasses").DataTable({
 		"scrollY":        "320px",
         "scrollCollapse": true,
-        "paging":         false,
-        "autoWidth":      false
+        "paging":         false
      });
 	userTable = $("#displayUsers").DataTable({
 		"language" : {
@@ -19,8 +18,7 @@ $(document).ready(function(){
 		},
 		"scrollY":        "320px",
         "scrollCollapse": true,
-        "paging":         false,
-        "autoWidth":      false
+        "paging":         false
 	});
 	projectTable = $("#displayProjects").DataTable({
 		"language" : {
@@ -28,8 +26,7 @@ $(document).ready(function(){
 		},
 		"scrollY":        "320px",
         "scrollCollapse": true,
-        "paging":         false,
-        "autoWidth":      false
+        "paging":         false
 	});
 	adminTable = $("#displayAdmins").DataTable({
 		"scrollY":        "320px",
@@ -301,7 +298,7 @@ $(document).ready(function(){
 		projectTable.columns.adjust();
 		adminTable.columns.adjust();
 		skillTable.columns.adjust();
-	})
+	});
 });
 ////////////////////////////
 //END DOCUMENT READY

@@ -3,7 +3,11 @@ var numPrefs = [];
 
 $(document).ready(function(){
 	//load the tables first
-	var classTable = $("#displayClasses").DataTable();
+	var classTable = $("#displayClasses").DataTable({
+		"scrollY":        "320px",
+        "scrollCollapse": true,
+        "paging":         false
+	});
 	var userTable = $("#displayUsers").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
@@ -12,13 +16,19 @@ $(document).ready(function(){
 	var projectTable = $("#displayProjects").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
-		}
+		},
+		"scrollY":        "320px",
+        "scrollCollapse": true,
+        "paging":         false
 	});
 	//var adminTable = $("#displayAdmins").DataTable();
 	var skillTable = $("#displaySkills").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
-		}
+		},
+		"scrollY":        "320px",
+        "scrollCollapse": true,
+        "paging":         false
 	});
 	$('#adminTabs a').click(function (e) {
 		e.preventDefault()
@@ -242,6 +252,13 @@ $(document).ready(function(){
 
 	$("#saveProjReqPageChanges").click(function(){
 		editRequestPage();
+	});
+
+	$("a[data-toggle='tab']").on('shown.bs.tab', function() {
+		classTable.columns.adjust();
+		userTable.columns.adjust();
+		projectTable.columns.adjust();
+		skillTable.columns.adjust();
 	});
 });
 ////////////////////////////

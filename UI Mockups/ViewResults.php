@@ -53,7 +53,7 @@
 									});
 								}
 							});
-						if((index + 1) % 3) {
+						if((index + 1) % 3 == 0) {
 							strToAdd += '</div>';
 						}
 					});

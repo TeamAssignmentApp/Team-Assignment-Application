@@ -7,11 +7,18 @@ var skillTable;
 
 $(document).ready(function(){
 	//load the tables first
-	classTable = $("#displayClasses").DataTable();
+	classTable = $("#displayClasses").DataTable({
+		"scrollY":        "200px",
+        "scrollCollapse": true,
+        "paging":         false
+     });
 	userTable = $("#displayUsers").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
-		}
+		},
+		"scrollY":        "200px",
+        "scrollCollapse": true,
+        "paging":         false
 	});
 	projectTable = $("#displayProjects").DataTable({
 		"language" : {

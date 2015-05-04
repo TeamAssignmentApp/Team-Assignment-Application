@@ -135,7 +135,7 @@ $(document).ready(function(){
 						}	
 						$.get("api/user.php", {id: user["id"], token:'9164fe76dd046345905767c3bc2ef54', isAdmin:0}, function(userData){
 							var parsedUserData = JSON.parse(userData);
-							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="editUser(' + user["id"] + ')">Edit</a>' +
+							var userActionBtns = 	'<a class="btn btn-primary btn-sm" onclick="editUser(' + user["id"] + ')">Edit</a>&nbsp;' +
 													'<a class="btn btn-danger btn-sm" onclick="deleteUser(' + user["id"] + ')">Delete</a>';
 							userTable.row.add([parsedUserData["fname"] + " " + parsedUserData["lname"], user["major"]["name"], parsedUserData["email"], classID, userActionBtns]).draw();
 						});
@@ -151,7 +151,7 @@ $(document).ready(function(){
 							majorReqStr += ', ';
 						}
 					});
-					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>';
+					var editProjectButton = '<a class="btn btn-info btn-xs editProjectBtn" data-toggle="modal" onclick="editProject(' + proj["id"] + ')">Edit</a>&nbsp;';
 					var deleteProjectButton = '<a class="btn btn-danger btn-xs" onclick="deleteProject(' + proj["id"] + ')">Delete</a>';
 					var projectActionButtons = editProjectButton + "&nbsp;" + deleteProjectButton;
 					projectTable.row.add([proj["name"], proj["description"],proj["fileLink"],majorReqStr, classID, projectActionButtons]).draw();

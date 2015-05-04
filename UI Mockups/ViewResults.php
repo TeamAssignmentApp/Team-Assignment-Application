@@ -28,8 +28,6 @@
 					
 					$(projects).each(function(index,value){
 						var strToAdd = "";
-						if(index % 3 == 0)
-							strToAdd += "<div class='row'";
 						strToAdd += ''+
 							'<div class="col-md-4">' +
 								'<div class="well">' +
@@ -53,9 +51,6 @@
 									});
 								}
 							});
-						if((index - 1) % 3) {
-							strToAdd += '</div>';
-						}
 							$("#results").append(strToAdd);
 					});
 				});

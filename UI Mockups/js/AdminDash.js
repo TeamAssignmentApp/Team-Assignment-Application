@@ -396,12 +396,11 @@ function submitUserEdit(idToEdit) {
 			type: 'PUT', 
 			data: {
 				token:'9164fe76dd046345905767c3bc2ef54',
-				email: newUserEmail,
-				fname: newUserFirstName,
-				lname: newUserLastName,
-				password: 'password', //temporary. on first login user has to change it
+				email: editUserEmail,
+				fname: editUserFirstName,
+				lname: editUserLastName,
 				classes: editUserClassSelect,
-				majorId: newUserMajor,
+				majorId: editUserMajor,
 				id: idToEdit
 			},
 			success:function(){

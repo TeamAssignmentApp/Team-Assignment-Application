@@ -473,6 +473,7 @@ function submitUserEdit(idToEdit) {
 		var editUserLastName = $("#editUserLastName").val();
 		var editUserMajor = $("#editUserMajor").val();
 		var editUserEmail = $("#editUserEmail").val();
+		console.log('editUserClassSelect ' editUserClassSelect);
 		$.ajax({
 			url: "api/user.php",
 			type: 'PUT', 

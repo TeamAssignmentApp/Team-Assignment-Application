@@ -15,10 +15,21 @@
 
         <script>
         	$(document).ready(function(){
-
-
-
-
+        		$.ajax({
+					url: 'api/user.php', 
+					type: 'PUT',
+					data: {
+						token: '9164fe76dd046345905767c3bc2ef54',
+						id: idToEdit,
+						name: editProjectName,
+						descrip: editProjectDescription,
+						file: editProjectFileLink,
+						classId: editProjectClassSelect
+					}, 
+					success: function(){
+						location.reload();
+					}
+				});
         	});
         </script>
 	</head>

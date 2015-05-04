@@ -12,7 +12,8 @@
 	    $password = $_POST['password'];
 	    $checkPassword = $_POST['checkPassword'];
 
-	    if ($password != $checkPassword){
+	    $query = mysqli_query($connection,"SELECT email FROM User WHERE (email = '$email' AND isMaster = 1) OR email in (SELECT email FROM User join AdminOf ON AdminOf.userID = User.userID WHERE User.email = '$email')");
+	    if (mysqli_num_rows($query) > 0 || $password != $checkPassword){
 			header("location: login.php");
 		}
 

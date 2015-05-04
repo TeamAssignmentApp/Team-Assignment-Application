@@ -23,11 +23,11 @@
 				header("location: selectClass.php");
 			}
 			$datequery = mysql_query("SELECT endTime FROM Class WHERE classID = '$class'", $connection);
-			$row = mysql_fetch_row($dateQuery);
-			$endtime = $row[0];
+			$row = mysql_fetch_row($datequery);
+			$endtime = strtotime($row[0]);
 			$curDate = date("Y-m-d");
 			if ($curDate > $endtime){
-				header("location: ViewResults.php");
+				header("location: ViewResults.php?classID=" . $class);
 			}
 			mysql_close($connection);
 		}

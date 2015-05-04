@@ -259,7 +259,7 @@ $(document).ready(function(){
 		}
 	});
 	$("#editProjectNumStudents").change(function(){
-		$("#majorForEachStudent").empty();
+		$("#editProjajorForEachStudent").empty();
 		for(var i = 0; i < $("#editProjectNumStudents").val(); i++){
 			$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
 		}

@@ -231,7 +231,7 @@ $(document).ready(function(){
 	});
 
 	$("#editProjectNumStudents").change(function(){
-		$("#majorForEachStudent").empty();
+		$("#editProjMajorForEachStudent").empty();
 		for(var i = 0; i < $("#editProjectNumStudents").val(); i++){
 			$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
 		}

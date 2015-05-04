@@ -22,7 +22,7 @@
         					error = true;
         			});
         			if(!error) {
-        				$.post('changePassword.php', {email: $("#email").val(), password: $("#password").val(), checkPassword: $("#confirmPassword").val()}, function() {
+        				$.post('changepassword.php', {email: $("#email").val(), password: $("#password").val(), checkPassword: $("#confirmPassword").val()}, function() {
         					window.location = "logout.php";
         				});
         			}

@@ -260,6 +260,8 @@ $(document).ready(function(){
 		projectTable.columns.adjust();
 		skillTable.columns.adjust();
 	});
+
+	classTable.columns.adjust();
 });
 ////////////////////////////
 //END DOCUMENT READY

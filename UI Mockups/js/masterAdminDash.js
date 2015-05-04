@@ -299,6 +299,8 @@ $(document).ready(function(){
 		adminTable.columns.adjust();
 		skillTable.columns.adjust();
 	});
+
+	classTable.columns.adjust();
 });
 ////////////////////////////
 //END DOCUMENT READY

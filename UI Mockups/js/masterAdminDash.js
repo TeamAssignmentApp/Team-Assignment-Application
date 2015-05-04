@@ -487,7 +487,7 @@ function submitUserEdit(idToEdit) {
 			},
 			success:function(){
 				location.reload();
-			});
+			}
 		});
 	}
 

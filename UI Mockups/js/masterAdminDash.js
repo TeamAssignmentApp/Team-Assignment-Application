@@ -422,7 +422,7 @@ function submitClassEdit(classid) {
 			data: {
 				id: classid, 
 				token:'9164fe76dd046345905767c3bc2ef54',
-				className: name,
+				name: name,
 				numProjectPrefs: numProjPrefs,
 				numTeammatePrefs: numTeamPrefs,
 				startTime: startDate,

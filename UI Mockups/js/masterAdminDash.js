@@ -664,6 +664,9 @@ function submitProjectEdit(idToEdit) {
 			}
 		});
 
+		console.log('majorsAndNumbers');
+		console.log(majorsAndNumbers);
+
 		$.ajax({
 			url: 'api/project.php', 
 			type: 'PUT',

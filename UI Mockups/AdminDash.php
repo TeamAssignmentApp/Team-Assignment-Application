@@ -284,7 +284,7 @@
 						<div class="modal-body" id="editUserBody">
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Class</span>
-								<select class="form-control editUserInput classDropdown" multiple id="editUserClassSelect">
+								<select class="form-control classDropdown" multiple id="editUserClassSelect">
 								</select>
 							</div>
 							<div class="input-group" style="margin-bottom:10px">

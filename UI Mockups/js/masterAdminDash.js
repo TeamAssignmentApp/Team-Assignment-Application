@@ -708,7 +708,7 @@ function addAdmin() {
 		var newAdminClassSelect = $("#newAdminClassSelect").val();
 		var newAdminFirstName = $("#newAdminFirstName").val();
 		var newAdminLastName = $("#newAdminLastName").val();
-		var newAdminEmail = $("#newUserEmail").val();
+		var newAdminEmail = $("#newAdminEmail").val();
 		$.post("api/user.php", {
 			token:'9164fe76dd046345905767c3bc2ef54',
 			email: newAdminEmail,

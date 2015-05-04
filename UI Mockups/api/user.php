@@ -203,7 +203,7 @@
 		$stmt->bind_result($userId);
 		while($stmt->fetch());		
 		
-		$sql = 'INSERT into InClass VALUES (?,?)';
+		$sql = 'INSERT into InClass VALUES (?,?,0)';
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ii", $userId,$classId);
 			$stmt->execute();

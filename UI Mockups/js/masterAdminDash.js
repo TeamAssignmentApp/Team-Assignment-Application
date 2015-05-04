@@ -898,7 +898,7 @@ function addUserToProj(projID, classID) {
 				location.reload();
 			});
 		});
-	}
+	});
 }
 
 function removeUserFromProj(projID, classID) {
@@ -913,5 +913,5 @@ function removeUserFromProj(projID, classID) {
 				location.reload();
 			});
 		});
-	}
+	});
 }

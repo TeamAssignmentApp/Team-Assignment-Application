@@ -1,4 +1,5 @@
 <?php
+	$i = 1;
 	/*if(!isset($_POST['email'])){
 		header("location: login.php");
 	}
@@ -26,4 +27,4 @@
 
 	    $query = mysqli_query($connection,"UPDATE User SET password = '$hashedPass' WHERE email = '$email'");
 	    mysqli_close($connection);*/
-	    ?>
+?>

@@ -1,19 +1,15 @@
 <?php
 	/*if(!isset($_POST['email'])){
 		header("location: login.php");
-	}*/
+	}
 		$DBServer = 'localhost';
 	    $DBUser   = 'root';
 	    $DBPass   = '321Testing';
 	    $DBName   = 'TeamAssignmentApp';
 
-	    /*$email = $_POST['email'];
+	    $email = $_POST['email'];
 	    $password = $_POST['password'];
-	    $checkPassword = $_POST['checkPassword'];*/
-
-	    $email = 'jsmith@smu.edu';
-	    $password = 'newpass';
-	    $checkPassword = 'newpass';
+	    $checkPassword = $_POST['checkPassword'];
 
 	    $connection = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 
@@ -29,5 +25,5 @@
 		$hashedPass = password_hash($password, PASSWORD_BCRYPT);
 
 	    $query = mysqli_query($connection,"UPDATE User SET password = '$hashedPass' WHERE email = '$email'");
-	    mysqli_close($connection);
+	    mysqli_close($connection);*/
 ?>

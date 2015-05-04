@@ -25,9 +25,11 @@
 					console.log(data);
 					var parsed = JSON.parse(data);
 					var projects = parsed["projects"];
+					var strToAdd = '';
 					
 					$(projects).each(function(index,value){
-						var strToAdd = "";
+						if(index % 3 == 0)
+							strToAdd += "<div class='row'";
 						strToAdd += ''+
 							'<div class="col-md-4">' +
 								'<div class="well">' +
@@ -51,8 +53,11 @@
 									});
 								}
 							});
-							$("#results").append(strToAdd);
+						if((index - 1) % 3) {
+							strToAdd += '</div>';
+						}
 					});
+					$("#results").append(strToAdd);
 				});
 			})
 		</script>

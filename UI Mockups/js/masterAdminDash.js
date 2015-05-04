@@ -768,6 +768,7 @@ function addAdmin() {
 		var newAdminFirstName = $("#newAdminFirstName").val();
 		var newAdminLastName = $("#newAdminLastName").val();
 		var newAdminEmail = $("#newAdminEmail").val();
+		console.log('newAdminClassSelect');
 		$.post("api/user.php", {
 			token:'9164fe76dd046345905767c3bc2ef54',
 			email: newAdminEmail,
@@ -775,7 +776,7 @@ function addAdmin() {
 			lname: newAdminLastName,
 			password: 'password', //temporary. on first login user has to change it
 			classId: newAdminClassSelect,
-			majorId: 0,
+			majorId: 1,
 			isAdmin: 1
 		}, function(){
 			location.reload();

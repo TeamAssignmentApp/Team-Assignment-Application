@@ -665,7 +665,7 @@ function submitProjectEdit(idToEdit) {
 		});
 
 		console.log('majorsAndNumbers');
-		console.log(majorsAndNumbers);
+		console.log(JSON.stringify(majorsAndNumbers));
 
 		$.ajax({
 			url: 'api/project.php', 

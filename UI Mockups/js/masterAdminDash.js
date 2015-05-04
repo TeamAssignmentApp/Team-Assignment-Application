@@ -294,6 +294,14 @@ $(document).ready(function(){
 	$("#saveProjReqPageChanges").click(function(){
 		editRequestPage();
 	});
+
+	$("a[data-toggle='tab']").on('shown.bs.tab', function() {
+		classTable.columns.adjust();
+		userTable.columns.adjust();
+		projectTable.columns.adjust();
+		adminTable.columns.adjust();
+		skillTable.columns.adjust();
+	})
 });
 ////////////////////////////
 //END DOCUMENT READY

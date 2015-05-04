@@ -382,10 +382,6 @@ function submitUserEdit(idToEdit) {
 	if(!error) {
 		$("#editUserError").hide();
 		var editUserClassSelect = $("#editUserClassSelect").val();
-		var commaSepUserClasses = '';
-		$(editUserClassSelect).each(function(i,selectVal) {
-			commaSepUserClasses += selectVal + ',';
-		});
 		var editUserFirstName = $("#editUserFirstName").val();
 		var editUserLastName = $("#editUserLastName").val();
 		var editUserMajor = $("#editUserMajor").val();
@@ -400,7 +396,7 @@ function submitUserEdit(idToEdit) {
 				fname: newUserFirstName,
 				lname: newUserLastName,
 				password: 'password', //temporary. on first login user has to change it
-				classes: commaSepUserClasses,
+				classes: editUserClassSelect,
 				majorId: newUserMajor,
 				id: idToEdit
 			},

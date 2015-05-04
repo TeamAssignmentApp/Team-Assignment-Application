@@ -467,11 +467,6 @@ function submitUserEdit(idToEdit) {
 	if(!error) {
 		$("#editUserError").hide();
 		var editUserClassSelect = $("#editUserClassSelect").val();
-		console.log('class select val is ' + editUserClassSelect);
-		var commaSepUserClasses = '';
-		$(editUserClassSelect).each(function(i,selectVal) {
-			commaSepUserClasses += selectVal + ',';
-		});
 		var editUserFirstName = $("#editUserFirstName").val();
 		var editUserLastName = $("#editUserLastName").val();
 		var editUserMajor = $("#editUserMajor").val();
@@ -486,7 +481,7 @@ function submitUserEdit(idToEdit) {
 				fname: newUserFirstName,
 				lname: newUserLastName,
 				password: 'password', //temporary. on first login user has to change it
-				classes: commaSepUserClasses,
+				classes: editUserClassSelect,
 				majorId: newUserMajor,
 				id: idToEdit
 			},
@@ -760,10 +755,6 @@ function submitAdminEdit(idToEdit) {
 	if(!error) {
 		$("#editAdminError").hide();
 		var editAdminClassSelect = $("#editAdminClassSelect").val();
-		var commaSepAdminClasses = "";
-		$(editAdminClassSelect).each(function(i,classId) {
-			commaSepAdminClasses += classId + ',';
-		});
 		var editAdminFirstName = $("#editAdminFirstName").val();
 		var editAdminLastName = $("#editAdminLastName").val();
 		var editAdminEmail = $("#editAdminEmail").val();
@@ -776,7 +767,7 @@ function submitAdminEdit(idToEdit) {
 				fname: editAdminFirstName,
 				lname: editAdminLastName,
 				id: idToEdit,
-				classes: commaSepAdminClasses
+				classes: editAdminClassSelect
 			},
 			success:  function(){
 				location.reload();

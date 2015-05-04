@@ -35,7 +35,10 @@
 									'<h3>Description</h3>' +
 									'<p>' + value["description"] + '</p>' +
 									'<h3>Team Members</h3>' +
-									'<ul class="list-group">';
+									'<ul class="list-group" id="studentList-' + value["id"] + '"">' +
+									'</ul>' +
+								'</div>' +
+							'</div>';
 							$.get('api/project.php', {id: value["id"], token:'9164fe76dd046345905767c3bc2ef54'}, function(projData) {
 								var parsedProjData = JSON.parse(projData);
 								var projStudents = parsedProjData["users"];
@@ -44,21 +47,10 @@
 								}
 								else {
 									$(projStudents).each(function(i,projStudent) {
-										strToAdd += '<li class="list-group-item">' + projStudent["fname"] + ' ' + projStudent["lname"] + ' (' + projStudent["email"] + ')</li>';
+										$("#studentList-" + value["id"]).append('<li class="list-group-item">' + projStudent["fname"] + ' ' + projStudent["lname"] + ' (' + projStudent["email"] + ')</li>');
 									});
 								}
 							});
-							/*$(value["majors"]).each(function(index,value){
-								strToAdd += '<li class="list-group-item">' + value["number"] + ' ' + value["name"] + '</li>';
-							});*/
-							// strToAdd += '</ul>' + 
-							// 		'<h3>Attachment</h3>';
-							// if(value["fileLink"] != "") {
-							// 	strToAdd += "<a href='" + value["fileLink"] + "'>Link</a>";
-							// }
-							// else strToAdd += "None";
-							strToAdd += '</div>' +
-							'</div>';		
 							$("#results").append(strToAdd);
 					});
 				});

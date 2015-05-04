@@ -552,7 +552,7 @@
 										<option value="">--Please Select--</option>
 									</select>
 								</div>
-								<input type="file" name="csvFile" id="csvFile">Upload File...</button>
+								<input type="file" name="csvFile" id="csvFile" />
 								<br/>
 								<p id="uploadCSVError" style="display:none; color:red">All fields are required.</p>
 								<input type="submit" class="btn btn-success" style="display:inline-block" />

@@ -575,7 +575,7 @@
 								<select class="form-control" id="projAddUserSelect"></select>
 							</div>
 							<br/>
-							<a class="btn btn-success" style="display:inline-block" id="submitProjAddUser">Add</input>
+							<a class="btn btn-success" style="display:inline-block" id="submitProjAddUser">Add</a>
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
@@ -594,7 +594,7 @@
 								<select class="form-control" id="projRemoveUserSelect"></select>
 							</div>
 							<br/>
-							<a class="btn btn-danger" style="display:inline-block" id="submitProjRemoveUser">Remove</input>
+							<a class="btn btn-danger" style="display:inline-block" id="submitProjRemoveUser">Remove</a>
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->

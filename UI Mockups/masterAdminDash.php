@@ -430,7 +430,7 @@
 							<div id="editStudentMajorTemplate" style="display:none">
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
-									<select class="form-control studentMajorSelection editProjectMajorSelect">
+									<select class="form-control editProjectInput studentMajorSelection editProjectMajorSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>

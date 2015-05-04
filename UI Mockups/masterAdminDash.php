@@ -107,7 +107,7 @@
 									<tr>
 										<th>Name</th>
 										<th>Description</th>
-										<th>File Link</th>
+										<!-- <th>File Link</th> -->
 										<th>Required Majors</th>
 										<th>Class ID</th>
 										<th>Actions</th>
@@ -377,7 +377,7 @@
 									</select>
 								</div>
 							</span>
-							<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
+							<!-- <button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button> -->
 							<br/>
 							<p id="newProjectError" style="display:none; color:red">All fields are required.</p>
 							<button class="btn btn-success" style="display:inline-block" onclick="addProject()">Submit</button>
@@ -422,7 +422,7 @@
 								<input type="number" min="2" max="10" value="2" id="editProjectNumStudents" class="form-control editProjectInput" />
 							</div>
 							<span id="editProjMajorForEachStudent"></span>-->
-							<button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button>
+							<!-- <button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button> -->
 							<br/>
 							<p id="editProjectError" style="display:none; color:red">All fields are required.</p>
 							<button class="btn btn-success" style="display:inline-block" id="submitProjectEditBtn">Submit</button>

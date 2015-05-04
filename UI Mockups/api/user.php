@@ -186,7 +186,7 @@
 			return;
 		}
 		
-		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0, 0, null)';	
+		$sql = 'INSERT into User VALUES (0, ?, ?, ?, ?, 0, null)';	
 		$hashedPass = password_hash($password, PASSWORD_BCRYPT);		
 		if($stmt = $conn->prepare($sql)) {
 			$stmt->bind_param("ssss", $email, $fname, $lname, $hashedPass);

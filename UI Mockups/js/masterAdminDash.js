@@ -23,13 +23,22 @@ $(document).ready(function(){
 	projectTable = $("#displayProjects").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
-		}
+		},
+		"scrollY":        "320px",
+        "scrollCollapse": true,
+        "paging":         false
 	});
-	adminTable = $("#displayAdmins").DataTable();
+	adminTable = $("#displayAdmins").DataTable({
+		"scrollY":        "320px",
+        "scrollCollapse": true,
+        "paging":         false});
 	skillTable = $("#displaySkills").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
-		}
+		},
+		"scrollY":        "320px",
+        "scrollCollapse": true,
+        "paging":         false
 	});
 	$('#adminTabs a').click(function (e) {
 		e.preventDefault()

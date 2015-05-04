@@ -203,11 +203,13 @@
 		$stmt->bind_result($userId);
 		while($stmt->fetch());		
 		
-		$sql = 'INSERT into InClass VALUES (?,?)';
-		if($stmt = $conn->prepare($sql)) {
-			$stmt->bind_param("ii", $userId,$classId);
-			$stmt->execute();
-			while($stmt->fetch());
+		if(!$isAdmin) {
+			$sql = 'INSERT into InClass VALUES (?,?)';
+			if($stmt = $conn->prepare($sql)) {
+				$stmt->bind_param("ii", $userId,$classId);
+				$stmt->execute();
+				while($stmt->fetch());
+			}
 		}
 		
 		$sql = 'INSERT into IsMajor VALUES (?,?)';

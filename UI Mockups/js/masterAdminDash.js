@@ -260,7 +260,7 @@ $(document).ready(function(){
 	});
 	$("#editProjectNumStudents").change(function(){
 		$("#majorForEachStudent").empty();
-		for(var i = 0; i < $("#newProjectNumStudents").val(); i++){
+		for(var i = 0; i < $("#editProjectNumStudents").val(); i++){
 			$("#editProjMajorForEachStudent").append($("#editStudentMajorTemplate").html());
 		}
 	});

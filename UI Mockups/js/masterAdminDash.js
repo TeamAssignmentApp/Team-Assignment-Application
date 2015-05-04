@@ -436,7 +436,7 @@ function addUser() {
 
 function editUser(idToEdit) {
 	$("#editUserModal").modal('show');
-	$.get('api/user.php', {token: '9164fe76dd046345905767c3bc2ef54', id: idToEdit}, function(userData) {
+	$.get('api/user.php', {token: '9164fe76dd046345905767c3bc2ef54', id: idToEdit, isAdmin: 0}, function(userData) {
 		var parsedUserData = JSON.parse(userData);
 		var thisUserClasses = parsedUserData['classIds'];
 		var thisUserFName = parsedUserData['fname'];
@@ -730,7 +730,7 @@ function addAdmin() {
 
 function editAdmin(idToEdit) {
 	$("#editAdminModal").modal('show');
-	$.get('api/user.php', {token: '9164fe76dd046345905767c3bc2ef54', id: idToEdit}, function(userData) {
+	$.get('api/user.php', {token: '9164fe76dd046345905767c3bc2ef54', id: idToEdit, isAdmin: 1}, function(userData) {
 		var parsedUserData = JSON.parse(userData);
 		var thisUserClasses = parsedUserData['classIds'];
 		var thisUserFName = parsedUserData['fname'];

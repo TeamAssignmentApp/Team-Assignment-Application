@@ -285,7 +285,6 @@
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Class</span>
 								<select class="form-control editUserInput classDropdown" multiple id="editUserClassSelect">
-									<option value="">--Please Select--</option>
 								</select>
 							</div>
 							<div class="input-group" style="margin-bottom:10px">

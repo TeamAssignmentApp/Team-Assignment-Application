@@ -289,25 +289,25 @@
 							</div>
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">First Name</span>
-								<input class="form-control editUserInput" id="editUserFirstName" type="text" />
+								<input disabled class="form-control editUserInput" id="editUserFirstName" type="text" />
 							</div>
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Last Name</span>
-								<input class="form-control editUserInput" id="editUserLastName" type="text" />
+								<input disabled class="form-control editUserInput" id="editUserLastName" type="text" />
 							</div>
 
 
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Major</span>
-								<select class="form-control editUserInput studentMajorSelection" id="editUserMajor">
+								<select disabled class="form-control editUserInput studentMajorSelection" id="editUserMajor">
 									<option value="">--Please Select--</option>
 								</select>
 							</div>
 							<div class="input-group" style="margin-bottom:10px">
 								<span class="input-group-addon">Email Address</span>
-								<input class="form-control editUserInput" id="editUserEmail" type="text" />
+								<input disabled class="form-control editUserInput" id="editUserEmail" type="text" />
 							</div>
-							<p id="newUserError" style="display:none; color:red">All fields are required.</p>
+							<!--<p id="newUserError" style="display:none; color:red">All fields are required.</p>-->
 							<button class="btn btn-success" style="display:inline-block" id="editUserSubmit">Save Changes</button>
 						</div>
 					</div><!-- /.modal-content -->

@@ -386,21 +386,21 @@ function submitUserEdit(idToEdit) {
 	if(!error) {
 		$("#editUserError").hide();
 		var editUserClassSelect = $("#editUserClassSelect").val();
-		var editUserFirstName = $("#editUserFirstName").val();
+		/*var editUserFirstName = $("#editUserFirstName").val();
 		var editUserLastName = $("#editUserLastName").val();
 		var editUserMajor = $("#editUserMajor").val();
 		var editUserEmail = $("#editUserEmail").val();
-		var editUserMajor = $("#editUserMajor").val();
+		var editUserMajor = $("#editUserMajor").val();*/
 		$.ajax({
 			url: "api/user.php",
 			type: 'PUT', 
 			data: {
 				token:'9164fe76dd046345905767c3bc2ef54',
+				classes: editUserClassSelect,/*
 				email: editUserEmail,
 				fname: editUserFirstName,
 				lname: editUserLastName,
-				classes: editUserClassSelect,
-				majorId: editUserMajor,
+				majorId: editUserMajor,*/
 				id: idToEdit
 			},
 			success:function(){

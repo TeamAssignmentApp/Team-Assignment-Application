@@ -742,14 +742,14 @@ function editAdmin(idToEdit) {
 		var parsedUserData = JSON.parse(userData);
 		var thisUserClasses = parsedUserData['classIds'];
 		var thisUserFName = parsedUserData['fname'];
-		var thisuserLName = parsedUserData['lname'];
+		var thisUserLName = parsedUserData['lname'];
 		var thisUserEmail = parsedUserData['email'];
 
 		$(thisUserClasses).each(function(classInd, classId) {
 			$("#editAdminClassSelect option[value='" + classId + "']").prop("selected",true);
 		});
-		$("#editAdminFirstname").val(thisUserFName);
-		$("#editAdminLastName").val(thisuserLName);
+		$("#editAdminFirstName").val(thisUserFName);
+		$("#editAdminLastName").val(thisUserLName);
 		$("#editAdminEmail").val(thisUserEmail);
 	});
 	$("#editAdminSubmit").click(function(){submitAdminEdit(idToEdit)});

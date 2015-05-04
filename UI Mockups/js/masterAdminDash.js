@@ -76,6 +76,7 @@ $(document).ready(function(){
 									var parsedAdminData = JSON.parse(adminData);
 									var adminActionButtons = '<a class="btn btn-primary" onclick="editAdmin(' + parsedAdminData["id"] + ')">Edit</a>'
 															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + parsedAdminData["id"] + ')">Delete</a>';
+									console.log('going to add a row to admin table');
 									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
 									commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
 									if(ind < (numAdmins - 1))

@@ -32,12 +32,12 @@
 							$(value["majors"]).each(function(index,value){
 								strToAdd += '<li class="list-group-item">' + value["number"] + ' ' + value["name"] + '</li>';
 							});
-							strToAdd += '</ul>' + 
-									'<h3>Attachment</h3>';
-							if(value["fileLink"] != "") {
-								strToAdd += "<a href='" + value["fileLink"] + "'>Link</a>";
-							}
-							else strToAdd += "None";
+							// strToAdd += '</ul>' + 
+							// 		'<h3>Attachment</h3>';
+							// if(value["fileLink"] != "") {
+							// 	strToAdd += "<a href='" + value["fileLink"] + "'>Link</a>";
+							// }
+							// else strToAdd += "None";
 							strToAdd += '</div>' +
 							'</div>';		
 							$("#projectContainer").append(strToAdd);

@@ -210,6 +210,14 @@ $(document).ready(function(){
 		$("#editProjMajorForEachStudent").empty();
 	});
 
+	$("#projAddUserModal").on("hidden.bs.modal", function() {
+		$("#projAddUserSelect").empty();
+	});
+
+	$("#projRemoveUserModal").on("hidden.bs.modal", function() {
+		$("#projRemoveUserSelect").empty();
+	});
+
 	$("#reqPageSelect").change(function() {
 		if($(this).val() == "")
 			$(".requestPageInput").attr("disabled","disabled");

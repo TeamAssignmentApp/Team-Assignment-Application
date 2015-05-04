@@ -9,32 +9,15 @@
 	else if (!isset($_POST['classID'])){
 		header("location: AdminDash.php");
 	}
-	$target_dir = "csv/";
-	$target_file = $target_dir . basename($_FILES["csvFile"]["name"]);
-	$uploadOk = 1;
 	//if(isset($_POST["submit"])) {
-	if (isset($_POST['classID'])){
-	    $file = fopen($_FILES["csvFile"]["tmp_name"]);
-	}
+    $file = fopen($_FILES["csvFile"]["name"], "r");
 
 	//REMOVE FILENAME LATER
 	//$csvFile = $_GET['fileName'];
+	
 	$classID = $_POST['classID'];
 	$majorID = $_POST['majorID'];
-/*
-	if (!isset($_SESSION['isMaster'])){
-		$connection = mysql_connect("localhost", "root", "321Testing");
-		$db = mysql_select_db("TeamAssignmentApp", $connection);
-		$user = $_SESSION['login_user'];
-		$query = mysql_query("SELECT * FROM AdminOf WHERE userID = '$user' AND classID = '$classID'");
-		$rows = mysql_num_rows($query);
-		if ($rows < 1){
-			mysql_close($connection);
-			header("location: AdminDash.php");
-		}
-		mysql_close($connection);
-	}*/
-	$file = fopen($csvFile,"r");
+
 	//IGNORES FIRST LINE CONTAINING HEADERS
 	$userInfo = fgetcsv($file);
 	$DBServer = 'localhost';
@@ -53,15 +36,14 @@
 		$lname = $splitName[0];
 		$fname = explode(' ', $splitName[1]);
 		$fname = $fname[0];
-		echo print_r($userInfo);
-		
+	
 		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		$passLength = 8;
     	$password = substr( str_shuffle( $chars ), 0, $passLength);
     	$password = password_hash($password, PASSWORD_BCRYPT);
     	mysqli_query($conn,"INSERT INTO User (fname, lname, email, password) VALUES ('$fname', '$lname', '$email', '$password')");
     	$success = mysqli_affected_rows($conn);
-    	if ($success = 0){
+    	if ($success < 1){
     		$result = mysqli_query($conn,"SELECT userID FROM User WHERE email = '$email'");
     		$row = mysqli_fetch_assoc($result);
     		$userID = $row['userID'];
@@ -71,8 +53,7 @@
 	    }
 		mysqli_query($conn,"INSERT INTO IsMajor (userID, majorID) VALUES ('$userID', '$majorID')");
 		mysqli_query($conn,"INSERT INTO InClass (userID, classID) VALUES ('$userID', '$classID')");
-		//$splitName = explode(',', $fullName);
-
 	}
 	fclose($file);
+	header("location: AdminDash.php");
 ?>

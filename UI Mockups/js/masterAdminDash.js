@@ -8,16 +8,16 @@ var skillTable;
 $(document).ready(function(){
 	//load the tables first
 	classTable = $("#displayClasses").DataTable({
-		"scrollY":        "300px",
-        "scrollCollapse": true,
+		"scrollY":        "320px",
+        "scrollCollapse": false,
         "paging":         false
      });
 	userTable = $("#displayUsers").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		},
-		"scrollY":        "300px",
-        "scrollCollapse": true,
+		"scrollY":        "320px",
+        "scrollCollapse": false,
         "paging":         false
 	});
 	projectTable = $("#displayProjects").DataTable({

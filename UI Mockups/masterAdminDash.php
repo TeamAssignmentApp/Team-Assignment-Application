@@ -63,7 +63,7 @@
 						<div role="tabpanel" class="tab-pane active" id="classes">
 							<h3 style="margin-top:0; display:inline-block">Managing Classes</h3>
 							<button class="btn btn-success btn-sm" id="addClassBtn" style="display:inline-block" data-toggle="modal" data-target="#addClassModal"><span class="glyphicon glyphicon-plus"></span>Add Class</button>
-							<table id="displayClasses" class="display">
+							<table id="displayClasses" class="display" style="width:100%">
 								<thead>
 									<tr>
 										<th>Class Name</th>
@@ -83,7 +83,7 @@
 	    					<select class="classDropdown" id="userClassDropdown" style="display:inline-block">
 	    						<option value="-1">--Please Select a Class To View--</option>
 	    					</select>
-	    					<table id="displayUsers" class="display">
+	    					<table id="displayUsers" class="display" style="width:100%">
 								<thead>
 									<tr>
 										<th>Name</th>
@@ -102,7 +102,7 @@
 							<select class="classDropdown" id="projectClassDropdown" style="display:inline-block">
 	    						<option value="-1">--Please Select a Class To View--</option>
 	    					</select>
-							<table id="displayProjects" class="display">
+							<table id="displayProjects" class="display" style="width:100%">
 								<thead>
 									<tr>
 										<th>Name</th>

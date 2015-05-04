@@ -368,7 +368,7 @@ function editUser(idToEdit) {
 		$("#editUserLastName").val(thisUserLName);
 		$("#editUserEmail").val(thisUserEmail);
 		
-		$("#editUserMajor option").each(function(i, opt{
+		$("#editUserMajor option").each(function(i, opt){
 			if($(this).text() == thisUserMajor)
 				$(this).attr("selected","selected");
 		});

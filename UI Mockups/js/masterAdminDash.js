@@ -887,7 +887,7 @@ function runTeamAssignment(classid) {
 }
 
 function addUserToProj(projID, classID) {
-	$.get("api/class.php", data:{token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
+	$.get("api/class.php", {token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
 		var parsedClassData = JSON.parse(classData);
 		var thisClassUsers = parsedClassData["users"];
 		$(thisClassUsers).each(function(i,usr) {
@@ -902,7 +902,7 @@ function addUserToProj(projID, classID) {
 }
 
 function removeUserFromProj(projID, classID) {
-	$.get("api/class.php", data:{token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
+	$.get("api/class.php", {token: '9164fe76dd046345905767c3bc2ef54', id: classID}, function(classData) {
 		var parsedClassData = JSON.parse(classData);
 		var thisClassUsers = parsedClassData["users"];
 		$(thisClassUsers).each(function(i,usr) {

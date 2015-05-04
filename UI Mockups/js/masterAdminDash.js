@@ -8,7 +8,7 @@ var skillTable;
 $(document).ready(function(){
 	//load the tables first
 	classTable = $("#displayClasses").DataTable({
-		"scrollY":        "200px",
+		"scrollY":        "300px",
         "scrollCollapse": true,
         "paging":         false
      });
@@ -16,7 +16,7 @@ $(document).ready(function(){
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
 		},
-		"scrollY":        "200px",
+		"scrollY":        "300px",
         "scrollCollapse": true,
         "paging":         false
 	});

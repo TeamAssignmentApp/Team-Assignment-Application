@@ -96,7 +96,7 @@
 			for(var i = 0; i < numTeamPrefs; i++) {
 				var newTeamPref = "<div class='input-group'>" +
 									"<span class='input-group-addon'>Team Member Request " + (i+1) + "</span>" +
-									"<input type='text' placeholder='Start typing name...'' class='form-control teamReqInput' name = 'TeammatePreference" + (i+1) + "'/>" +
+									"<select class='form-control teamReqInput' name = 'TeammatePreference" + (i+1) + "'></select>" +
 									"</div>" +
 									"<br/>";
 				$("#teamReqs").append(newTeamPref);
@@ -112,6 +112,13 @@
 				$(".skillSelect").append(newSkillStr);
 			});
 
+			$.get("api/class.php", {token: '9164fe76dd046345905767c3bc2ef54', id: <?php echo $_GET['id']; ?>}, function(classData) {
+				var parsedClassData = JSON.parse(classData);
+				var thisClassUsers = parsedClassData["users"];
+				$(thisClassUsers).each(function(i,usr) {
+					$(".teamReqInput").append('<option value="' + usr["id"] + '"">' + usr["fname"] + ' ' + usr["lname"] + '</option>');
+				});
+			});
 			$(".teamReqInput").each(function(index,value) {
 				$(this).autocomplete({
 					source: userNames

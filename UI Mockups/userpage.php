@@ -119,11 +119,7 @@
 					$(".teamReqInput").append('<option value="' + usr["id"] + '"">' + usr["fname"] + ' ' + usr["lname"] + '</option>');
 				});
 			});
-			$(".teamReqInput").each(function(index,value) {
-				$(this).autocomplete({
-					source: userNames
-				});
-			});
+			
 		});
 		/*function updatePreferences(sameID, samePassword, projectPrefs, teammatePrefs, newSkills, wantsLead){
 			if(){

@@ -82,27 +82,35 @@ $(document).ready(function(){
 										'<a class="btn-danger btn-xs btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
 
 					if(parsedClassData["adminIds"].length == 0) {
-							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
-						}
-						else {
-							var commaSepAdminNames = '';
-							var numAdmins = parsedClassData["adminIds"].length;
-							$(parsedClassData["adminIds"]).each(function(ind, adminId) {
-								$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
-									var parsedAdminData = JSON.parse(adminData);
-									var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + adminId + ')">Edit</a>&nbsp;' +
-															'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + adminId + ')">Delete</a>';
-									console.log('going to add a row to admin table');
-									adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
-									commaSepAdminNames += parsedAdminData["fname"] + ' ' + parsedAdminData["lname"];
-									if(ind < (numAdmins - 1))
-										commaSepAdminNames += ', ';
-								});
+						console.log('no admins here');
+						classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
+					}
+					else {
+						classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, '<span id="adminNames-' + classID + '"></span>', actionButtons]).draw();
+						var numAdmins = parsedClassData["adminIds"].length;
+						$(parsedClassData["adminIds"]).each(function(ind, adminId) {
+							console.log('getting admin ' + adminId);
+							$.get("api/user.php", {id: adminId, token:'9164fe76dd046345905767c3bc2ef54', isAdmin:1}, function(adminData) {
+								var parsedAdminData = JSON.parse(adminData);
+								var adminActionButtons = '<a class="btn btn-primary btn-xs" onclick="editAdmin(' + adminId + ')">Edit</a>&nbsp;' +
+													'<a class="btn btn-danger btn-xs" onclick="deleteAdmin(' + adminId + ')">Delete</a>';
+							console.log('going to add a row to admin table');
+							adminTable.row.add([parsedAdminData["fname"] + ' ' + parsedAdminData["lname"], parsedAdminData['email'], parsedClassData["name"], adminActionButtons]).draw();
+								$("#adminNames-" + classID).append(parsedAdminData["fname"] + ' ' + parsedAdminData["lname"] + ', ');
+								if(ind == (numAdmins - 1)) {
+									//trim off the last comma-space
+									setTimeout(function(){
+										var namesFromTable = $("#adminNames-" + classID).text();
+										$("#adminNames-" + classID).text(namesFromTable.substring(0, namesFromTable.length - 2));		
+									}, 3000);
+																		
+								}											
 							});
-							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, commaSepAdminNames, actionButtons]).draw();
-						}
-						$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
-						numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
+						});
+						
+					}
+					$("#reqPageSelect").append('<option value="' + parsedClassData["id"] + '">' + parsedClassData["name"] + '</option>');
+					numPrefs[parsedClassData["name"]] = {"numProjPrefs": parsedClassData["numProjPrefs"], "numTeamPrefs": parsedClassData["numTeamPrefs"]};
 				}
 				else {
 					$(allUsersAllProjects).each(function(index,user){

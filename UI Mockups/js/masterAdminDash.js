@@ -127,6 +127,7 @@ $(document).ready(function(){
 										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;' +
 										'<a class="btn-danger btn-xs btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
 							if(parsedClassData["adminIds"].length == 0) {
+								console.log('no admins here');
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 							}
 							else {

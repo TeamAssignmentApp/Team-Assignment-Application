@@ -14,7 +14,10 @@ $(document).ready(function(){
 	userTable = $("#displayUsers").DataTable({
 		"language" : {
 			"zeroRecords": "Please select a class from the dropdown above."
-		}
+		},
+		"scrollY":        "320px",
+        "scrollCollapse": true,
+        "paging":         false
 	});
 	projectTable = $("#displayProjects").DataTable({
 		"language" : {

@@ -300,6 +300,10 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	$("#newProjectAddSkillBtn").click(function() {
+		$("#projectSkills").append($("#newProjectSkillTemplate").html());
+	});
 });
 ////////////////////////////
 //END DOCUMENT READY

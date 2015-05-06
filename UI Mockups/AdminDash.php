@@ -348,7 +348,7 @@
 									</select>
 								</div>
 							</span>
-							<!-- <button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button> -->
+							<button class="btn btn-default btn-sm" id="newProjectAddSkillBtn" style="margin-bottom:10px">Add Skill</button>
 							<br/>
 							<p id="newProjectError" style="display:none; color:red">All fields are required.</p>
 							<button class="btn btn-success" style="display:inline-block" onclick="addProject()">Submit</button>

@@ -85,6 +85,19 @@
 					}
 					$projectArr[$i]['majors'] = unserialize(serialize($majorArr));
 				}
+
+				$skillArr = array();
+				$skill = null;	
+				$sql = 'Select s.skillID, skillName from Skill s INNER JOIN ProjectRequiresSkill prs ON s.skillID = prs.skillID WHERE prs.projectID = ?';
+				if($stmt = $conn->prepare($sql)) {
+					$stmt->bind_param("i", $projId);
+					$stmt->execute();
+					$stmt->bind_result($skill['skillID'], $skill['skillName']);
+					while($stmt->fetch()) {
+						$skillArr[] = unserialize(serialize($skill));
+					}
+					$projectArr[$i]['skills'] = unserialize(serialize($skillArr));
+				}
 			}
 			$class['projects'] = $projectArr;
 		}

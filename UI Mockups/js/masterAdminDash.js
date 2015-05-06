@@ -629,6 +629,7 @@ function addProject() {
 			skillArr.push({skillID: thisSelec});
 		});
 
+		console.log(JSON.stringify(majorsAndNumbers));
 		console.log(JSON.stringify(skillArr));
 
 		$.post("api/project.php", {

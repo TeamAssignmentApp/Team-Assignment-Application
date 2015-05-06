@@ -286,7 +286,7 @@
 		$classIdArrayStr = $put["classes"];
 		if($classIdArrayStr != null) {
 			$classIdArr = explode(',', $classIdArrayStr);
-			if($isAdmin == 0) {
+			/*if($isAdmin == 0) {
 				if(!updateUserClasses($userId, $classIdArr)) {
 					return;
 				} else {
@@ -298,7 +298,7 @@
 				} else {
 					updateLastUpdateTime($userId);
 				}
-			}
+			}*/
 		}
 	}
 	

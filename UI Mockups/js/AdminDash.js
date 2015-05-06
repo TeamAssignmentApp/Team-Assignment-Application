@@ -295,7 +295,7 @@ $(document).ready(function(){
 				var thisClassSkills = parsedClassData['skills'];
 				$(".newProjectSkillSelect").html('<option value="">--Please Select--</option>');
 				$(thisClassSkills).each(function(i, skill) {
-					$("#newProjectSkillSelect").append('<option value="' + skill['id'] + '">' + skill['name'] + '</option>');
+					$(".newProjectSkillSelect").append('<option value="' + skill['id'] + '">' + skill['name'] + '</option>');
 				})
 			});
 		}

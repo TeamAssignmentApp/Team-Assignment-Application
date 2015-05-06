@@ -377,6 +377,14 @@
 									</select>
 								</div>
 							</span>
+							<span id="projectSkills">
+								<div class="input-group" style="margin-bottom:10px">
+									<span class="input-group-addon">Skill</span>
+									<select class="form-control newProjectInput skillSelect newProjectSkillSelect">
+										<option value="">--Please Select--</option>
+									</select>
+								</div>
+							</span>
 							<!-- <button class="btn btn-default" style="margin-bottom:10px">Upload Attachment</button> -->
 							<br/>
 							<p id="newProjectError" style="display:none; color:red">All fields are required.</p>
@@ -387,6 +395,14 @@
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Student Discipline</span>
 									<select class="form-control newProjectInput studentMajorSelection addProjectMajorSelect">
+										<option value="">--Please Select--</option>
+									</select>
+								</div>
+							</div>
+							<div id="newProjectSkillTemplate" style='display:none'>
+								<div class="input-group" style="margin-bottom:10px">
+									<span class="input-group-addon">Skill</span>
+									<select class="form-control newProjectInput skillSelect addProjectSkillSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>

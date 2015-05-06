@@ -287,6 +287,19 @@ $(document).ready(function(){
 	setTimeout(function(){
 		classTable.columns.adjust();
 	},2000);
+
+	$("#newProjectClassSelect").change(function(){
+		if($(this).val() != "") {
+			$.get('api/class.php', {id: $(this).val(), token: '9164fe76dd046345905767c3bc2ef54'}, function(classData) {
+				var parsedClassData = JSON.parse(classData);
+				var thisClassSkills = parsedClassData['skills'];
+				$(".newProjectSkillSelect").html('<option value="">--Please Select--</option>');
+				$(thisClassSkills).each(function(i, skill) {
+					$("#newProjectSkillSelect").append('<option value="' + skill['id'] + '">' + skill['name'] + '</option>');
+				})
+			});
+		}
+	});
 });
 ////////////////////////////
 //END DOCUMENT READY
@@ -506,6 +519,12 @@ function addProject() {
 			}
 		});
 
+		var skillArr = [];
+		$(".newProjectClassSelect:visible").each(function(ind, classSelec) {
+			var thisSelec = $(classSelec).val();
+			skillArr.push({skillID: thisSelec});
+		});
+
 		console.log('descrip');
 		console.log(newProjectDescription);
 
@@ -515,7 +534,8 @@ function addProject() {
 			descrip: newProjectDescription,
 			file: newProjectFileLink,
 			classId: newProjectClassSelect,
-			majors: JSON.stringify(majorsAndNumbers)
+			majors: JSON.stringify(majorsAndNumbers),
+			skills: JSON.stringify(skillArr)
 		}, function(){
 			location.reload();
 		});

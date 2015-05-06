@@ -365,7 +365,7 @@
 							<div id="newProjectSkillTemplate" style='display:none'>
 								<div class="input-group" style="margin-bottom:10px">
 									<span class="input-group-addon">Skill</span>
-									<select class="form-control newProjectInput skillSelect addProjectSkillSelect">
+									<select class="form-control newProjectInput skillSelect newProjectSkillSelect">
 										<option value="">--Please Select--</option>
 									</select>
 								</div>

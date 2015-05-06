@@ -160,7 +160,7 @@ $(document).ready(function(){
 					var projAddUserButton = '<a class="btn btn-success btn-xs" onclick="addUserToProj(' + proj["id"] + ', ' + classID +')">Add User</a>&nbsp;';
 					var projDeleteUserButton = '<a class="btn btn-success btn-xs" onclick="removeUserFromProj(' + proj["id"] + ', ' + classID +')">Remove User</a>&nbsp;';
 					var projectActionButtons = editProjectButton + deleteProjectButton + projAddUserButton + projDeleteUserButton;
-					projectTable.row.add([proj["name"], proj["description"],majorReqStr, '<span id="projSkills-' + proj['id'] + '></span>', classID, projectActionButtons]).draw();
+					projectTable.row.add([proj["name"], proj["description"],majorReqStr, '<span id="projSkills-' + proj['id'] + '"></span>', classID, projectActionButtons]).draw();
 
 					//get this project's skills
 					$.get('api/project.php', {id: proj['id'], token: '9164fe76dd046345905767c3bc2ef54'}, function(projData) {

@@ -188,7 +188,20 @@ $(document).ready(function(){
 					var projAddUserButton = '<a class="btn btn-success btn-xs" onclick="addUserToProj(' + proj["id"] + ', ' + classID +')">Add User</a>&nbsp;';
 					var projDeleteUserButton = '<a class="btn btn-success btn-xs" onclick="removeUserFromProj(' + proj["id"] + ', ' + classID +')">Remove User</a>&nbsp;';
 					var projectActionButtons = editProjectButton + deleteProjectButton + projAddUserButton + projDeleteUserButton;
-					projectTable.row.add([proj["name"], proj["description"],majorReqStr, classID, projectActionButtons]).draw();
+					projectTable.row.add([proj["name"], proj["description"],majorReqStr, '<span id="projSkills-' + proj['id'] + '></span>', classID, projectActionButtons]).draw();
+
+					//get this project's skills
+					$.get('api/project.php', {id: proj['id'], token: '9164fe76dd046345905767c3bc2ef54'}, function(projData) {
+						var parsedProjData = JSON.parse(projData);
+						var thisProjSkills = parsedProjData['skills'];
+						$(thisProjSkills).each(function(j, skill) {
+							$("#projSkills-" + proj['id']).append(skill['skillName'] + ', ');
+							setTimeout(function(){
+								var skillsFromTable = $("#projSkills-" + proj['id']).text();
+								$("#projSkills-" + proj['id']).text(skillsFromTable.substring(0, skillsFromTable.length - 2));		
+							}, 3000);
+						});
+					});
 				});
 
 				$(thisClassSkills).each(function(index,skl){
@@ -296,7 +309,7 @@ $(document).ready(function(){
 	$("#editClassEndDate").datepicker("option", "dateFormat", "yy-mm-dd");
 
 	userTable.columns(3).search(-1,true,false).draw();
-	projectTable.columns(3).search(-1,true,false).draw();
+	projectTable.columns(4).search(-1,true,false).draw();
 	skillTable.columns(1).search(-1,true,false).draw();
 
 	//make it so that the class dropdowns will filter the user and project tables
@@ -306,7 +319,7 @@ $(document).ready(function(){
 	});
 	$("#projectClassDropdown").change(function() {
 		var searchReg = "^" + $(this).val() + "$";
-		projectTable.column(3).search(searchReg,true,false).draw();
+		projectTable.column(4).search(searchReg,true,false).draw();
 	});
 	$("#skillClassDropdown").change(function() {
 		var searchReg = "^" + $(this).val() + "$";

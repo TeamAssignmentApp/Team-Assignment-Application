@@ -112,8 +112,8 @@
 									<tr>
 										<th>Name</th>
 										<th>Description</th>
-										<!-- <th>File Link</th> -->
 										<th>Required Majors</th>
+										<th>Required Skills</th>
 										<th>Class ID</th>
 										<th>Actions</th>
 									</tr>

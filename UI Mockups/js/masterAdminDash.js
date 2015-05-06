@@ -188,7 +188,7 @@ $(document).ready(function(){
 					var projAddUserButton = '<a class="btn btn-success btn-xs" onclick="addUserToProj(' + proj["id"] + ', ' + classID +')">Add User</a>&nbsp;';
 					var projDeleteUserButton = '<a class="btn btn-success btn-xs" onclick="removeUserFromProj(' + proj["id"] + ', ' + classID +')">Remove User</a>&nbsp;';
 					var projectActionButtons = editProjectButton + deleteProjectButton + projAddUserButton + projDeleteUserButton;
-					projectTable.row.add([proj["name"], proj["description"],proj["fileLink"],majorReqStr, classID, projectActionButtons]).draw();
+					projectTable.row.add([proj["name"], proj["description"],majorReqStr, classID, projectActionButtons]).draw();
 				});
 
 				$(thisClassSkills).each(function(index,skl){

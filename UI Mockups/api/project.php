@@ -95,6 +95,7 @@
 		$projectDescrip = $post["descrip"];
 		$fileLink = $post["file"];
 		$classId = $post["classId"];
+		$skillsStr = $post["skills"];
 		
 		$majorsStr = $post["majors"];
 		
@@ -119,6 +120,16 @@
 		if($majorsStr != null) {
 			$majors = json_decode($majorsStr, true);
 			if($majors == null) {
+				$isError = true;
+				$message .= "majors was not valid json \n";
+			}
+		} else {
+			$isError = true;
+			$message .= "majors field was missing \n";
+		}
+		if($skillsStr != null) {
+			$skills = json_decode($skillsStr, true);
+			if($skills == null) {
 				$isError = true;
 				$message .= "majors was not valid json \n";
 			}
@@ -151,9 +162,17 @@
 			$stmt->bind_param("ii", $classId,$projectId);
 			$stmt->execute();
 			while($stmt->fetch());
+		}
+
+		$sql = 'INSERT into HasProject VALUES (?,?)';
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("ii", $classId,$projectId);
+			$stmt->execute();
+			while($stmt->fetch());
 		}	
 		
 		addProjectMajors($projectId, $majors);
+		addProjectSkills($projectId, $skills);
 	}
 	
 	function addProjectMajors($projectId, $majors) {
@@ -181,6 +200,35 @@
 			$stmt->execute();
 			if($stmt->affected_rows == 0) {
 				throwError(500, "The project majors preferences could not be added");
+				return false;
+			}
+		}
+		return true;
+	}
+		function addProjectSkills($projectId, $skills) {
+		global $conn;
+		$sql = "DELETE from ProjectRequiresSkill where projectID = ?";
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param("i", $projectId);
+			$stmt->execute();
+			while($stmt->fetch());
+		}
+
+		$sql = "INSERT into ProjectRequiresSkill VALUES ";
+		$paramStr = "";
+		$args = array();
+		for($i = 0; $i < sizeof($skills); $i++) {
+			$sql .= "(?,?),";
+			$args[] = intval($skills[$i]['skillId']);
+			$args[] = intval($projectId);
+			$paramStr .= "ii";
+		}
+		$sql = substr($sql, 0, -1);
+		if($stmt = $conn->prepare($sql)) {
+			$stmt->bind_param($paramStr, ...$args);
+			$stmt->execute();
+			if($stmt->affected_rows == 0) {
+				throwError(500, "The project skills preferences could not be added");
 				return false;
 			}
 		}

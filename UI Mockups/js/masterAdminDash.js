@@ -629,7 +629,7 @@ function addProject() {
 			skillArr.push({skillID: thisSelec});
 		});
 
-		console.log(skillArr);
+		console.log(JSON.stringify(skillArr));
 
 		$.post("api/project.php", {
 			token: '9164fe76dd046345905767c3bc2ef54',

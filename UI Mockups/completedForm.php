@@ -48,14 +48,14 @@
 		mysqli_query($conn,"UPDATE InClass SET wantsToLead = 0 WHERE userID = '$userID' AND classID = '$classID'");
 		echo "made a leader";
 	}
-	for ($i = 1; $i < $projPrefs; $i++){
+	for ($i = 1; $i <= $projPrefs; $i++){
 		$projID = $_POST["ProjectPreference".$i];
 		if (!empty($projID)){
 			mysqli_query($conn,"INSERT INTO WantsProject (userID, projectID, rank) VALUES ('$userID', '$projID', '$i')");
 		}
 
 	}
-	for ($i = 1; $i < $teamPrefs; $i++){
+	for ($i = 1; $i <= $teamPrefs; $i++){
 		$teammateID = $_POST["TeammatePreference".$i];
 		if (!empty($teammateID)){
 			mysqli_query($conn,"INSERT INTO WantsTeammate (userID, teammateID, rank) VALUES ('$userID', '$teammateID', '$i')");

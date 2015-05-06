@@ -524,9 +524,9 @@ function addProject() {
 		});
 
 		var skillArr = [];
-		$(".newProjectSkillSelect:visible").each(function(ind, classSelec) {
-			var thisSelec = $(classSelec).val();
-			skillArr.push({skillID: thisSelec});
+		$(".newProjectSkillSelect:visible").each(function(ind, skillSelec) {
+			var thisSelec = $(skillSelec).val();
+			skillArr.push({skillId: thisSelec});
 		});
 
 		console.log('descrip');

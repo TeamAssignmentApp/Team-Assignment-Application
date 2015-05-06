@@ -626,10 +626,9 @@ function addProject() {
 		$(".newProjectSkillSelect:visible").each(function(ind, skillSelec) {
 			console.log('in skill foreach');
 			var thisSelec = $(skillSelec).val();
-			skillArr.push({skillID: thisSelec});
+			skillArr.push({skillId: thisSelec});
 		});
 
-		console.log(JSON.stringify(majorsAndNumbers));
 		console.log(JSON.stringify(skillArr));
 
 		$.post("api/project.php", {

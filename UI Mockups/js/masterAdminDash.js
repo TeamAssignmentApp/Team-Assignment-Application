@@ -195,6 +195,8 @@ $(document).ready(function(){
 						var parsedProjData = JSON.parse(projData);
 						var thisProjSkills = parsedProjData['skills'];
 						$(thisProjSkills).each(function(j, skill) {
+							console.log('adding skill to project');
+							console.log(skill);
 							$("#projSkills-" + proj['id']).append(skill['skillName'] + ', ');
 							setTimeout(function(){
 								var skillsFromTable = $("#projSkills-" + proj['id']).text();

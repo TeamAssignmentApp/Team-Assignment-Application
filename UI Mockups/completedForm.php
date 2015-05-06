@@ -61,7 +61,7 @@
 			mysqli_query($conn,"INSERT INTO WantsTeammate (userID, teammateID, rank) VALUES ('$userID', '$teammateID', '$i')");
 		}
 	}
-	$i = 0;
+	$i = 1;
 	while (isset($_POST["Skill".$i])){
 		$skillID = $_POST["Skill".$i];
 		if (!empty($skillID)){

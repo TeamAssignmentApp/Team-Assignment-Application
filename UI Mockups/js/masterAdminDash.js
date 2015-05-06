@@ -79,7 +79,8 @@ $(document).ready(function(){
 					var actionButtons = '<a class="btn-primary btn-xs btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
 										'<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
 										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;' +
-										'<a class="btn-danger btn-xs btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+										'<a class="btn-danger btn-xs btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>' +
+										'<a class="btn-success btn-xs btn" href="ViewResults.php?classID=' + parsedClassData["id"] + '">Results</a>';
 
 					if(parsedClassData["adminIds"].length == 0) {
 						console.log('no admins here');
@@ -133,7 +134,8 @@ $(document).ready(function(){
 							var actionButtons = '<a class="btn-primary btn-xs btn" onclick="editClass(' + parsedClassData["id"] + ')">Edit</a>&nbsp;' +
 										'<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
 										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;' +
-										'<a class="btn-danger btn-xs btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>';
+										'<a class="btn-danger btn-xs btn" onclick="deleteClass(' + parsedClassData["id"] + ')">Delete</a>' +
+										'<a class="btn-success btn-xs btn" href="ViewResults.php?classID=' + parsedClassData["id"] + '">Results</a>';
 							if(parsedClassData["adminIds"].length == 0) {
 								console.log('no admins here');
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();

@@ -73,7 +73,8 @@ $(document).ready(function(){
 					$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
 					var actionButtons = '<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
-										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>';
+										'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>' +
+										'<a class="btn-success btn-xs btn" href="ViewResults.php?classID=' + parsedClassData["id"] + '">Results</a>';
 					if(parsedClassData["adminIds"].length == 0) {
 							classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 						}
@@ -109,7 +110,8 @@ $(document).ready(function(){
 							$(".classDropdown").append("<option value='" + classID + "'>" + parsedClassData["name"] + "</option>");
 
 							var actionButtons = '<a class="btn-info btn-xs btn" onclick="addUsersFromCSV(' + parsedClassData["id"] + ')">CSV</a>&nbsp;' +
-									'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;';
+									'<a class="btn-default btn-xs btn" onclick="runTeamAssignment(' + parsedClassData["id"] + ')">Team Assignment</a>&nbsp;' +
+										'<a class="btn-success btn-xs btn" href="ViewResults.php?classID=' + parsedClassData["id"] + '">Results</a>';
 							if(parsedClassData["adminIds"].length == 0) {
 								classTable.row.add([parsedClassData["name"], prettyStartDate, prettyEndDate, "None", actionButtons]).draw();
 							}

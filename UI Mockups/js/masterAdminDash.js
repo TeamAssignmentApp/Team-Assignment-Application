@@ -198,10 +198,10 @@ $(document).ready(function(){
 							console.log('adding skill to project');
 							console.log(skill);
 							$("#projSkills-" + proj['id']).append(skill['skillName'] + ', ');
-							setTimeout(function(){
+							/*setTimeout(function(){
 								var skillsFromTable = $("#projSkills-" + proj['id']).text();
 								$("#projSkills-" + proj['id']).text(skillsFromTable.substring(0, skillsFromTable.length - 2));		
-							}, 3000);
+							}, 3000);*/
 						});
 					});
 				});
